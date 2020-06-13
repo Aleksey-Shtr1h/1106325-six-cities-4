@@ -101,13 +101,11 @@ const Main = ({placesCount, placesInfo}) => {
                 {placesInfo.map((placeInfo) =>
                   <article className="cities__place-card place-card" key = {placeInfo.id}>
 
-                    {placeInfo.isCheckedPremium ?
-
+                    {placeInfo.isCheckedPremium &&
                       <div className="place-card__mark">
                         <span>Premium</span>
                       </div>
-
-                      : ``}
+                    }
 
                     <div className="cities__image-wrapper place-card__image-wrapper">
                       <a href="#">
