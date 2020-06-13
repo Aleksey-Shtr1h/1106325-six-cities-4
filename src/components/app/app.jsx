@@ -1,13 +1,29 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
-// eslint-disable-next-line react/prop-types
-const App = ({placesCount}) => {
+const App = ({placesCount, placesInfo}) => {
   return (
     <Main
       placesCount = {placesCount}
+      placesInfo = {placesInfo}
     />
   );
+};
+
+App.propTypes = {
+  placesCount: PropTypes.number.isRequired,
+  placesInfo: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        isCheckedPremium: PropTypes.bool.isRequired,
+        image: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        ratingStars: PropTypes.string.isRequired,
+        titleCard: PropTypes.string.isRequired,
+        typeCard: PropTypes.string.isRequired,
+      }).isRequired
+  )
 };
 
 export default App;
