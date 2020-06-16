@@ -2,11 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
+const titlePlaceClickHandler = () => {};
+
 const App = ({placesCount, placesInfo}) => {
   return (
     <Main
       placesCount = {placesCount}
       placesInfo = {placesInfo}
+      handleTitlePlaceClick = {titlePlaceClickHandler}
     />
   );
 };

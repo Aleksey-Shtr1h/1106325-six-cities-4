@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 
 const SettingsPlace = {
-  PLACES_COUNT: 93,
+  PLACES_COUNT: 50,
   PLACES_INFO: [
     {
       id: 1,
