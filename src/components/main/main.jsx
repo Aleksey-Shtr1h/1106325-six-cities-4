@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Main = ({placesCount, placesInfo, onTitlePlaceClickHandler}) => {
+const Main = ({placesCount, placesInfo, handleTitlePlaceClick}) => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -133,7 +133,7 @@ const Main = ({placesCount, placesInfo, onTitlePlaceClickHandler}) => {
                         </div>
                       </div>
                       <h2 className="place-card__name">
-                        <a onClick = {onTitlePlaceClickHandler} href="#">{placeInfo.titleCard}</a>
+                        <a onClick = {handleTitlePlaceClick} href="#">{placeInfo.titleCard}</a>
                       </h2>
                       <p className="place-card__type">{placeInfo.typeCard}</p>
                     </div>
@@ -165,7 +165,7 @@ Main.propTypes = {
         typeCard: PropTypes.string.isRequired,
       }).isRequired
   ),
-  onTitlePlaceClickHandler: PropTypes.func.isRequired,
+  handleTitlePlaceClick: PropTypes.func.isRequired,
 };
 
 

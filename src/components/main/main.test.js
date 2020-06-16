@@ -59,7 +59,7 @@ test(`Should Main render correctly`, () => {
         },
       ]
     }
-    onTitlePlaceClickHandler = {() => {}}
+    handleTitlePlaceClick = {() => {}}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();

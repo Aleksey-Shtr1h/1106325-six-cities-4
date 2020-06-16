@@ -8,7 +8,7 @@ Enzyme.configure({
 });
 
 test(`Should main button be pressed`, () => {
-  const onTitlePlaceClickHandler = jest.fn();
+  const handleTitlePlaceClick = jest.fn();
 
   const main = shallow(
       <Main
@@ -66,7 +66,7 @@ test(`Should main button be pressed`, () => {
             },
           ]
         }
-        onTitlePlaceClickHandler = {onTitlePlaceClickHandler}
+        handleTitlePlaceClick = {handleTitlePlaceClick}
       />
   );
 
@@ -76,5 +76,5 @@ test(`Should main button be pressed`, () => {
     titleClick.props().onClick();
   });
 
-  expect(onTitlePlaceClickHandler.mock.calls.length).toBe(titlesClick.length);
+  expect(handleTitlePlaceClick.mock.calls.length).toBe(titlesClick.length);
 });

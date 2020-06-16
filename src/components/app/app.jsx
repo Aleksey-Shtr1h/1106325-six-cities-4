@@ -9,7 +9,7 @@ const App = ({placesCount, placesInfo}) => {
     <Main
       placesCount = {placesCount}
       placesInfo = {placesInfo}
-      onTitlePlaceClickHandler = {titlePlaceClickHandler}
+      handleTitlePlaceClick = {titlePlaceClickHandler}
     />
   );
 };
