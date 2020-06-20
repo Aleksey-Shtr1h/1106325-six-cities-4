@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Main = ({placesCount, placesInfo, handleTitlePlaceClick}) => {
+const Main = ({placesCount, offers, handleTitlePlaceClick}) => {
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -98,7 +99,7 @@ const Main = ({placesCount, placesInfo, handleTitlePlaceClick}) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
 
-                {placesInfo.map((placeInfo) =>
+                {offers.map((placeInfo) =>
                   <article className="cities__place-card place-card" key = {placeInfo.id}>
 
                     {placeInfo.isCheckedPremium &&
@@ -154,9 +155,9 @@ const Main = ({placesCount, placesInfo, handleTitlePlaceClick}) => {
 
 Main.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  placesInfo: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         isCheckedPremium: PropTypes.bool.isRequired,
         image: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,

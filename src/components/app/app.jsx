@@ -4,11 +4,11 @@ import Main from "../main/main.jsx";
 
 const titlePlaceClickHandler = () => {};
 
-const App = ({placesCount, placesInfo}) => {
+const App = ({placesCount, offers}) => {
   return (
     <Main
       placesCount = {placesCount}
-      placesInfo = {placesInfo}
+      offers = {offers}
       handleTitlePlaceClick = {titlePlaceClickHandler}
     />
   );
@@ -16,9 +16,9 @@ const App = ({placesCount, placesInfo}) => {
 
 App.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  placesInfo: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         isCheckedPremium: PropTypes.bool.isRequired,
         image: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,

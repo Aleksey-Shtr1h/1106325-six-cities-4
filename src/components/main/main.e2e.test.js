@@ -13,10 +13,10 @@ test(`Should main button be pressed`, () => {
   const main = shallow(
       <Main
         placesCount = {50}
-        placesInfo = {
+        offers = {
           [
             {
-              id: 1,
+              id: `1`,
               isCheckedPremium: true,
               image: `img/apartment-01.jpg`,
               price: 120,
@@ -26,7 +26,7 @@ test(`Should main button be pressed`, () => {
             },
 
             {
-              id: 2,
+              id: `2`,
               isCheckedPremium: false,
               image: `img/room.jpg`,
               price: 80,
@@ -36,7 +36,7 @@ test(`Should main button be pressed`, () => {
             },
 
             {
-              id: 3,
+              id: `3`,
               isCheckedPremium: false,
               image: `img/apartment-02.jpg`,
               price: 132,
@@ -46,23 +46,13 @@ test(`Should main button be pressed`, () => {
             },
 
             {
-              id: 4,
+              id: `4`,
               isCheckedPremium: true,
               image: `img/apartment-03.jpg`,
               price: 180,
               ratingStars: `80%`,
               titleCard: `Nice, cozy, warm big bed apartment`,
               typeCard: `Apartment`,
-            },
-
-            {
-              id: 5,
-              isCheckedPremium: false,
-              image: `img/room.jpg`,
-              price: 80,
-              ratingStars: `80%`,
-              titleCard: `Wood and stone place`,
-              typeCard: `Private room`,
             },
           ]
         }
