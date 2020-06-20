@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Main} from './main.jsx';
+import {PlacesList} from './places-list.jsx';
 
-test(`Should Main render correctly`, () => {
+test(`Should PlacesList render correctly`, () => {
   const tree = renderer
-  .create(<Main
+  .create(<PlacesList
     placesCount = {50}
     offers = {
       [
@@ -51,6 +51,7 @@ test(`Should Main render correctly`, () => {
     }
     handleTitlePlaceClick = {() => {}}
   />).toJSON();
-
+  // eslint-disable-next-line no-console
+  // console.log(tree);
   expect(tree).toMatchSnapshot();
 });

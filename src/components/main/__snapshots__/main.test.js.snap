@@ -226,6 +226,8 @@ exports[`Should Main render correctly 1`] = `
           >
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -329,6 +331,8 @@ exports[`Should Main render correctly 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -425,6 +429,8 @@ exports[`Should Main render correctly 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -521,6 +527,8 @@ exports[`Should Main render correctly 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"

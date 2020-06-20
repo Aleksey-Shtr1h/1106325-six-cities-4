@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Main from "../main/main.jsx";
+import {Main} from "../main/main.jsx";
 
-const titlePlaceClickHandler = () => {};
+const onTitlePlaceClick = () => {};
 
-const App = ({placesCount, offers}) => {
+export const App = ({placesCount, offers}) => {
   return (
     <Main
       placesCount = {placesCount}
       offers = {offers}
-      handleTitlePlaceClick = {titlePlaceClickHandler}
+      handleTitlePlaceClick = {onTitlePlaceClick}
     />
   );
 };
@@ -29,4 +29,4 @@ App.propTypes = {
   )
 };
 
-export default App;
+// export default App;
