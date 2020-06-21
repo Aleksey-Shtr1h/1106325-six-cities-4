@@ -9,9 +9,13 @@ test(`Should PlaceCard render correctly`, () => {
           {
             id: `1`,
             isCheckedPremium: true,
-            image: `img/apartment-01.jpg`,
+            images: [
+              `img/room.jpg`,
+              `img/apartment-02.jpg`,
+              `img/apartment-03.jpg`,
+            ],
             price: 120,
-            ratingStars: `20%`,
+            ratingStars: 2.5,
             titleCard: `Beautiful &amp; luxurious apartment at great location`,
             typeCard: `Apartment`,
           }

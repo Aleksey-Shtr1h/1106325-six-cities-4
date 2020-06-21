@@ -246,7 +246,7 @@ exports[`Should Main render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
+                    src="img/apartment-03.jpg"
                     width="260"
                   />
                 </a>
@@ -399,7 +399,7 @@ exports[`Should Main render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "40%",
                         }
                       }
                     />
@@ -442,7 +442,7 @@ exports[`Should Main render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-02.jpg"
+                    src="img/studio-01.jpg"
                     width="260"
                   />
                 </a>
@@ -497,7 +497,7 @@ exports[`Should Main render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "60%",
                         }
                       }
                     />
@@ -547,7 +547,7 @@ exports[`Should Main render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-03.jpg"
+                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -602,7 +602,7 @@ exports[`Should Main render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "100%",
                         }
                       }
                     />

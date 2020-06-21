@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import {getModifiedRatingValue} from "../../utils/utils.js";
+
 export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
+  const {isCheckedPremium, images, price, ratingStars, titleCard, typeCard} = offer;
 
   return (
     <article
@@ -10,7 +13,7 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
       onMouseLeave={() => onArticleMoveMouse(null)}
     >
 
-      {offer.isCheckedPremium &&
+      {isCheckedPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -18,14 +21,14 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={offer.image} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={images[images.length - 1]} width="260" height="200" alt="Place image" />
         </a>
       </div>
 
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{offer.price}</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
@@ -37,14 +40,14 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: offer.ratingStars}}></span>
+            <span style={{width: getModifiedRatingValue(ratingStars)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick={onTitlePlaceClick} href="#">{offer.titleCard}</a>
+          <a onClick={() => onTitlePlaceClick(offer)} href="#">{titleCard}</a>
         </h2>
-        <p className="place-card__type">{offer.typeCard}</p>
+        <p className="place-card__type">{typeCard}</p>
       </div>
     </article>
   );
@@ -54,13 +57,12 @@ PlaceCard.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     isCheckedPremium: PropTypes.bool.isRequired,
-    image: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     price: PropTypes.number.isRequired,
-    ratingStars: PropTypes.string.isRequired,
+    ratingStars: PropTypes.number.isRequired,
     titleCard: PropTypes.string.isRequired,
     typeCard: PropTypes.string.isRequired,
   }).isRequired,
   onTitlePlaceClick: PropTypes.func.isRequired,
   onArticleMoveMouse: PropTypes.func.isRequired,
 };
-

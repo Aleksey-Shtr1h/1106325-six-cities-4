@@ -101,7 +101,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
 
               <PlacesList
                 offers={offers}
-                handleTitlePlaceClick={onTitlePlaceClick}
+                onTitlePlaceClick={onTitlePlaceClick}
               />
             </section>
             <div className="cities__right-section">
@@ -120,9 +120,9 @@ Main.propTypes = {
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         isCheckedPremium: PropTypes.bool.isRequired,
-        image: PropTypes.string.isRequired,
+        images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
         price: PropTypes.number.isRequired,
-        ratingStars: PropTypes.string.isRequired,
+        ratingStars: PropTypes.number.isRequired,
         titleCard: PropTypes.string.isRequired,
         typeCard: PropTypes.string.isRequired,
       }).isRequired

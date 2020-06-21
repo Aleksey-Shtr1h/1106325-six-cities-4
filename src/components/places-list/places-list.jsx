@@ -15,17 +15,18 @@ export class PlacesList extends PureComponent {
   }
 
   render() {
-    const {handleTitlePlaceClick, offers} = this.props;
+    const {onTitlePlaceClick, offers} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
 
-        {offers.map((offer) =>
+        {offers.map((offer, index) =>
           <PlaceCard
             key={offer.id}
             offer={offer}
-            onTitlePlaceClick={handleTitlePlaceClick}
+            onTitlePlaceClick={onTitlePlaceClick}
             onArticleMoveMouse={this._hadleArticleMoveMouse}
+            index={index}
           />
         )}
 
@@ -45,12 +46,12 @@ PlacesList.propTypes = {
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         isCheckedPremium: PropTypes.bool.isRequired,
-        image: PropTypes.string.isRequired,
+        images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
         price: PropTypes.number.isRequired,
-        ratingStars: PropTypes.string.isRequired,
+        ratingStars: PropTypes.number.isRequired,
         titleCard: PropTypes.string.isRequired,
         typeCard: PropTypes.string.isRequired,
       }).isRequired
   ),
-  handleTitlePlaceClick: PropTypes.func.isRequired,
+  onTitlePlaceClick: PropTypes.func.isRequired,
 };
