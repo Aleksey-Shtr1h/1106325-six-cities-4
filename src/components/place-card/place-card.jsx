@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const PlaceCard = ({offer, handleTitlePlaceClick, hadleArticleMoveMouse}) => {
+export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
 
   return (
     <article
       className="cities__place-card place-card"
-      onMouseEnter = {() => hadleArticleMoveMouse(offer)}
-      onMouseLeave = {() => hadleArticleMoveMouse(null)}
+      onMouseEnter={() => onArticleMoveMouse(offer)}
+      onMouseLeave={() => onArticleMoveMouse(null)}
     >
 
       {offer.isCheckedPremium &&
@@ -42,7 +42,7 @@ export const PlaceCard = ({offer, handleTitlePlaceClick, hadleArticleMoveMouse})
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick = {handleTitlePlaceClick} href="#">{offer.titleCard}</a>
+          <a onClick={onTitlePlaceClick} href="#">{offer.titleCard}</a>
         </h2>
         <p className="place-card__type">{offer.typeCard}</p>
       </div>
@@ -60,7 +60,7 @@ PlaceCard.propTypes = {
     titleCard: PropTypes.string.isRequired,
     typeCard: PropTypes.string.isRequired,
   }).isRequired,
-  handleTitlePlaceClick: PropTypes.func.isRequired,
-  hadleArticleMoveMouse: PropTypes.func.isRequired,
+  onTitlePlaceClick: PropTypes.func.isRequired,
+  onArticleMoveMouse: PropTypes.func.isRequired,
 };
 

@@ -20,57 +20,51 @@ const placeData = {
 describe(`Should PlaceCard logic correctly`, () => {
 
   test(`Should PlaceCard button be pressed`, () => {
-    const handleTitlePlaceClick = jest.fn();
-    const hadleArticleMoveMouse = jest.fn();
+    const onTitlePlaceClick = jest.fn();
+    const onArticleMoveMouse = jest.fn();
 
     const placeCard = shallow(
         <PlaceCard
-          offer = {placeData}
-          handleTitlePlaceClick = {handleTitlePlaceClick}
-          hadleArticleMoveMouse = {hadleArticleMoveMouse}
+          offer={placeData}
+          onTitlePlaceClick={onTitlePlaceClick}
+          onArticleMoveMouse={onArticleMoveMouse}
         />);
 
     const titleClick = placeCard.find(`.place-card__name a`);
     titleClick.props().onClick();
-    // eslint-disable-next-line no-console
-    // console.log(placeCard.debug());
-    expect(handleTitlePlaceClick.mock.calls.length).toBe(1);
+    expect(onTitlePlaceClick.mock.calls.length).toBe(1);
   });
 
   test(`Should PlaceCard onMouseEnter be pressed`, () => {
-    const handleTitlePlaceClick = jest.fn();
-    const hadleArticleMoveMouse = jest.fn();
+    const onTitlePlaceClick = jest.fn();
+    const onArticleMoveMouse = jest.fn();
 
     const placeCard = shallow(
         <PlaceCard
-          offer = {placeData}
-          handleTitlePlaceClick = {handleTitlePlaceClick}
-          hadleArticleMoveMouse = {hadleArticleMoveMouse}
+          offer={placeData}
+          onTitlePlaceClick={onTitlePlaceClick}
+          onArticleMoveMouse={onArticleMoveMouse}
         />);
 
     const articleMoveMouseEnter = placeCard.find(`.place-card`);
     articleMoveMouseEnter.props().onMouseEnter();
-    // eslint-disable-next-line no-console
-    // console.log(placeCard.debug());
-    expect(hadleArticleMoveMouse).toBeCalled();
+    expect(onArticleMoveMouse).toBeCalled();
   });
 
   test(`Should PlaceCard onMouseLeave be pressed`, () => {
-    const handleTitlePlaceClick = jest.fn();
-    const hadleArticleMoveMouse = jest.fn();
+    const onTitlePlaceClick = jest.fn();
+    const onArticleMoveMouse = jest.fn();
 
     const placeCard = shallow(
         <PlaceCard
-          offer = {placeData}
-          handleTitlePlaceClick = {handleTitlePlaceClick}
-          hadleArticleMoveMouse = {hadleArticleMoveMouse}
+          offer={placeData}
+          onTitlePlaceClick={onTitlePlaceClick}
+          onArticleMoveMouse={onArticleMoveMouse}
         />);
 
     const articleMouseLeave = placeCard.find(`.place-card`);
     articleMouseLeave.props().onMouseLeave();
-    // eslint-disable-next-line no-console
-    // console.log(placeCard.debug());
-    expect(hadleArticleMoveMouse).toBeCalledWith(null);
+    expect(onArticleMoveMouse).toBeCalledWith(null);
   });
 
 });

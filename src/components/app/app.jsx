@@ -2,14 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Main} from "../main/main.jsx";
 
-const onTitlePlaceClick = () => {};
-
 export const App = ({placesCount, offers}) => {
   return (
     <Main
-      placesCount = {placesCount}
-      offers = {offers}
-      handleTitlePlaceClick = {onTitlePlaceClick}
+      placesCount={placesCount}
+      offers={offers}
+      onTitlePlaceClick={() => {}}
     />
   );
 };
@@ -28,5 +26,3 @@ App.propTypes = {
       }).isRequired
   )
 };
-
-// export default App;

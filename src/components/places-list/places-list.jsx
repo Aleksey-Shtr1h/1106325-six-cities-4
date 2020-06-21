@@ -22,10 +22,10 @@ export class PlacesList extends PureComponent {
 
         {offers.map((offer) =>
           <PlaceCard
-            key = {offer.id}
-            offer = {offer}
-            handleTitlePlaceClick = {handleTitlePlaceClick}
-            hadleArticleMoveMouse = {this._hadleArticleMoveMouse}
+            key={offer.id}
+            offer={offer}
+            onTitlePlaceClick={handleTitlePlaceClick}
+            onArticleMoveMouse={this._hadleArticleMoveMouse}
           />
         )}
 
@@ -41,6 +41,16 @@ export class PlacesList extends PureComponent {
 }
 
 PlacesList.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        isCheckedPremium: PropTypes.bool.isRequired,
+        image: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        ratingStars: PropTypes.string.isRequired,
+        titleCard: PropTypes.string.isRequired,
+        typeCard: PropTypes.string.isRequired,
+      }).isRequired
+  ),
   handleTitlePlaceClick: PropTypes.func.isRequired,
 };

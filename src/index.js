@@ -6,8 +6,8 @@ import {offers} from "./mocks/offers.js";
 
 ReactDOM.render(
     <App
-      placesCount = {SettingsPlace.PLACES_COUNT}
-      offers = {offers}
+      placesCount={SettingsPlace.PLACES_COUNT}
+      offers={offers}
     />,
     document.querySelector(`#root`)
 );

@@ -8,12 +8,12 @@ Enzyme.configure({
 });
 
 test(`Should main button be pressed`, () => {
-  const handleTitlePlaceClick = jest.fn();
+  const onTitlePlaceClick = jest.fn();
 
   const main = shallow(
       <Main
-        placesCount = {50}
-        offers = {
+        placesCount={50}
+        offers={
           [
             {
               id: `1`,
@@ -56,7 +56,7 @@ test(`Should main button be pressed`, () => {
             },
           ]
         }
-        handleTitlePlaceClick = {handleTitlePlaceClick}
+        onTitlePlaceClick={onTitlePlaceClick}
       />
   );
 
@@ -66,5 +66,5 @@ test(`Should main button be pressed`, () => {
     titleClick.props().onClick();
   });
 
-  expect(handleTitlePlaceClick.mock.calls.length).toBe(titlesClick.length);
+  expect(onTitlePlaceClick.mock.calls.length).toBe(titlesClick.length);
 });
