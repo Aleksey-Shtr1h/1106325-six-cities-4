@@ -1,17 +1,10 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import {Main} from "./main.jsx";
+import renderer from "react-test-renderer";
+import {PlacesList} from './places-list.jsx';
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
-test(`Should main button be pressed`, () => {
-  const onTitlePlaceClick = jest.fn();
-
-  const main = shallow(
-      <Main
+test(`Should PlacesList render correctly`, () => {
+  const tree = renderer.create(
+      <PlacesList
         placesCount={50}
         offers={
           [
@@ -78,15 +71,7 @@ test(`Should main button be pressed`, () => {
             },
           ]
         }
-        onTitlePlaceClick={onTitlePlaceClick}
-      />
-  );
-
-  const titlesClick = main.find(`.place-card__name a`);
-
-  titlesClick.forEach((titleClick) => {
-    titleClick.props().onClick();
-  });
-
-  expect(onTitlePlaceClick.mock.calls.length).toBe(titlesClick.length);
+        onTitlePlaceClick = {() => {}}
+      />).toJSON();
+  expect(tree).toMatchSnapshot();
 });
