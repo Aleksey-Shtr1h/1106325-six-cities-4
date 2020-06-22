@@ -10,15 +10,12 @@ Enzyme.configure({
 const placeData = {
   id: `1`,
   isCheckedPremium: true,
-  images: [
-    `img/room.jpg`,
-    `img/apartment-02.jpg`,
-    `img/apartment-03.jpg`,
-  ],
+  images: [`test`],
   price: 120,
   ratingStars: 2.5,
-  titleCard: `Beautiful &amp; luxurious apartment at great location`,
-  typeCard: `Apartment`,
+  titleCard: `test`,
+  typeCard: `test`,
+  descriptions: [`test`],
 };
 
 describe(`Should PlaceCard logic correctly`, () => {

@@ -125,6 +125,7 @@ Main.propTypes = {
         ratingStars: PropTypes.number.isRequired,
         titleCard: PropTypes.string.isRequired,
         typeCard: PropTypes.string.isRequired,
+        descriptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
       }).isRequired
   ),
   onTitlePlaceClick: PropTypes.func.isRequired,

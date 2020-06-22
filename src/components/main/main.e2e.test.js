@@ -18,63 +18,45 @@ test(`Should main button be pressed`, () => {
             {
               id: `1`,
               isCheckedPremium: true,
-              images: [
-                `img/room.jpg`,
-                `img/apartment-02.jpg`,
-                `img/apartment-03.jpg`,
-              ],
+              images: [`test`],
               price: 120,
               ratingStars: 0.5,
-              titleCard: `Beautiful &amp; luxurious apartment at great location`,
-              typeCard: `Apartment`,
+              titleCard: `test`,
+              typeCard: `test`,
+              descriptions: [`test`],
             },
 
             {
               id: `2`,
               isCheckedPremium: false,
-              images: [
-                `img/room.jpg`,
-                `img/apartment-02.jpg`,
-                `img/apartment-03.jpg`,
-                `img/room.jpg`,
-              ],
+              images: [`test`],
               price: 80,
               ratingStars: 1.6,
-              titleCard: `Wood and stone place`,
-              typeCard: `Private room`,
+              titleCard: `test`,
+              typeCard: `test`,
+              descriptions: [`test`],
             },
 
             {
               id: `3`,
               isCheckedPremium: false,
-              images: [
-                `img/room.jpg`,
-                `img/apartment-02.jpg`,
-                `img/apartment-03.jpg`,
-                `img/room.jpg`,
-                `img/studio-01.jpg`,
-              ],
+              images: [`test`],
               price: 132,
               ratingStars: 2.5,
-              titleCard: `Canal View Prinsengracht`,
-              typeCard: `Apartment`,
+              titleCard: `test`,
+              typeCard: `test`,
+              descriptions: [`test`],
             },
 
             {
               id: `4`,
               isCheckedPremium: true,
-              images: [
-                `img/room.jpg`,
-                `img/apartment-02.jpg`,
-                `img/apartment-03.jpg`,
-                `img/room.jpg`,
-                `img/studio-01.jpg`,
-                `img/apartment-01.jpg`
-              ],
+              images: [`test`],
               price: 180,
               ratingStars: 4.5,
-              titleCard: `Nice, cozy, warm big bed apartment`,
+              titleCard: `test`,
               typeCard: `Apartment`,
+              descriptions: [`test`],
             },
           ]
         }

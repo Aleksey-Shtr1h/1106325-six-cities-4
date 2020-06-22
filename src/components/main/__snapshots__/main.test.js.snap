@@ -246,7 +246,7 @@ exports[`Should Main render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-03.jpg"
+                    src="test"
                     width="260"
                   />
                 </a>
@@ -319,13 +319,13 @@ exports[`Should Main render correctly 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Beautiful &amp; luxurious apartment at great location
+                    test
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  test
                 </p>
               </div>
             </article>
@@ -344,7 +344,7 @@ exports[`Should Main render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/room.jpg"
+                    src="test"
                     width="260"
                   />
                 </a>
@@ -417,13 +417,13 @@ exports[`Should Main render correctly 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Wood and stone place
+                    test
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Private room
+                  test
                 </p>
               </div>
             </article>
@@ -442,7 +442,7 @@ exports[`Should Main render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/studio-01.jpg"
+                    src="test"
                     width="260"
                   />
                 </a>
@@ -515,13 +515,13 @@ exports[`Should Main render correctly 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Canal View Prinsengracht
+                    test
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  test
                 </p>
               </div>
             </article>
@@ -547,7 +547,7 @@ exports[`Should Main render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
+                    src="test"
                     width="260"
                   />
                 </a>
@@ -620,7 +620,7 @@ exports[`Should Main render correctly 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Nice, cozy, warm big bed apartment
+                    test
                   </a>
                 </h2>
                 <p
