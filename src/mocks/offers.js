@@ -25,6 +25,22 @@ const TITLE_CARDS = [
   `Nice, cozy, warm big bed apartment`
 ];
 
+const HOUSEHOLD_ITEMS = [
+  `Wi-Fi`,
+  `Washing machine`,
+  `Towels`,
+  `Heating`,
+  `Coffee machine`,
+  `Baby seat`,
+  `Kitchen`,
+  `Dishwasher`,
+  `Cabel TV`,
+  `Fridge`,
+];
+
+const AVATAR_USERS = [`img/avatar-max.jpg`, `img/avatar-angelina.jpg`];
+const NAME_USERS = [`User1`, `User2`, `User3`, `User4`, `User5`, `User6`];
+
 const generateOffer = () => {
   return {
     id: nanoid(),
@@ -35,6 +51,14 @@ const generateOffer = () => {
     titleCard: getRandomArrayItem(TITLE_CARDS),
     typeCard: getRandomArrayItem(TYPES_PLACE),
     descriptions: getArrayRandomLength(DESCRIPTION_ITEMS, 1, 4),
+    numberBadrooms: getRandomIntegerNumber(1, 10),
+    numberGuests: getRandomIntegerNumber(1, 10),
+    householdItems: getArrayRandomLength(HOUSEHOLD_ITEMS, 1, 10),
+    infoUser: {
+      avatarUser: getRandomArrayItem(AVATAR_USERS),
+      nameUser: getRandomArrayItem(NAME_USERS),
+      markSuper: Math.random() > 0.5,
+    }
   };
 };
 

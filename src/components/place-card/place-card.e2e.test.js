@@ -3,20 +3,11 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {PlaceCard} from "./place-card.jsx";
 
+import {offerProps} from "../../test/offersProps.js";
+
 Enzyme.configure({
   adapter: new Adapter(),
 });
-
-const placeData = {
-  id: `1`,
-  isCheckedPremium: true,
-  images: [`test`],
-  price: 120,
-  ratingStars: 2.5,
-  titleCard: `test`,
-  typeCard: `test`,
-  descriptions: [`test`],
-};
 
 describe(`Should PlaceCard logic correctly`, () => {
 
@@ -26,7 +17,7 @@ describe(`Should PlaceCard logic correctly`, () => {
 
     const placeCard = shallow(
         <PlaceCard
-          offer={placeData}
+          offer={offerProps}
           onTitlePlaceClick={onTitlePlaceClick}
           onArticleMoveMouse={onArticleMoveMouse}
         />);
@@ -42,7 +33,7 @@ describe(`Should PlaceCard logic correctly`, () => {
 
     const placeCard = shallow(
         <PlaceCard
-          offer={placeData}
+          offer={offerProps}
           onTitlePlaceClick={onTitlePlaceClick}
           onArticleMoveMouse={onArticleMoveMouse}
         />);
@@ -51,7 +42,7 @@ describe(`Should PlaceCard logic correctly`, () => {
     articleMoveMouseEnter.props().onMouseEnter();
 
     expect(onArticleMoveMouse).toBeCalled();
-    expect(onArticleMoveMouse).toBeCalledWith(placeData);
+    expect(onArticleMoveMouse).toBeCalledWith(offerProps);
   });
 
   test(`Should PlaceCard onMouseLeave be pressed`, () => {
@@ -60,7 +51,7 @@ describe(`Should PlaceCard logic correctly`, () => {
 
     const placeCard = shallow(
         <PlaceCard
-          offer={placeData}
+          offer={offerProps}
           onTitlePlaceClick={onTitlePlaceClick}
           onArticleMoveMouse={onArticleMoveMouse}
         />);

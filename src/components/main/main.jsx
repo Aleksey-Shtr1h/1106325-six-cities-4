@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import {PlacesList} from "../places-list/places-list.jsx";
 
+import {propsTypeOffer} from "../../propsType/propsType.js";
+
 export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
   return (
     <div className="page page--gray page--main">
@@ -117,16 +119,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
 Main.propTypes = {
   placesCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        isCheckedPremium: PropTypes.bool.isRequired,
-        images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        price: PropTypes.number.isRequired,
-        ratingStars: PropTypes.number.isRequired,
-        titleCard: PropTypes.string.isRequired,
-        typeCard: PropTypes.string.isRequired,
-        descriptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-      }).isRequired
+      PropTypes.shape(propsTypeOffer).isRequired
   ),
   onTitlePlaceClick: PropTypes.func.isRequired,
 };

@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import {getModifiedRatingValue} from "../../utils/utils.js";
 
+import {propsTypeOffer} from "../../propsType/propsType.js";
+
 export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
   const {isCheckedPremium, images, price, ratingStars, titleCard, typeCard} = offer;
 
@@ -54,16 +56,7 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
 };
 
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    isCheckedPremium: PropTypes.bool.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    price: PropTypes.number.isRequired,
-    ratingStars: PropTypes.number.isRequired,
-    titleCard: PropTypes.string.isRequired,
-    typeCard: PropTypes.string.isRequired,
-    descriptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired,
+  offer: PropTypes.shape(propsTypeOffer).isRequired,
   onTitlePlaceClick: PropTypes.func.isRequired,
   onArticleMoveMouse: PropTypes.func.isRequired,
 };
