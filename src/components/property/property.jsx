@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import {getModifiedRatingValue} from '../../utils/utils.js';
 
+import {propsTypeOffer} from "../../propsType/propsType.js";
+
 export const Property = (props) => {
 
-  const {isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions} = props.offer;
+  const {isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = props.offer;
 
   return (
     <div className="page">
@@ -83,12 +85,27 @@ export const Property = (props) => {
                 <li className="property__feature property__feature--entire">
                   {typeCard}
                 </li>
-                <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
-                </li>
-                <li className="property__feature property__feature--adults">
-                  Max 4 adults
-                </li>
+                {numberBadrooms === 1 ?
+
+                  <li className="property__feature property__feature--bedrooms">
+                    {numberBadrooms} Bedroom
+                  </li> :
+                  <li className="property__feature property__feature--bedrooms">
+                    {numberBadrooms} Bedrooms
+                  </li>
+
+                }
+
+                {numberGuests === 1 ?
+
+                  <li className="property__feature property__feature--adults">
+                    Max {numberGuests} adult
+                  </li> :
+                  <li className="property__feature property__feature--adults">
+                    Max {numberGuests} adults
+                  </li>
+
+                }
               </ul>
               <div className="property__price">
                 <b className="property__price-value">&euro;{price}</b>
@@ -97,46 +114,32 @@ export const Property = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  <li className="property__inside-item">
-                    Wi-Fi
-                  </li>
-                  <li className="property__inside-item">
-                    Washing machine
-                  </li>
-                  <li className="property__inside-item">
-                    Towels
-                  </li>
-                  <li className="property__inside-item">
-                    Heating
-                  </li>
-                  <li className="property__inside-item">
-                    Coffee machine
-                  </li>
-                  <li className="property__inside-item">
-                    Baby seat
-                  </li>
-                  <li className="property__inside-item">
-                    Kitchen
-                  </li>
-                  <li className="property__inside-item">
-                    Dishwasher
-                  </li>
-                  <li className="property__inside-item">
-                    Cabel TV
-                  </li>
-                  <li className="property__inside-item">
-                    Fridge
-                  </li>
+                  {householdItems.map((householdItem, i) =>
+                    <li className="property__inside-item" key={householdItem + i}>
+                      {householdItem}
+                    </li>
+                  )}
                 </ul>
               </div>
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <div
+                    className={
+                      `property__avatar-wrapper
+                      user__avatar-wrapper
+                      ${infoUser.markSuper ? `property__avatar-wrapper--pro` : `property__avatar-wrapper`}`
+                    }>
+                    <img
+                      className="property__avatar user__avatar"
+                      width="74"
+                      height="74"
+                      alt="Host avatar"
+                      src={infoUser.avatarUser}
+                    />
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {infoUser.nameUser}
                   </span>
                 </div>
                 <div className="property__description">
@@ -335,14 +338,5 @@ export const Property = (props) => {
 };
 
 Property.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    isCheckedPremium: PropTypes.bool.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    price: PropTypes.number.isRequired,
-    ratingStars: PropTypes.number.isRequired,
-    titleCard: PropTypes.string.isRequired,
-    typeCard: PropTypes.string.isRequired,
-    descriptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired,
+  offer: PropTypes.shape(propsTypeOffer).isRequired,
 };
