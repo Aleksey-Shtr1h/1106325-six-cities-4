@@ -16,6 +16,7 @@ export const offersProps = [
       nameUser: `test`,
       markSuper: true,
     },
+    coordinates: [1, 2],
   },
 
   {
@@ -35,6 +36,7 @@ export const offersProps = [
       nameUser: `test`,
       markSuper: true,
     },
+    coordinates: [1, 2],
   },
 
   {
@@ -54,6 +56,7 @@ export const offersProps = [
       nameUser: `test`,
       markSuper: true,
     },
+    coordinates: [1, 2],
   },
 
   {
@@ -73,6 +76,7 @@ export const offersProps = [
       nameUser: `test`,
       markSuper: true,
     },
+    coordinates: [1, 2],
   },
 ];
 
@@ -93,4 +97,5 @@ export const offerProps = {
     nameUser: `test`,
     markSuper: true,
   },
+  coordinates: [1, 2],
 };

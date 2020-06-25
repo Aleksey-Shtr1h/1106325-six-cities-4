@@ -1,6 +1,7 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import {Main} from './main.jsx';
+import React from 'react';
+import renderer from 'react-test-renderer';
+
+import {MapCities} from './map-cities.jsx';
 
 import {offersProps} from "../../test/offersProps.js";
 
@@ -11,17 +12,14 @@ jest.mock(`leaflet`, () => ({
   marker: jest.fn().mockReturnValue({addTo: jest.fn()}),
 }));
 
-test(`Should Main render correctly`, () => {
+it(`MapCities is rendered correctly`, () => {
+
   const tree = renderer.create(
-      <Main
-        placesCount={50}
-        offers={offersProps}
-        onTitlePlaceClick={() => {}}
+      <MapCities
+        offersProps={offersProps}
       />,
       {
-        createNodeMock: () => {
-          return document.createElement(`div`);
-        }
+        createNodeMock: () => document.createElement(`div`)
       }).toJSON();
 
   expect(tree).toMatchSnapshot();

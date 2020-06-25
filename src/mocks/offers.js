@@ -1,5 +1,5 @@
 import {nanoid} from "nanoid";
-import {getArrayRandomLength, getRandomIntegerNumber, getRandomDoubleNumber, getRandomArrayItem} from "../utils/utils.js";
+import {getArrayRandomLength, getRandomIntegerNumber, getRandomDoubleNumber, getRandomArrayItem, getArrayСoordinates} from "../utils/utils.js";
 
 const PLACE_PHOTOS = [
   `img/room.jpg`,
@@ -41,6 +41,15 @@ const HOUSEHOLD_ITEMS = [
 const AVATAR_USERS = [`img/avatar-max.jpg`, `img/avatar-angelina.jpg`];
 const NAME_USERS = [`User1`, `User2`, `User3`, `User4`, `User5`, `User6`];
 
+const COORDINATE = [
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198],
+];
+
+let counterCoordinates = getArrayСoordinates(COORDINATE);
+
 const generateOffer = () => {
   return {
     id: nanoid(),
@@ -58,7 +67,8 @@ const generateOffer = () => {
       avatarUser: getRandomArrayItem(AVATAR_USERS),
       nameUser: getRandomArrayItem(NAME_USERS),
       markSuper: Math.random() > 0.5,
-    }
+    },
+    coordinates: counterCoordinates(),
   };
 };
 

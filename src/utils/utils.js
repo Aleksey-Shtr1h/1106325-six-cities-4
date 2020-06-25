@@ -25,3 +25,12 @@ export const shuffleArray = (array) => {
   result.sort(() => Math.random() - 0.5);
   return result;
 };
+
+export const getArrayСoordinates = (arr) => {
+  let counter = -1;
+
+  return function () {
+    counter++;
+    return arr[counter];
+  };
+};

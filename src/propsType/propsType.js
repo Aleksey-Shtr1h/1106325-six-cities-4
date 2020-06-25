@@ -17,4 +17,5 @@ export const propsTypeOffer = {
     nameUser: PropTypes.string.isRequired,
     markSuper: PropTypes.bool.isRequired,
   }),
+  coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
 };
