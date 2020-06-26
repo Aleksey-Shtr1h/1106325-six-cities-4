@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-import {propsTypeOffer} from "../../propsType/propsType.js";
+// import {propsTypeOffer} from "../../propsType/propsType.js";
 
 export class MapCities extends React.PureComponent {
   constructor(props) {
@@ -30,17 +30,33 @@ export class MapCities extends React.PureComponent {
 
     map.setView(city, zoom);
 
+
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(map);
 
-    const offerCords = [52.3709553943508, 4.89309666406198];
+    // const coordinates = [
+    //   [52.3909553943508, 4.85309666406198],
+    //   [52.369553943508, 4.85309666406198],
+    //   [52.3909553943508, 4.929309666406198],
+    //   [52.3809553943508, 4.939309666406198]
+    // ];
 
-    leaflet
-      .marker(offerCords, {icon})
-      .addTo(map);
+    // coordinates.forEach((coordinate) => {
+    //   leaflet
+    //     .marker(coordinate, {icon})
+    //     .addTo(map);
+    // });
+
+    const {locationsCoords} = this.props;
+
+    locationsCoords.forEach((offerCoords) => {
+      leaflet
+        .marker(offerCoords, {icon})
+        .addTo(map);
+    });
 
   }
 
@@ -53,7 +69,7 @@ export class MapCities extends React.PureComponent {
 }
 
 MapCities.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(propsTypeOffer).isRequired
-  ),
+  locationsCoords: PropTypes.arrayOf(
+      PropTypes.arrayOf(PropTypes.number.isRequired)
+  ).isRequired,
 };

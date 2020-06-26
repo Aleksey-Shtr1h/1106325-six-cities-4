@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import {MapCities} from './map-cities.jsx';
 
-import {offersProps} from "../../test/offersProps.js";
+// import {offersProps} from "../../test/offersProps.js";
 
 jest.mock(`leaflet`, () => ({
   icon: jest.fn(),
@@ -16,10 +16,12 @@ it(`MapCities is rendered correctly`, () => {
 
   const tree = renderer.create(
       <MapCities
-        offersProps={offersProps}
+        locationsCoords={[[1, 2], [1, 2], [1, 2], [1, 2]]}
       />,
       {
-        createNodeMock: () => document.createElement(`div`)
+        createNodeMock: () => {
+          return document.createElement(`div`);
+        }
       }).toJSON();
 
   expect(tree).toMatchSnapshot();
