@@ -8,9 +8,6 @@ import {propsTypeOffer} from "../../propsType/propsType.js";
 
 export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
 
-  let locationsCoords = [];
-  offers.forEach((elem) => locationsCoords.push(elem.coordinates));
-
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -114,7 +111,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <MapCities
-                  locationsCoords={locationsCoords}
+                  offers={offers}
                 />
               </section>
             </div>

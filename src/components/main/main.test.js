@@ -1,17 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Main} from './main.jsx';
+import {MapCities} from '../map-cities/map-cities.jsx';
 
 import {offersProps} from "../../test/offersProps.js";
 
-jest.mock(`leaflet`, () => ({
-  icon: jest.fn(),
-  map: jest.fn().mockReturnValue({setView: jest.fn()}),
-  tileLayer: jest.fn().mockReturnValue({addTo: jest.fn()}),
-  marker: jest.fn().mockReturnValue({addTo: jest.fn()}),
-}));
-
 test(`Should Main render correctly`, () => {
+  MapCities.prototype.componentDidMount = jest.fn();
   const tree = renderer.create(
       <Main
         placesCount={50}

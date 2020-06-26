@@ -3,20 +3,13 @@ import renderer from 'react-test-renderer';
 
 import {MapCities} from './map-cities.jsx';
 
-// import {offersProps} from "../../test/offersProps.js";
-
-jest.mock(`leaflet`, () => ({
-  icon: jest.fn(),
-  map: jest.fn().mockReturnValue({setView: jest.fn()}),
-  tileLayer: jest.fn().mockReturnValue({addTo: jest.fn()}),
-  marker: jest.fn().mockReturnValue({addTo: jest.fn()}),
-}));
+import {offersProps} from "../../test/offersProps.js";
 
 it(`MapCities is rendered correctly`, () => {
-
+  MapCities.prototype.componentDidMount = jest.fn();
   const tree = renderer.create(
       <MapCities
-        locationsCoords={[[1, 2], [1, 2], [1, 2], [1, 2]]}
+        offersProps={offersProps}
       />,
       {
         createNodeMock: () => {

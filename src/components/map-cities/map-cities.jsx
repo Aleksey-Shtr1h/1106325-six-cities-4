@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-// import {propsTypeOffer} from "../../propsType/propsType.js";
+import {propsTypeOffer} from "../../propsType/propsType.js";
 
 export class MapCities extends React.PureComponent {
   constructor(props) {
@@ -10,7 +10,7 @@ export class MapCities extends React.PureComponent {
   }
 
   componentDidMount() {
-    // const {offers} = this.props;
+    const {offers} = this.props;
 
     const city = [52.38333, 4.9];
 
@@ -37,24 +37,9 @@ export class MapCities extends React.PureComponent {
       })
       .addTo(map);
 
-    // const coordinates = [
-    //   [52.3909553943508, 4.85309666406198],
-    //   [52.369553943508, 4.85309666406198],
-    //   [52.3909553943508, 4.929309666406198],
-    //   [52.3809553943508, 4.939309666406198]
-    // ];
-
-    // coordinates.forEach((coordinate) => {
-    //   leaflet
-    //     .marker(coordinate, {icon})
-    //     .addTo(map);
-    // });
-
-    const {locationsCoords} = this.props;
-
-    locationsCoords.forEach((offerCoords) => {
+    offers.forEach((offerCoords) => {
       leaflet
-        .marker(offerCoords, {icon})
+        .marker(offerCoords.coordinates, {icon})
         .addTo(map);
     });
 
@@ -69,7 +54,7 @@ export class MapCities extends React.PureComponent {
 }
 
 MapCities.propTypes = {
-  locationsCoords: PropTypes.arrayOf(
-      PropTypes.arrayOf(PropTypes.number.isRequired)
-  ).isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape(propsTypeOffer).isRequired
+  ),
 };
