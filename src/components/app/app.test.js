@@ -4,6 +4,7 @@ import {App} from './app.jsx';
 import {MapCities} from '../map-cities/map-cities.jsx';
 
 import {offersProps} from "../../test/offersProps.js";
+import {reviewsProps} from '../../test/reviewsProps.js';
 
 test(`Render App`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
@@ -11,6 +12,7 @@ test(`Render App`, () => {
       <App
         placesCount={50}
         offers={offersProps}
+        reviews={reviewsProps}
       />,
       {
         createNodeMock: () => {
