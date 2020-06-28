@@ -7,7 +7,7 @@ import {MapCities} from '../map-cities/map-cities.jsx';
 import {propsTypeOffer} from "../../propsType/propsType.js";
 
 export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
-
+  const cityMap = `city`;
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -112,6 +112,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
               <section className="cities__map map">
                 <MapCities
                   offers={offers}
+                  idPlace={cityMap}
                 />
               </section>
             </div>

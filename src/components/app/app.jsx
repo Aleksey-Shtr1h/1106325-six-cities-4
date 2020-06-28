@@ -33,6 +33,7 @@ export class App extends React.PureComponent {
         <Property
           offer={offer}
           reviews={reviews}
+          offers={offers}
         />
       );
     }

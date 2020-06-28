@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 import {getModifiedRatingValue} from '../../utils/utils.js';
-import {propsTypeOffer} from "../../propsType/propsType.js";
+import {propsTypeOffer, propsTypeReview} from "../../propsType/propsType.js";
 
 import {ReviewsList} from '../reviews-list/reviews-list.jsx';
+import {MapCities} from '../map-cities/map-cities.jsx';
 
-export const Property = (props) => {
+export const Property = ({offer, reviews, offers}) => {
 
-  const {isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = props.offer;
+  const {id, isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = offer;
 
   return (
     <div className="page">
@@ -154,11 +155,18 @@ export const Property = (props) => {
                 </div>
               </div>
 
-              <ReviewsList />
+              <ReviewsList
+                reviews={reviews}
+              />
 
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <MapCities
+              offers={offers}
+              idPlace={id}
+            />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -269,4 +277,10 @@ export const Property = (props) => {
 
 Property.propTypes = {
   offer: PropTypes.shape(propsTypeOffer).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(propsTypeReview).isRequired
+  ),
+  offers: PropTypes.arrayOf(
+      PropTypes.shape(propsTypeOffer).isRequired
+  ),
 };

@@ -4,6 +4,25 @@ import leaflet from 'leaflet';
 
 import {propsTypeOffer} from "../../propsType/propsType.js";
 
+const getMapPlace = (offers, idPlace) => {
+  const place = [];
+  offers.map((offer) => {
+    if (offer.id !== idPlace) {
+      place.push(offer);
+    }
+  });
+  return place;
+};
+
+const geyCenterMap = (centerCity, offers, idPlace) => {
+  let center = centerCity;
+  if (idPlace !== `city`) {
+    const arr = offers.find((offer) => offer.id === idPlace);
+    center = arr.coordinates;
+  }
+  return center;
+};
+
 export class MapCities extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -11,8 +30,12 @@ export class MapCities extends React.PureComponent {
 
   componentDidMount() {
     const {offers} = this.props;
+    const {idPlace} = this.props;
+    const centerCity = [52.38333, 4.9];
 
-    const city = [52.38333, 4.9];
+    const mapPlaces = getMapPlace(offers, idPlace);
+
+    const city = geyCenterMap(centerCity, offers, idPlace);
 
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
@@ -24,12 +47,11 @@ export class MapCities extends React.PureComponent {
     const map = leaflet.map(`map`, {
       center: city,
       zoom,
-      zoomControl: false,
+      zoomControl: true,
       marker: true,
     });
 
     map.setView(city, zoom);
-
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -37,9 +59,9 @@ export class MapCities extends React.PureComponent {
       })
       .addTo(map);
 
-    offers.forEach((offerCoords) => {
+    mapPlaces.forEach((mapPlace) => {
       leaflet
-        .marker(offerCoords.coordinates, {icon})
+        .marker(mapPlace.coordinates, {icon})
         .addTo(map);
     });
 
@@ -57,4 +79,5 @@ MapCities.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(propsTypeOffer).isRequired
   ),
+  idPlace: PropTypes.string.isRequired,
 };
