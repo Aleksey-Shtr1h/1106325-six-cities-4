@@ -34,6 +34,7 @@ export class App extends React.PureComponent {
           offer={offer}
           reviews={reviews}
           offers={offers}
+          onTitlePlaceClick={this.handleTitlePlaceClick}
         />
       );
     }
@@ -58,6 +59,7 @@ export class App extends React.PureComponent {
             <Property
               offer={this.props.offers[0]}
               review={this.props.reviews[0]}
+              onTitlePlaceClick={this.handleTitlePlaceClick}
             />
           </Route>
         </Switch>

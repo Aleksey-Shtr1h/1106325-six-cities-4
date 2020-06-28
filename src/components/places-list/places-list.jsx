@@ -20,8 +20,7 @@ export class PlacesList extends PureComponent {
     const {onTitlePlaceClick, offers} = this.props;
 
     return (
-      <div className="cities__places-list places__list tabs__content">
-
+      <React.Fragment>
         {offers.map((offer, index) =>
           <PlaceCard
             key={offer.id}
@@ -31,8 +30,7 @@ export class PlacesList extends PureComponent {
             index={index}
           />
         )}
-
-      </div>
+      </React.Fragment>
     );
   }
 

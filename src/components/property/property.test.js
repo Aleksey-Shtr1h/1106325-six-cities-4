@@ -13,6 +13,7 @@ it(`Should Property render correctly`, () => {
         offer={offerProps}
         reviews={reviewsProps}
         offers={offersProps}
+        onTitlePlaceClick={() => {}}
       />).toJSON();
   expect(tree).toMatchSnapshot();
 });
