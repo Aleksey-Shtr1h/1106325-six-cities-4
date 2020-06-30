@@ -1,17 +1,15 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import {Main} from './main.jsx';
-import {MapCities} from '../map-cities/map-cities.jsx';
+import React from 'react';
+import renderer from 'react-test-renderer';
+
+import {MapCities} from './map-cities.jsx';
 
 import {offersProps} from "../../test/offersProps.js";
 
-test(`Should Main render correctly`, () => {
+it(`MapCities is rendered correctly`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
   const tree = renderer.create(
-      <Main
-        placesCount={50}
-        offers={offersProps}
-        onTitlePlaceClick={() => {}}
+      <MapCities
+        offersProps={offersProps}
       />,
       {
         createNodeMock: () => {
