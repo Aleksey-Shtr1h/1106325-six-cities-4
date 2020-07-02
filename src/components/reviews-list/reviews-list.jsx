@@ -7,6 +7,7 @@ import {ReviewsItem} from '../reviews-item/reviews-item.jsx';
 
 export const ReviewsList = ({reviews}) => {
   const reviewsCount = reviews.length;
+
   return (
     <section className="property__reviews reviews">
 
@@ -14,13 +15,16 @@ export const ReviewsList = ({reviews}) => {
 
       <ul className="reviews__list">
 
-        {reviews.map((review, index) =>
-          <ReviewsItem
-            key={review.id}
-            review={review}
-            index={index}
-          />
-        )}
+        {reviews
+          .sort((prev, next) => next.date - prev.date)
+          .map((review, index) =>
+            <ReviewsItem
+              key={review.id}
+              review={review}
+              index={index}
+            />
+          )
+        };
       </ul>
 
       <form className="reviews__form form" action="#" method="post">

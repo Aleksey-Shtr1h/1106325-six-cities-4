@@ -5,14 +5,34 @@ import {getModifiedRatingValue} from "../../utils/utils.js";
 
 import {propsTypeReview} from "../../propsType/propsType.js";
 
+const MONTH_NAMES = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`
+];
+
+const getMonthString = (month) => {
+  return MONTH_NAMES[month];
+};
+
 const getTransformDate = (date) => {
-  const year = date.getFullYear() + 1;
+  const year = date.getFullYear();
   const month = date.getMonth();
-  return `Month${month} ${year}`;
+  return `${getMonthString(month)} ${year}`;
 };
 
 export const ReviewsItem = ({review}) => {
   const {ratingStars, descriptions, date, nameUser} = review;
+
   return (
     <li className="reviews__item">
       <div className="reviews__user user">

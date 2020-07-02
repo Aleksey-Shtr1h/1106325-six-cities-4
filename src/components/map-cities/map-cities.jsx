@@ -14,11 +14,11 @@ const getMapPlace = (offers, idPlace) => {
   return place;
 };
 
-const geyCenterMap = (centerCity, offers, idPlace) => {
+const getCenterMap = (centerCity, offers, idPlace) => {
   let center = centerCity;
   if (idPlace !== `city`) {
-    const arr = offers.find((offer) => offer.id === idPlace);
-    center = arr.coordinates;
+    const offerActive = offers.find((offer) => offer.id === idPlace);
+    center = offerActive.coordinates;
   }
   return center;
 };
@@ -34,15 +34,13 @@ export class MapCities extends React.PureComponent {
     const centerCity = [52.38333, 4.9];
 
     const mapPlaces = getMapPlace(offers, idPlace);
-
-    const city = geyCenterMap(centerCity, offers, idPlace);
+    const city = getCenterMap(centerCity, offers, idPlace);
+    const zoom = 12;
 
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30],
     });
-
-    const zoom = 12;
 
     const map = leaflet.map(`map`, {
       center: city,
@@ -59,12 +57,24 @@ export class MapCities extends React.PureComponent {
       })
       .addTo(map);
 
+    if (idPlace !== `city`) {
+      const offerActive = offers.find((offer) => offer.id === idPlace);
+
+      const iconActive = leaflet.icon({
+        iconUrl: `img/pin-active.svg`,
+        iconSize: [30, 30],
+      });
+
+      leaflet
+        .marker(offerActive.coordinates, {iconActive})
+        .addTo(map);
+    }
+
     mapPlaces.forEach((mapPlace) => {
       leaflet
         .marker(mapPlace.coordinates, {icon})
         .addTo(map);
     });
-
   }
 
 

@@ -312,7 +312,7 @@ exports[`Should Property render correctly 1`] = `
                     className="reviews__time"
                     dateTime="2019-04-24"
                   >
-                    Month5 2021
+                    July 2020
                   </time>
                 </div>
               </li>
@@ -371,7 +371,7 @@ exports[`Should Property render correctly 1`] = `
                     className="reviews__time"
                     dateTime="2019-04-24"
                   >
-                    Month5 2021
+                    July 2020
                   </time>
                 </div>
               </li>
@@ -430,7 +430,7 @@ exports[`Should Property render correctly 1`] = `
                     className="reviews__time"
                     dateTime="2019-04-24"
                   >
-                    Month5 2021
+                    July 2020
                   </time>
                 </div>
               </li>
@@ -489,10 +489,11 @@ exports[`Should Property render correctly 1`] = `
                     className="reviews__time"
                     dateTime="2019-04-24"
                   >
-                    Month5 2021
+                    July 2020
                   </time>
                 </div>
               </li>
+              ;
             </ul>
             <form
               action="#"
