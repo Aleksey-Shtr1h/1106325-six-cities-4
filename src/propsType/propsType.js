@@ -19,3 +19,11 @@ export const propsTypeOffer = {
   }),
   coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
 };
+
+export const propsTypeReview = {
+  id: PropTypes.string.isRequired,
+  ratingStars: PropTypes.number.isRequired,
+  descriptions: PropTypes.string.isRequired,
+  date: PropTypes.object.isRequired,
+  nameUser: PropTypes.string.isRequired,
+};

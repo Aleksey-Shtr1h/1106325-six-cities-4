@@ -1,13 +1,19 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Property} from './property.jsx';
+import {MapCities} from '../map-cities/map-cities.jsx';
 
-import {offerProps} from "../../test/offersProps.js";
+import {offerProps, offersProps} from "../../test/offersProps.js";
+import {reviewsProps} from '../../test/reviewsProps.js';
 
-test(`Should Property render correctly`, () => {
+it(`Should Property render correctly`, () => {
+  MapCities.prototype.componentDidMount = jest.fn();
   const tree = renderer.create(
       <Property
         offer={offerProps}
+        reviews={reviewsProps}
+        offers={offersProps}
+        onTitlePlaceClick={() => {}}
       />).toJSON();
   expect(tree).toMatchSnapshot();
 });

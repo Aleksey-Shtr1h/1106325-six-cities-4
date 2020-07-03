@@ -12,8 +12,7 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
     <article
       className="cities__place-card place-card"
       onMouseEnter={() => onArticleMoveMouse(offer)}
-      onMouseLeave={() => onArticleMoveMouse(null)}
-    >
+      onMouseLeave={() => onArticleMoveMouse(null)}>
 
       {isCheckedPremium &&
         <div className="place-card__mark">

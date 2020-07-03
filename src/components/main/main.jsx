@@ -7,7 +7,7 @@ import {MapCities} from '../map-cities/map-cities.jsx';
 import {propsTypeOffer} from "../../propsType/propsType.js";
 
 export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
-
+  const cityMap = `city`;
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -102,16 +102,18 @@ export const Main = ({placesCount, offers, onTitlePlaceClick}) => {
                 */}
 
               </form>
-
-              <PlacesList
-                offers={offers}
-                onTitlePlaceClick={onTitlePlaceClick}
-              />
+              <div className="cities__places-list places__list tabs__content">
+                <PlacesList
+                  offers={offers}
+                  onTitlePlaceClick={onTitlePlaceClick}
+                />
+              </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
                 <MapCities
                   offers={offers}
+                  idPlace={cityMap}
                 />
               </section>
             </div>

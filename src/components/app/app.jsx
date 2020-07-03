@@ -5,7 +5,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Main} from "../main/main.jsx";
 import {Property} from "../property/property.jsx";
 
-import {propsTypeOffer} from "../../propsType/propsType.js";
+import {propsTypeOffer, propsTypeReview} from "../../propsType/propsType.js";
 
 export class App extends React.PureComponent {
   constructor(props) {
@@ -25,13 +25,16 @@ export class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {placesCount, offers} = this.props;
+    const {placesCount, offers, reviews} = this.props;
     const {offer} = this.state;
 
     if (offer) {
       return (
         <Property
           offer={offer}
+          reviews={reviews}
+          offers={offers}
+          onTitlePlaceClick={this.handleTitlePlaceClick}
         />
       );
     }
@@ -55,6 +58,8 @@ export class App extends React.PureComponent {
           <Route exact path="/dev-component">
             <Property
               offer={this.props.offers[0]}
+              review={this.props.reviews[0]}
+              onTitlePlaceClick={this.handleTitlePlaceClick}
             />
           </Route>
         </Switch>
@@ -67,5 +72,8 @@ App.propTypes = {
   placesCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape(propsTypeOffer).isRequired
+  ),
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(propsTypeReview).isRequired
   )
 };
