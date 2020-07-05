@@ -1,5 +1,8 @@
 import {nanoid} from "nanoid";
 import {getArrayRandomLength, getRandomIntegerNumber, getRandomDoubleNumber, getRandomArrayItem, getArrayСoordinates} from "../utils/utils.js";
+import {generateReviews} from './reviews.js';
+
+export const cities = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 
 const PLACE_PHOTOS = [
   `img/room.jpg`,
@@ -46,6 +49,31 @@ const COORDINATE = [
   [52.369553943508, 4.85309666406198],
   [52.3909553943508, 4.929309666406198],
   [52.3809553943508, 4.939309666406198],
+
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198],
+
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198],
+
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198],
+
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198],
+
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198],
 ];
 
 let counterCoordinates = getArrayСoordinates(COORDINATE);
@@ -69,8 +97,10 @@ const generateOffer = () => {
       markSuper: Math.random() > 0.5,
     },
     coordinates: counterCoordinates(),
+    reviews: generateReviews(getRandomIntegerNumber(1, 6)),
   };
 };
+
 
 const generateOffers = (count) => {
   return new Array(count)
@@ -78,6 +108,10 @@ const generateOffers = (count) => {
     .map(generateOffer);
 };
 
-export const offers = generateOffers(4);
-
-
+export const cityOffers = cities.map((city) => {
+  return {
+    cityName: city,
+    offers: generateOffers(4),
+    placesCount: getRandomIntegerNumber(1, 100),
+  };
+});

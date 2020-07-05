@@ -1,15 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {App} from "./components/app/app.jsx";
-import {SettingsPlace} from "./mocks/settings.js";
-import {offers} from "./mocks/offers.js";
-import {reviews} from './mocks/reviews.js';
+import {createStore, compose} from 'redux';
+import {Provider} from 'react-redux';
+
+import {WrapperApp} from "./components/app/app.jsx";
+import {cityReducer} from './store/city-reducer/city-reducer.js';
+
+const store = createStore(
+    cityReducer,
+    compose(
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+);
 
 ReactDOM.render(
-    <App
-      placesCount={SettingsPlace.PLACES_COUNT}
-      offers={offers}
-      reviews={reviews}
-    />,
+    <Provider store={store}>
+      <WrapperApp/>
+    </Provider>,
     document.querySelector(`#root`)
 );

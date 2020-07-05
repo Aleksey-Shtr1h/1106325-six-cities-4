@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import {MapCities} from './map-cities.jsx';
 
-import {offersProps} from "../../test/offersProps.js";
+import {testProps} from "../../test/offersProps.js";
 
 const idString = `test`;
 
@@ -11,7 +11,7 @@ it(`MapCities is rendered correctly`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
   const tree = renderer.create(
       <MapCities
-        offersProps={offersProps}
+        offersProps={testProps.offersProps}
         idPlace={idString}
       />,
       {

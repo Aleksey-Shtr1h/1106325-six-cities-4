@@ -1,9 +1,8 @@
 import React, {PureComponent} from "react";
-import PropTypes from 'prop-types';
 
 import {PlaceCard} from "../place-card/place-card.jsx";
 
-import {propsTypeOffer} from "../../propsType/propsType.js";
+import {propsTypeAll} from "../../propsType/propsType.js";
 
 export class PlacesList extends PureComponent {
   constructor(props) {
@@ -42,8 +41,6 @@ export class PlacesList extends PureComponent {
 }
 
 PlacesList.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(propsTypeOffer).isRequired
-  ),
-  onTitlePlaceClick: PropTypes.func.isRequired,
+  offers: propsTypeAll.offers,
+  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
 };

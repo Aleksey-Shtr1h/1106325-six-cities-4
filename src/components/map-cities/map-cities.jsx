@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-import {propsTypeOffer} from "../../propsType/propsType.js";
+import {propsTypeAll} from "../../propsType/propsType.js";
 
 const getMapPlace = (offers, idPlace) => {
   const place = [];
@@ -86,8 +86,6 @@ export class MapCities extends React.PureComponent {
 }
 
 MapCities.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(propsTypeOffer).isRequired
-  ),
+  offers: propsTypeAll.offers,
   idPlace: PropTypes.string.isRequired,
 };

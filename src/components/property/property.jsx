@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from 'prop-types';
 
 import {getModifiedRatingValue} from '../../utils/utils.js';
-import {propsTypeOffer, propsTypeReview} from "../../propsType/propsType.js";
+import {propsTypeAll} from "../../propsType/propsType.js";
 
 import {ReviewsList} from '../reviews-list/reviews-list.jsx';
 import {MapCities} from '../map-cities/map-cities.jsx';
@@ -186,12 +185,8 @@ export const Property = ({offer, reviews, offers, onTitlePlaceClick}) => {
 };
 
 Property.propTypes = {
-  offer: PropTypes.shape(propsTypeOffer).isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(propsTypeReview).isRequired
-  ),
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(propsTypeOffer).isRequired
-  ),
-  onTitlePlaceClick: PropTypes.func.isRequired,
+  offer: propsTypeAll.offer,
+  reviews: propsTypeAll.reviews,
+  offers: propsTypeAll.offers,
+  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
 };

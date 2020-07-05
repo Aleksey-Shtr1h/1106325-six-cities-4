@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import {propsTypeReview} from "../../propsType/propsType.js";
+import {propsTypeAll} from "../../propsType/propsType.js";
 
 import {ReviewsItem} from '../reviews-item/reviews-item.jsx';
 
@@ -81,7 +80,5 @@ export const ReviewsList = ({reviews}) => {
 };
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(propsTypeReview).isRequired
-  ),
+  reviews: propsTypeAll.reviews,
 };

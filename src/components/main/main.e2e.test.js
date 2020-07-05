@@ -3,7 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {Main} from "./main.jsx";
 
-import {offersProps} from "../../test/offersProps.js";
+import {testProps} from "../../test/offersProps.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -11,20 +11,30 @@ Enzyme.configure({
 
 test(`Should main button be pressed`, () => {
   const onTitlePlaceClick = jest.fn();
+  const onMenuCityClick = jest.fn();
 
   const main = shallow(
       <Main
         placesCount={50}
-        offers={offersProps}
+        offers={testProps.offersProps}
+        nameCities={[`test`]}
+        cityActive={`test`}
         onTitlePlaceClick={onTitlePlaceClick}
+        onMenuCityClick={onMenuCityClick}
       />
   );
 
   const titlesClick = main.find(`.place-card__name a`);
+  const citiesNameClick = main.find(`.locations__item a`);
 
   titlesClick.forEach((titleClick) => {
     titleClick.props().onClick();
   });
 
+  citiesNameClick.forEach((cityNameClick) => {
+    cityNameClick.props().onClick();
+  });
+
   expect(onTitlePlaceClick.mock.calls.length).toBe(titlesClick.length);
+  expect(onMenuCityClick.mock.calls.length).toBe(citiesNameClick.length);
 });
