@@ -7,6 +7,7 @@ import {testProps} from "../../test/offersProps.js";
 
 test(`Render App`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
+
   const tree = renderer.create(
       <App
         cityOffers={testProps.cityOffersProps}

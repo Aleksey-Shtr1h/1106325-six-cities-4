@@ -6,8 +6,6 @@ const getOffersActive = (city) => {
   return cityOffersTest.find((cityOffer) => cityOffer.cityName === city);
 };
 
-// import {cities} from '../../mocks/offers.js';
-// import {testProps} from '../../test/offersProps.js';
 const nameCities = cities;
 const cityOffers = cityOffersTest[0];
 const cityActive = cityOffersTest[0].cityName;

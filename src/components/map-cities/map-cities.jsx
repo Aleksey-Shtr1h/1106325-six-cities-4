@@ -26,39 +26,44 @@ const getCenterMap = (centerCity, offers, idPlace) => {
 export class MapCities extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this._centerCity = [52.38333, 4.9];
+    this._mapPlaces = null;
+    this._city = null;
+    this._zoom = 12;
+
+    this._map = null;
+    this._icon = null;
   }
 
   componentDidMount() {
-    const {offers} = this.props;
-    const {idPlace} = this.props;
-    const centerCity = [52.38333, 4.9];
+    this._mapPlaces = getMapPlace(this.props.offers, this.props.idPlace);
+    this._city = getCenterMap(this._centerCity, this.props.offers, this.props.idPlace);
 
-    const mapPlaces = getMapPlace(offers, idPlace);
-    const city = getCenterMap(centerCity, offers, idPlace);
-    const zoom = 12;
-
-    const icon = leaflet.icon({
+    this._icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30],
     });
 
-    const map = leaflet.map(`map`, {
-      center: city,
-      zoom,
+    const icon = this._icon;
+
+    this._map = leaflet.map(`map`, {
+      center: this._city,
+      zoom: this._zoom,
       zoomControl: true,
       marker: true,
     });
 
-    map.setView(city, zoom);
+    this._map.setView(this._city, this._zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-      .addTo(map);
+      .addTo(this._map);
 
-    if (idPlace !== `city`) {
-      const offerActive = offers.find((offer) => offer.id === idPlace);
+    if (this.props.idPlace !== `city`) {
+      const offerActive = this.props.offers.find((offer) => offer.id === this.props.idPlace);
 
       const iconActive = leaflet.icon({
         iconUrl: `img/pin-active.svg`,
@@ -67,16 +72,63 @@ export class MapCities extends React.PureComponent {
 
       leaflet
         .marker(offerActive.coordinates, {iconActive})
-        .addTo(map);
+        .addTo(this._map);
     }
 
-    mapPlaces.forEach((mapPlace) => {
+    this._mapPlaces.forEach((mapPlace) => {
       leaflet
         .marker(mapPlace.coordinates, {icon})
-        .addTo(map);
+        .addTo(this._map);
     });
   }
 
+  componentDidUpdate() {
+    this._map.remove();
+
+    this._city = getCenterMap(this._centerCity, this.props.offers, this.props.idPlace);
+    this._mapPlaces = getMapPlace(this.props.offers, this.props.idPlace);
+
+    this._icon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30],
+    });
+
+    const icon = this._icon;
+
+    this._map = leaflet.map(`map`, {
+      center: this._city,
+      zoom: this._zoom,
+      zoomControl: true,
+      marker: true,
+    });
+
+    this._map.setView(this._city, this._zoom);
+
+    leaflet
+      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+      })
+      .addTo(this._map);
+
+    if (this.props.idPlace !== `city`) {
+      const offerActive = this.props.offers.find((offer) => offer.id === this.props.idPlace);
+
+      const iconActive = leaflet.icon({
+        iconUrl: `img/pin-active.svg`,
+        iconSize: [30, 30],
+      });
+
+      leaflet
+        .marker(offerActive.coordinates, {iconActive})
+        .addTo(this._map);
+    }
+
+    this._mapPlaces.forEach((mapPlace) => {
+      leaflet
+        .marker(mapPlace.coordinates, {icon})
+        .addTo(this._map);
+    });
+  }
 
   render() {
     return (

@@ -1,13 +1,13 @@
 import React from "react";
 
-import {PlacesList} from "../places-list/places-list.jsx";
-import {MapCities} from '../map-cities/map-cities.jsx';
+import {MainOffersAvailable} from '../main-offers-available/main-offers-available.jsx';
+import {MainOffersNotAvailable} from '../main-offers-not-available/main-offers-not-available.js';
+
 import {CitiesList} from '../cities-list/cities-list.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
 export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, nameCities, cityActive}) => {
-  const cityMap = `city`;
 
   return (
     <div className="page page--gray page--main">
@@ -34,7 +34,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
         </div>
       </header>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${offers.length !== 0 && `page__main--index-empty` || ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -46,52 +46,20 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
           </section>
         </div>
 
+
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in {cityActive}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
 
-                {/*
-                <select className="places__sorting-type" id="places-sorting">
-                  <option className="places__option" value="popular" selected="">Popular</option>
-                  <option className="places__option" value="to-high">Price: low to high</option>
-                  <option className="places__option" value="to-low">Price: high to low</option>
-                  <option className="places__option" value="top-rated">Top rated first</option>
-                </select>
-                */}
+          {offers.length !== 0 &&
+            <MainOffersAvailable
+              placesCount={placesCount}
+              offers={offers}
+              cityActive={cityActive}
+              onTitlePlaceClick={onTitlePlaceClick}
+            /> ||
+            <MainOffersNotAvailable
+            />
+          }
 
-              </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlacesList
-                  offers={offers}
-                  onTitlePlaceClick={onTitlePlaceClick}
-                />
-              </div>
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                <MapCities
-                  offers={offers}
-                  idPlace={cityMap}
-                />
-              </section>
-            </div>
-          </div>
         </div>
       </main>
     </div>

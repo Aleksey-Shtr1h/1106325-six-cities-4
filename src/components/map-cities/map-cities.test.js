@@ -9,6 +9,7 @@ const idString = `test`;
 
 it(`MapCities is rendered correctly`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
+
   const tree = renderer.create(
       <MapCities
         offersProps={testProps.offersProps}
