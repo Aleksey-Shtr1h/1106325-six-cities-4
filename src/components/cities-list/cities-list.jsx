@@ -8,7 +8,7 @@ export const CitiesList = ({nameCities, onMenuCityClick, cityActive}) => {
   return (
     <ul className="locations__list tabs__list">
 
-      {nameCities.map((cityName, id) =>
+      {nameCities.slice(0, 6).map((cityName, id) =>
         <CitiesItem
           key={cityName + id}
           cityName={cityName}
