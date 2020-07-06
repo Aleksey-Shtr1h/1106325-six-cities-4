@@ -3,15 +3,21 @@ import renderer from "react-test-renderer";
 import {Main} from './main.jsx';
 import {MapCities} from '../map-cities/map-cities.jsx';
 
-import {offersProps} from "../../test/offersProps.js";
+import {testProps} from "../../test/offersProps.js";
 
 test(`Should Main render correctly`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
+
+
   const tree = renderer.create(
       <Main
         placesCount={50}
-        offers={offersProps}
+        offers={testProps.offersProps}
+        nameCities={[`test`]}
+        cityActive={`test`}
         onTitlePlaceClick={() => {}}
+        onMenuCityClick={() => {}}
+        cityCoordinates={[1, 2]}
       />,
       {
         createNodeMock: () => {

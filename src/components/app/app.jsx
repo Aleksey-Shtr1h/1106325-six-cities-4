@@ -1,40 +1,36 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {Main} from "../main/main.jsx";
 import {Property} from "../property/property.jsx";
 
-import {propsTypeOffer, propsTypeReview} from "../../propsType/propsType.js";
+import {propsTypeAll} from "../../propsType/propsType.js";
+
+import {ActionCreator} from '../../store/city-action/city-action.js';
 
 export class App extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      offer: null,
-    };
-
-    this.handleTitlePlaceClick = this.handleTitlePlaceClick.bind(this);
-  }
-
-  handleTitlePlaceClick(userOffer) {
-    this.setState({
-      offer: userOffer,
-    });
   }
 
   _renderApp() {
-    const {placesCount, offers, reviews} = this.props;
-    const {offer} = this.state;
+    const {cityOffers, placeOffer, nameCities, cityActive, onTitlePlaceClick, onMenuCityClick} = this.props;
 
-    if (offer) {
+    const {offers, placesCount, cityCoordinates} = cityOffers;
+
+    if (placeOffer) {
+      const reviews = placeOffer.reviews;
+
       return (
         <Property
-          offer={offer}
+          offer={placeOffer}
           reviews={reviews}
           offers={offers}
-          onTitlePlaceClick={this.handleTitlePlaceClick}
+          onTitlePlaceClick={onTitlePlaceClick}
+          cityCoordinates={cityCoordinates}
         />
       );
     }
@@ -43,7 +39,11 @@ export class App extends React.PureComponent {
       <Main
         placesCount={placesCount}
         offers={offers}
-        onTitlePlaceClick={this.handleTitlePlaceClick}
+        onTitlePlaceClick={onTitlePlaceClick}
+        onMenuCityClick={onMenuCityClick}
+        nameCities={nameCities}
+        cityActive={cityActive}
+        cityCoordinates={cityCoordinates}
       />
     );
   }
@@ -57,9 +57,8 @@ export class App extends React.PureComponent {
           </Route>
           <Route exact path="/dev-component">
             <Property
-              offer={this.props.offers[0]}
-              review={this.props.reviews[0]}
-              onTitlePlaceClick={this.handleTitlePlaceClick}
+              offer={this.props.cityOffers.offers[0]}
+              onTitlePlaceClick={() => {}}
             />
           </Route>
         </Switch>
@@ -68,12 +67,29 @@ export class App extends React.PureComponent {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    nameCities: state.nameCities,
+    cityOffers: state.cityOffers,
+    cityActive: state.cityActive,
+    placeOffer: state.placeOffer,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onMenuCityClick: bindActionCreators(ActionCreator.actionCity, dispatch),
+    onTitlePlaceClick: bindActionCreators(ActionCreator.actionTitleClick, dispatch),
+  };
+};
+
+export const WrapperApp = connect(mapStateToProps, mapDispatchToProps)(App);
+
 App.propTypes = {
-  placesCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(propsTypeOffer).isRequired
-  ),
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(propsTypeReview).isRequired
-  )
+  cityOffers: propsTypeAll.cityOffers,
+  onMenuCityClick: propsTypeAll.onMenuCityClick,
+  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
+  nameCities: propsTypeAll.nameCities,
+  placeOffer: propsTypeAll.placeOffer,
+  cityActive: propsTypeAll.cityActive,
 };

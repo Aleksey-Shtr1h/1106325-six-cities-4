@@ -17,6 +17,13 @@ export const offersProps = [
       markSuper: true,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
+    reviews: [{
+      id: `1`,
+      ratingStars: 0.5,
+      descriptions: `test`,
+      date: new Date(),
+      nameUser: `test`,
+    }],
   },
 
   {
@@ -37,6 +44,13 @@ export const offersProps = [
       markSuper: true,
     },
     coordinates: [52.369553943508, 4.85309666406198],
+    reviews: [{
+      id: `2`,
+      ratingStars: 0.6,
+      descriptions: `test`,
+      date: new Date(),
+      nameUser: `test`,
+    }],
   },
 
   {
@@ -57,6 +71,13 @@ export const offersProps = [
       markSuper: true,
     },
     coordinates: [52.3909553943508, 4.929309666406198],
+    reviews: [{
+      id: `3`,
+      ratingStars: 0.7,
+      descriptions: `test`,
+      date: new Date(),
+      nameUser: `test`,
+    }],
   },
 
   {
@@ -77,6 +98,13 @@ export const offersProps = [
       markSuper: true,
     },
     coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [{
+      id: `4`,
+      ratingStars: 0.8,
+      descriptions: `test`,
+      date: new Date(),
+      nameUser: `test`,
+    }],
   },
 ];
 
@@ -98,4 +126,58 @@ export const offerProps = {
     markSuper: true,
   },
   coordinates: [52.3909553943508, 4.85309666406198],
+  reviews: [
+    {
+      id: `1`,
+      ratingStars: 0.5,
+      descriptions: `test`,
+      date: new Date(),
+      nameUser: `test`,
+    },
+
+    {
+      id: `2`,
+      ratingStars: 0.6,
+      descriptions: `test`,
+      date: new Date(Date.now()),
+      nameUser: `test`,
+    },
+
+    {
+      id: `3`,
+      ratingStars: 0.7,
+      descriptions: `test`,
+      date: new Date(),
+      nameUser: `test`,
+    },
+
+    {
+      id: `4`,
+      ratingStars: 0.8,
+      descriptions: `test`,
+      date: new Date(),
+      nameUser: `test`,
+    },
+  ],
+};
+
+export const cityOffersProps = {
+  cityName: `test`,
+  offers: offersProps,
+  placesCount: 1,
+  cityCoordinates: [1, 2],
+};
+
+export const cityOffersArrayProps = [{
+  cityName: `test`,
+  offers: offersProps,
+  placesCount: 1,
+  cityCoordinates: [1, 2],
+}];
+
+export const testProps = {
+  cityOffersProps,
+  cityOffersArrayProps,
+  offersProps,
+  offerProps,
 };

@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {getModifiedRatingValue} from "../../utils/utils.js";
 
-import {propsTypeReview} from "../../propsType/propsType.js";
+import {propsTypeAll} from "../../propsType/propsType.js";
 
 const MONTH_NAMES = [
   `January`,
@@ -60,5 +59,5 @@ export const ReviewsItem = ({review}) => {
 };
 
 ReviewsItem.propTypes = {
-  review: PropTypes.shape(propsTypeReview).isRequired,
+  review: propsTypeAll.review,
 };

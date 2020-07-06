@@ -3,8 +3,8 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {Property} from "./property.jsx";
 
-import {offersProps, offerProps} from "../../test/offersProps.js";
-import {reviewsProps} from "../../test/reviewsProps.js";
+import {testProps} from "../../test/offersProps.js";
+// import {reviewsProps} from "../../test/reviewsProps.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -15,10 +15,11 @@ test(`Should Property button be pressed`, () => {
 
   const property = shallow(
       <Property
-        offer={offerProps}
-        reviews={reviewsProps}
-        offers={offersProps}
+        offer={testProps.offerProps}
+        reviews={testProps.offerProps.reviews}
+        offers={testProps.offersProps}
         onTitlePlaceClick={onTitlePlaceClick}
+        cityCoordinates={[1, 2]}
       />
   );
 

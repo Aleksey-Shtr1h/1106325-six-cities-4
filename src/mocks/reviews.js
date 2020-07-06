@@ -19,7 +19,7 @@ const generateReview = () => {
   };
 };
 
-const generateReviews = (count) => {
+export const generateReviews = (count) => {
   return new Array(count)
     .fill(``)
     .map(generateReview);
