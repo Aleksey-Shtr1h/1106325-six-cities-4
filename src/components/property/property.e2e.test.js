@@ -19,6 +19,7 @@ test(`Should Property button be pressed`, () => {
         reviews={testProps.offerProps.reviews}
         offers={testProps.offersProps}
         onTitlePlaceClick={onTitlePlaceClick}
+        cityCoordinates={[1, 2]}
       />
   );
 

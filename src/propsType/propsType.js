@@ -38,6 +38,7 @@ export const propsTypeCityOffers = {
       PropTypes.shape(propsTypeOffer).isRequired
   ),
   placesCount: PropTypes.number.isRequired,
+  cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
 };
 
 
@@ -46,17 +47,29 @@ export const propsTypeAll = {
   onMenuCityClick: PropTypes.func.isRequired,
   onTitlePlaceClick: PropTypes.func.isRequired,
   nameCities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+
   placeOffer: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
     PropTypes.shape(propsTypeOffer).isRequired,
   ]),
+
   cityActive: PropTypes.string.isRequired,
   placesCount: PropTypes.number.isRequired,
+
   offers: PropTypes.arrayOf(
       PropTypes.shape(propsTypeOffer).isRequired
   ),
-  offer: PropTypes.shape(propsTypeOffer).isRequired,
+
+  offer: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.shape(propsTypeOffer).isRequired,
+  ]),
+
   cityName: PropTypes.string.isRequired,
   reviews: propsTypeOffer.reviews,
   review: PropTypes.shape(propsTypeReview).isRequired,
+  cityCoordinates: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  ]),
 };

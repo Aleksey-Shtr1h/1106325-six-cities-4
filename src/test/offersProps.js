@@ -165,12 +165,14 @@ export const cityOffersProps = {
   cityName: `test`,
   offers: offersProps,
   placesCount: 1,
+  cityCoordinates: [1, 2],
 };
 
 export const cityOffersArrayProps = [{
   cityName: `test`,
   offers: offersProps,
   placesCount: 1,
+  cityCoordinates: [1, 2],
 }];
 
 export const testProps = {

@@ -21,6 +21,7 @@ test(`Should main button be pressed`, () => {
         cityActive={`test`}
         onTitlePlaceClick={onTitlePlaceClick}
         onMenuCityClick={onMenuCityClick}
+        cityCoordinates={[1, 2]}
       />
   );
 

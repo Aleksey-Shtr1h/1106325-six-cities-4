@@ -13,6 +13,7 @@ test(`Should MainOffersAvailable render correctly`, () => {
         cityActive={`test`}
         offers={testProps.offersProps}
         onTitlePlaceClick={() => {}}
+        cityCoordinates={[1, 2]}
       />,
       {
         createNodeMock: () => {

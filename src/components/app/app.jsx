@@ -19,7 +19,7 @@ export class App extends React.PureComponent {
   _renderApp() {
     const {cityOffers, placeOffer, nameCities, cityActive, onTitlePlaceClick, onMenuCityClick} = this.props;
 
-    const {offers, placesCount} = cityOffers;
+    const {offers, placesCount, cityCoordinates} = cityOffers;
 
     if (placeOffer) {
       const reviews = placeOffer.reviews;
@@ -30,6 +30,7 @@ export class App extends React.PureComponent {
           reviews={reviews}
           offers={offers}
           onTitlePlaceClick={onTitlePlaceClick}
+          cityCoordinates={cityCoordinates}
         />
       );
     }
@@ -42,6 +43,7 @@ export class App extends React.PureComponent {
         onMenuCityClick={onMenuCityClick}
         nameCities={nameCities}
         cityActive={cityActive}
+        cityCoordinates={cityCoordinates}
       />
     );
   }

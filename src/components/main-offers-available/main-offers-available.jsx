@@ -5,8 +5,10 @@ import {MapCities} from '../map-cities/map-cities.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePlaceClick}) => {
+export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePlaceClick, cityCoordinates}) => {
+
   const cityMap = `city`;
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -49,6 +51,7 @@ export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePla
           <MapCities
             offers={offers}
             idPlace={cityMap}
+            cityCoordinates={cityCoordinates}
           />
         </section>
       </div>
@@ -61,4 +64,5 @@ MainOffersAvailable.propTypes = {
   cityActive: propsTypeAll.cityActive,
   offers: propsTypeAll.offers,
   onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
+  cityCoordinates: propsTypeAll.cityCoordinates,
 };

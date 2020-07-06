@@ -7,7 +7,7 @@ import {ReviewsList} from '../reviews-list/reviews-list.jsx';
 import {MapCities} from '../map-cities/map-cities.jsx';
 import {PlacesList} from "../places-list/places-list.jsx";
 
-export const Property = ({offer, reviews, offers, onTitlePlaceClick}) => {
+export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordinates}) => {
 
   const {id, isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = offer;
 
@@ -165,6 +165,7 @@ export const Property = ({offer, reviews, offers, onTitlePlaceClick}) => {
             <MapCities
               offers={offers}
               idPlace={id}
+              cityCoordinates={cityCoordinates}
             />
           </section>
         </section>
@@ -189,4 +190,5 @@ Property.propTypes = {
   reviews: propsTypeAll.reviews,
   offers: propsTypeAll.offers,
   onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
+  cityCoordinates: propsTypeAll.cityCoordinates,
 };

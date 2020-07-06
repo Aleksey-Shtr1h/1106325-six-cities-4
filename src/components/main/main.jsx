@@ -7,7 +7,7 @@ import {CitiesList} from '../cities-list/cities-list.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, nameCities, cityActive}) => {
+export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, nameCities, cityActive, cityCoordinates}) => {
 
   return (
     <div className="page page--gray page--main">
@@ -34,7 +34,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
         </div>
       </header>
 
-      <main className={`page__main page__main--index ${offers.length !== 0 && `page__main--index-empty` || ``}`}>
+      <main className={`page__main page__main--index ${offers.length !== 0 && `` || `page__main--index-empty`}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -55,6 +55,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
               offers={offers}
               cityActive={cityActive}
               onTitlePlaceClick={onTitlePlaceClick}
+              cityCoordinates={cityCoordinates}
             /> ||
             <MainOffersNotAvailable
             />
@@ -73,4 +74,5 @@ Main.propTypes = {
   onMenuCityClick: propsTypeAll.onMenuCityClick,
   onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
   nameCities: propsTypeAll.nameCities,
+  cityCoordinates: propsTypeAll.cityCoordinates,
 };

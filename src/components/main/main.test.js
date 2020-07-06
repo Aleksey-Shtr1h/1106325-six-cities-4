@@ -17,6 +17,7 @@ test(`Should Main render correctly`, () => {
         cityActive={`test`}
         onTitlePlaceClick={() => {}}
         onMenuCityClick={() => {}}
+        cityCoordinates={[1, 2]}
       />,
       {
         createNodeMock: () => {

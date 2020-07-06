@@ -14,6 +14,7 @@ it(`Should Property render correctly`, () => {
         reviews={testProps.offerProps.reviews}
         offers={testProps.offersProps}
         onTitlePlaceClick={() => {}}
+        cityCoordinates={[1, 2]}
       />).toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -14,6 +14,7 @@ it(`MapCities is rendered correctly`, () => {
       <MapCities
         offersProps={testProps.offersProps}
         idPlace={idString}
+        cityCoordinates={[1, 2]}
       />,
       {
         createNodeMock: () => {
