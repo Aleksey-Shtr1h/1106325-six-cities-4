@@ -22,7 +22,7 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={images[images.length - 1]} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" width="260" height="200" alt="Place image" src={images[images.length - 1]}/>
         </a>
       </div>
 

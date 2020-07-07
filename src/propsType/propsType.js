@@ -72,4 +72,7 @@ export const propsTypeAll = {
     PropTypes.oneOf([undefined]).isRequired,
     PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   ]),
+
+  func: PropTypes.func.isRequired,
+  string: PropTypes.string.isRequired,
 };

@@ -7,6 +7,7 @@ const initialState = {
   cityOffers: cityOffers[0],
   cityActive: cityOffers[0].cityName,
   placeOffer: null,
+  avtiveSort: `popular`,
 };
 
 export const cityReducer = (state = initialState, action) => {
@@ -21,6 +22,12 @@ export const cityReducer = (state = initialState, action) => {
     case ActionType.PLACE_TITLE_CLICK:
       return extend(state, {
         placeOffer: action.payload,
+      });
+
+    case ActionType.SORTING_OFFERS_CHANGE:
+      return extend(state, {
+        avtiveSort: action.payload.sortType,
+        cityOffers: action.payload.sortOffers,
       });
   }
   return state;
