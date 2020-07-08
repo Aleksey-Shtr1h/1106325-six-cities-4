@@ -92,14 +92,13 @@ export class MapCities extends React.PureComponent {
 
     this._map.setView(this._city, this._zoom);
 
+    this._removePinsMap();
+
     if (offerId === placeId) {
-      this._removePinsMap();
       this._getPinsMap(placeId);
     } else if (offerId !== null) {
-      this._removePinsMap();
       this._getPinsMap(offerId);
     } else {
-      this._removePinsMap();
       this._getPinsMap(placeId);
     }
   }

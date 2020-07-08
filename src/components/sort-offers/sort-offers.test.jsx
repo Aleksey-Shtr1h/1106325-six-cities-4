@@ -1,16 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {PlacesList} from './places-list.jsx';
+import {SortOffers} from './sort-offers.jsx';
 
 import {testProps} from "../../test/offersProps.js";
 
-test(`Should PlacesList render correctly`, () => {
+it(`Should SortOffers render correctly`, () => {
   const tree = renderer.create(
-      <PlacesList
-        offers={testProps.offersProps}
+      <SortOffers
+        activeSort={`test`}
+        onSortingOffersChange={() => {}}
         offersActive={testProps.offersProps}
-        onTitlePlaceClick = {() => {}}
-        onCardPlaceHoverMove = {() => {}}
+        originalOffers={testProps.offersProps}
       />).toJSON();
   expect(tree).toMatchSnapshot();
 });

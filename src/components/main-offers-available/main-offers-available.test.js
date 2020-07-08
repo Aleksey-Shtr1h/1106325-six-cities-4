@@ -7,6 +7,7 @@ import {testProps} from "../../test/offersProps.js";
 
 test(`Should MainOffersAvailable render correctly`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
+
   const tree = renderer.create(
       <MainOffersAvailable
         placesCount={50}

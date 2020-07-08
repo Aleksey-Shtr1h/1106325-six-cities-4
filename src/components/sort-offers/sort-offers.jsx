@@ -26,7 +26,7 @@ const SortOptions = [
   },
 ];
 
-const SortOffers = ({activeSort, onSortingOffersChange, offersActive, originalOffers}) => {
+export const SortOffers = ({activeSort, onSortingOffersChange, offersActive, originalOffers}) => {
   return (
     <form className="places__sorting" action="#" method="get">
 
