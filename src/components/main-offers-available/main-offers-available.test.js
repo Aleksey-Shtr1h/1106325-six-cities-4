@@ -14,6 +14,7 @@ test(`Should MainOffersAvailable render correctly`, () => {
         offers={testProps.offersProps}
         onTitlePlaceClick={() => {}}
         cityCoordinates={[1, 2]}
+        onCardPlaceHoverMove={() => {}}
       />,
       {
         createNodeMock: () => {

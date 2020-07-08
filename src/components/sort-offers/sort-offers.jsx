@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-// import {bindActionCreators} from 'redux';
+import {bindActionCreators} from 'redux';
 
 import {ActionCreator} from '../../store/city-action/city-action.js';
 
@@ -26,8 +26,7 @@ const SortOptions = [
   },
 ];
 
-const SortOffers = ({avtiveSort, onSortingOffersChange, cityOffers}) => {
-
+const SortOffers = ({activeSort, onSortingOffersChange, offersActive, originalOffers}) => {
   return (
     <form className="places__sorting" action="#" method="get">
 
@@ -35,10 +34,10 @@ const SortOffers = ({avtiveSort, onSortingOffersChange, cityOffers}) => {
 
       <select
         className="places__sorting-type"
-        id={avtiveSort}
-        value={avtiveSort}
+        id={activeSort}
+        value={activeSort}
         onChange={(evt) =>
-          onSortingOffersChange(evt.target.value, cityOffers)
+          onSortingOffersChange(evt.target.value, offersActive, originalOffers)
         }
       >
 
@@ -59,24 +58,22 @@ const SortOffers = ({avtiveSort, onSortingOffersChange, cityOffers}) => {
 
 const mapStateToProps = (state) => {
   return {
-    avtiveSort: state.avtiveSort,
-    cityOffers: state.cityOffers,
+    activeSort: state.activeSort,
+    offersActive: state.offersActive,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSortingOffersChange(avtiveSort, cityOffers) {
-      dispatch(ActionCreator.actionSortingOffersChange(avtiveSort, cityOffers));
-    },
-    // onSortingOffersChange: bindActionCreators(ActionCreator.actionSortingOffersChange, dispatch),
+    onSortingOffersChange: bindActionCreators(ActionCreator.actionSortingOffersChange, dispatch),
   };
 };
 
 export const WrapperSortOffers = connect(mapStateToProps, mapDispatchToProps)(SortOffers);
 
 SortOffers.propTypes = {
-  avtiveSort: propsTypeAll.string,
+  activeSort: propsTypeAll.string,
   onSortingOffersChange: propsTypeAll.func,
-  cityOffers: propsTypeAll.cityOffers,
+  offersActive: propsTypeAll.offers,
+  originalOffers: propsTypeAll.offers,
 };

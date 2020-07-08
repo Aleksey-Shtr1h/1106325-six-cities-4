@@ -4,10 +4,10 @@ import {getModifiedRatingValue} from '../../utils/utils.js';
 import {propsTypeAll} from "../../propsType/propsType.js";
 
 import {ReviewsList} from '../reviews-list/reviews-list.jsx';
-import {MapCities} from '../map-cities/map-cities.jsx';
-import {PlacesList} from "../places-list/places-list.jsx";
+import {WrapperMapCities} from '../map-cities/map-cities.jsx';
+import {WrapperPlacesList} from "../places-list/places-list.jsx";
 
-export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordinates}) => {
+export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordinates, onCardPlaceHoverMove}) => {
 
   const {id, isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = offer;
 
@@ -162,7 +162,7 @@ export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordin
             </div>
           </div>
           <section className="property__map map">
-            <MapCities
+            <WrapperMapCities
               offers={offers}
               idPlace={id}
               cityCoordinates={cityCoordinates}
@@ -173,9 +173,10 @@ export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordin
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlacesList
+              <WrapperPlacesList
                 offers={offers}
                 onTitlePlaceClick={onTitlePlaceClick}
+                onCardPlaceHoverMove={onCardPlaceHoverMove}
               />
             </div>
           </section>
@@ -191,4 +192,5 @@ Property.propTypes = {
   offers: propsTypeAll.offers,
   onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
   cityCoordinates: propsTypeAll.cityCoordinates,
+  onCardPlaceHoverMove: propsTypeAll.funcAndUndefined,
 };

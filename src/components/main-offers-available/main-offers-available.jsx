@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {PlacesList} from "../places-list/places-list.jsx";
-import {MapCities} from '../map-cities/map-cities.jsx';
+import {WrapperPlacesList} from "../places-list/places-list.jsx";
+import {WrapperMapCities} from '../map-cities/map-cities.jsx';
 import {WrapperSortOffers} from '../sort-offers/sort-offers.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePlaceClick, cityCoordinates}) => {
+export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePlaceClick, cityCoordinates, onCardPlaceHoverMove}) => {
 
   const cityMap = `city`;
 
@@ -17,18 +17,19 @@ export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePla
         <b className="places__found">{placesCount} places to stay in {cityActive}</b>
 
         <WrapperSortOffers
+          originalOffers={offers}
         />
 
         <div className="cities__places-list places__list tabs__content">
-          <PlacesList
-            offers={offers}
+          <WrapperPlacesList
             onTitlePlaceClick={onTitlePlaceClick}
+            onCardPlaceHoverMove={onCardPlaceHoverMove}
           />
         </div>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <MapCities
+          <WrapperMapCities
             offers={offers}
             idPlace={cityMap}
             cityCoordinates={cityCoordinates}
@@ -45,4 +46,5 @@ MainOffersAvailable.propTypes = {
   offers: propsTypeAll.offers,
   onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
   cityCoordinates: propsTypeAll.cityCoordinates,
+  onCardPlaceHoverMove: propsTypeAll.func,
 };

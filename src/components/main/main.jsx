@@ -7,7 +7,7 @@ import {CitiesList} from '../cities-list/cities-list.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, nameCities, cityActive, cityCoordinates}) => {
+export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, nameCities, cityActive, cityCoordinates, onCardPlaceHoverMove}) => {
 
   return (
     <div className="page page--gray page--main">
@@ -56,6 +56,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
               cityActive={cityActive}
               onTitlePlaceClick={onTitlePlaceClick}
               cityCoordinates={cityCoordinates}
+              onCardPlaceHoverMove={onCardPlaceHoverMove}
             /> ||
             <MainOffersNotAvailable
             />
@@ -70,9 +71,10 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
 Main.propTypes = {
   placesCount: propsTypeAll.placesCount,
   offers: propsTypeAll.offers,
-  cityActive: propsTypeAll.cityActive,
-  onMenuCityClick: propsTypeAll.onMenuCityClick,
-  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
   nameCities: propsTypeAll.nameCities,
+  cityActive: propsTypeAll.cityActive,
+  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
+  onMenuCityClick: propsTypeAll.onMenuCityClick,
   cityCoordinates: propsTypeAll.cityCoordinates,
+  onCardPlaceHoverMove: propsTypeAll.func,
 };

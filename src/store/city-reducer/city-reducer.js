@@ -7,7 +7,9 @@ const initialState = {
   cityOffers: cityOffers[0],
   cityActive: cityOffers[0].cityName,
   placeOffer: null,
-  avtiveSort: `popular`,
+  activeSort: `popular`,
+  offersActive: cityOffers[0].offers,
+  offerId: null,
 };
 
 export const cityReducer = (state = initialState, action) => {
@@ -17,6 +19,8 @@ export const cityReducer = (state = initialState, action) => {
       return extend(state, {
         cityOffers: action.payload,
         cityActive: action.payload.cityName,
+        offersActive: action.payload.offers,
+        activeSort: `popular`,
       });
 
     case ActionType.PLACE_TITLE_CLICK:
@@ -26,9 +30,15 @@ export const cityReducer = (state = initialState, action) => {
 
     case ActionType.SORTING_OFFERS_CHANGE:
       return extend(state, {
-        avtiveSort: action.payload.sortType,
-        cityOffers: action.payload.sortOffers,
+        activeSort: action.payload.sortType,
+        offersActive: action.payload.offersActive,
+      });
+
+    case ActionType.CHANGE_PIN_MAP_HOVER_CARD:
+      return extend(state, {
+        offerId: action.payload,
       });
   }
+
   return state;
 };

@@ -18,6 +18,7 @@ test(`Should Main render correctly`, () => {
         onTitlePlaceClick={() => {}}
         onMenuCityClick={() => {}}
         cityCoordinates={[1, 2]}
+        onCardPlaceHoverMove={() => {}}
       />,
       {
         createNodeMock: () => {

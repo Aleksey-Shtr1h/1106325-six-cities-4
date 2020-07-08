@@ -11,6 +11,8 @@ const cityOffers = cityOffersTest[0];
 const cityActive = cityOffersTest[0].cityName;
 const placeOffer = null;
 const placeOfferActive = cityOffersTest[0].offers[0];
+const offersActive = cityOffers[0].offers;
+const offerId = null;
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(cityReducer(void 0, {})).toEqual({
@@ -18,6 +20,9 @@ it(`Reducer without additional parameters should return initial state`, () => {
     cityOffers,
     cityActive,
     placeOffer,
+    activeSort: `popular`,
+    offersActive,
+    offerId,
   });
 });
 

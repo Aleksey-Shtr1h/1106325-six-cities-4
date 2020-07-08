@@ -17,7 +17,7 @@ export class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {cityOffers, placeOffer, nameCities, cityActive, onTitlePlaceClick, onMenuCityClick} = this.props;
+    const {cityOffers, placeOffer, nameCities, cityActive, onTitlePlaceClick, onMenuCityClick, onCardPlaceHoverMove} = this.props;
 
     const {offers, placesCount, cityCoordinates} = cityOffers;
 
@@ -31,6 +31,7 @@ export class App extends React.PureComponent {
           offers={offers}
           onTitlePlaceClick={onTitlePlaceClick}
           cityCoordinates={cityCoordinates}
+          onCardPlaceHoverMove={onCardPlaceHoverMove}
         />
       );
     }
@@ -44,6 +45,7 @@ export class App extends React.PureComponent {
         nameCities={nameCities}
         cityActive={cityActive}
         cityCoordinates={cityCoordinates}
+        onCardPlaceHoverMove={onCardPlaceHoverMove}
       />
     );
   }
@@ -80,6 +82,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onMenuCityClick: bindActionCreators(ActionCreator.actionCity, dispatch),
     onTitlePlaceClick: bindActionCreators(ActionCreator.actionTitleClick, dispatch),
+    onCardPlaceHoverMove: bindActionCreators(ActionCreator.actionChangePinMapHoverCard, dispatch),
   };
 };
 
@@ -87,9 +90,10 @@ export const WrapperApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
   cityOffers: propsTypeAll.cityOffers,
-  onMenuCityClick: propsTypeAll.onMenuCityClick,
-  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
-  nameCities: propsTypeAll.nameCities,
   placeOffer: propsTypeAll.placeOffer,
+  nameCities: propsTypeAll.nameCities,
   cityActive: propsTypeAll.cityActive,
+  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
+  onMenuCityClick: propsTypeAll.onMenuCityClick,
+  onCardPlaceHoverMove: propsTypeAll.func,
 };

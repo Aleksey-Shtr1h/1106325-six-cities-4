@@ -1,18 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import {getModifiedRatingValue} from "../../utils/utils.js";
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
+export const PlaceCard = ({offer, onTitlePlaceClick, onCardPlaceHoverMove}) => {
   const {isCheckedPremium, images, price, ratingStars, titleCard, typeCard} = offer;
 
   return (
     <article
       className="cities__place-card place-card"
-      onMouseEnter={() => onArticleMoveMouse(offer)}
-      onMouseLeave={() => onArticleMoveMouse(null)}>
+      onMouseEnter={() => onCardPlaceHoverMove(offer)}
+      onMouseLeave={() => onCardPlaceHoverMove(null)}>
 
       {isCheckedPremium &&
         <div className="place-card__mark">
@@ -56,6 +55,6 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onArticleMoveMouse}) => {
 
 PlaceCard.propTypes = {
   offer: propsTypeAll.offer,
-  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
-  onArticleMoveMouse: PropTypes.func.isRequired,
+  onTitlePlaceClick: propsTypeAll.func,
+  onCardPlaceHoverMove: propsTypeAll.onTitlePlaceClick,
 };

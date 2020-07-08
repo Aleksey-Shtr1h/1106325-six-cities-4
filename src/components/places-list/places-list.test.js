@@ -10,6 +10,7 @@ test(`Should PlacesList render correctly`, () => {
         placesCount={50}
         offers={testProps.offersProps}
         onTitlePlaceClick = {() => {}}
+        onCardPlaceHoverMove = {() => {}}
       />).toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -12,6 +12,7 @@ Enzyme.configure({
 test(`Should main button be pressed`, () => {
   const onTitlePlaceClick = jest.fn();
   const onMenuCityClick = jest.fn();
+  const onCardPlaceHoverMove = jest.fn();
 
   const main = shallow(
       <Main
@@ -22,6 +23,7 @@ test(`Should main button be pressed`, () => {
         onTitlePlaceClick={onTitlePlaceClick}
         onMenuCityClick={onMenuCityClick}
         cityCoordinates={[1, 2]}
+        onCardPlaceHoverMove={onCardPlaceHoverMove}
       />
   );
 

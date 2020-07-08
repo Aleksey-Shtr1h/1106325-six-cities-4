@@ -1,32 +1,48 @@
 import {cityOffers} from '../../mocks/offers.js';
 
-const getOffersActive = (city) => {
-  return cityOffers.find((cityOffer) => cityOffer.cityName === city);
-};
-
 const SortType = {
   POPULAR: `popular`,
+  HIGH: `to-high`,
   LOW: `to-low`,
   RATED: `top-rated`,
-  HIGH: `to-high`,
 };
 
 const SortingFunction = {
   [SortType.HIGH]: (a, b) => b.price - a.price,
   [SortType.LOW]: (a, b) => a.price - b.price,
+  [SortType.RATED]: (a, b) => b.ratingStars - a.ratingStars,
 };
 
-const getSortedOffers = (sortOffers, sortType) => {
+const getSortedOffers = (offersActive, sortType, originalOffers) => {
+  let sortedOffers = [];
+  const showingOffers = offersActive.slice();
 
-  sortOffers.offers.sort(SortingFunction[sortType]);
+  if (sortType === SortType.POPULAR) {
+    return originalOffers;
+  }
 
-  return sortOffers;
+  sortedOffers = showingOffers.sort(SortingFunction[sortType]);
+
+  return sortedOffers;
+};
+
+const getOffersActive = (city) => {
+  return cityOffers.find((cityOffer) => cityOffer.cityName === city);
+};
+
+const getOfferId = (offer) => {
+  if (offer) {
+    return offer.id;
+  }
+
+  return null;
 };
 
 export const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   PLACE_TITLE_CLICK: `PLACE_TITLE_CLICK`,
   SORTING_OFFERS_CHANGE: `SORTING_OFFERS_CHANGE`,
+  CHANGE_PIN_MAP_HOVER_CARD: `CHANGE_PIN_MAP_HOVER_CARD`,
 };
 
 export const ActionCreator = {
@@ -40,11 +56,16 @@ export const ActionCreator = {
     payload: offer,
   }),
 
-  actionSortingOffersChange: (sortType, sortOffers) => ({
+  actionSortingOffersChange: (sortType, offersActive, originalOffers) => ({
     type: ActionType.SORTING_OFFERS_CHANGE,
     payload: {
       sortType,
-      sortOffers: getSortedOffers(sortOffers, sortType),
+      offersActive: getSortedOffers(offersActive, sortType, originalOffers),
     }
+  }),
+
+  actionChangePinMapHoverCard: (offer) => ({
+    type: ActionType.CHANGE_PIN_MAP_HOVER_CARD,
+    payload: getOfferId(offer),
   })
 };
