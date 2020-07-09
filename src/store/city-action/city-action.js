@@ -13,7 +13,7 @@ const SortingFunction = {
   [SortType.RATED]: (a, b) => b.ratingStars - a.ratingStars,
 };
 
-const getSortedOffers = (offersActive, sortType, originalOffers) => {
+export const getSortedOffers = (offersActive, sortType, originalOffers) => {
   let sortedOffers = [];
   const showingOffers = offersActive.slice();
 
@@ -26,11 +26,11 @@ const getSortedOffers = (offersActive, sortType, originalOffers) => {
   return sortedOffers;
 };
 
-const getOffersActive = (city) => {
+export const getOffersActive = (city) => {
   return cityOffers.find((cityOffer) => cityOffer.cityName === city);
 };
 
-const getOfferId = (offer) => {
+export const getOfferId = (offer) => {
   if (offer) {
     return offer.id;
   }

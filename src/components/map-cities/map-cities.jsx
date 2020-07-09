@@ -59,7 +59,6 @@ export class MapCities extends React.PureComponent {
 
 
   componentDidMount() {
-    // console.log(this.props.offerId);
     this._centerCity = this.props.cityCoordinates;
     this._mapPlaces = getMapPlace(this.props.offers, this.props.idPlace);
 
@@ -149,7 +148,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export const WrapperMapCities = connect(mapStateToProps)(MapCities);
+export const WrapperMapCities = connect(mapStateToProps, null)(MapCities);
 
 MapCities.propTypes = {
   offers: propsTypeAll.offers,

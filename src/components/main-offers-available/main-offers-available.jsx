@@ -21,19 +21,19 @@ export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePla
         />
 
         <div className="cities__places-list places__list tabs__content">
-          <WrapperPlacesList
+          {<WrapperPlacesList
             onTitlePlaceClick={onTitlePlaceClick}
             onCardPlaceHoverMove={onCardPlaceHoverMove}
-          />
+          />}
         </div>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <WrapperMapCities
+          {<WrapperMapCities
             offers={offers}
             idPlace={cityMap}
             cityCoordinates={cityCoordinates}
-          />
+          />}
         </section>
       </div>
     </div>

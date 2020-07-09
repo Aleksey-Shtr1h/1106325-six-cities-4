@@ -13,7 +13,7 @@ it(`MapCities is rendered correctly`, () => {
         offersProps={testProps.offersProps}
         idPlace={`test`}
         cityCoordinates={[1, 2]}
-        offerId={`test`}
+        offerId={`test2`}
       />,
       {
         createNodeMock: () => {

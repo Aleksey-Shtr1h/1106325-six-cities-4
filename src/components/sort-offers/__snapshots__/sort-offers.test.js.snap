@@ -13,9 +13,9 @@ exports[`Should SortOffers render correctly 1`] = `
   </span>
   <select
     className="places__sorting-type"
-    id="test"
+    id="popular"
     onChange={[Function]}
-    value="test"
+    value="popular"
   >
     <option
       className="places__option"

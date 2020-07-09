@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export const WrapperPlacesList = connect(mapStateToProps)(PlacesList);
+export const WrapperPlacesList = connect(mapStateToProps, null)(PlacesList);
 
 PlacesList.propTypes = {
   offers: propsTypeAll.offers,

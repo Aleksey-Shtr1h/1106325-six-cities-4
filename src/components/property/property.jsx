@@ -162,22 +162,21 @@ export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordin
             </div>
           </div>
           <section className="property__map map">
-            <WrapperMapCities
+            {<WrapperMapCities
               offers={offers}
               idPlace={id}
               cityCoordinates={cityCoordinates}
-            />
+            />}
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <WrapperPlacesList
-                offers={offers}
+              {<WrapperPlacesList
                 onTitlePlaceClick={onTitlePlaceClick}
                 onCardPlaceHoverMove={onCardPlaceHoverMove}
-              />
+              />}
             </div>
           </section>
         </div>

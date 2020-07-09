@@ -14,9 +14,13 @@ it(`Should App render correctly 1`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
 
   const store = mockStore({
+    nameCities: [`test1`, `test2`],
+    cityOffers: testProps.cityOffersProps,
+    cityActive: testProps.cityOffersProps.cityName,
+    placeOffer: null,
+    activeSort: `popular`,
     offersActive: testProps.offersProps,
     offerId: null,
-    activeSort: `popular`,
   });
 
   const tree = renderer.create(
@@ -33,37 +37,7 @@ it(`Should App render correctly 1`, () => {
       </Provider>,
       {
         createNodeMock: () => {
-          return {};
-        }
-      }).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-it(`Should App render correctly 2`, () => {
-  MapCities.prototype.componentDidMount = jest.fn();
-
-  const store = mockStore({
-    offersActive: testProps.offersProps,
-    offerId: `test`,
-    activeSort: `popular`,
-  });
-
-  const tree = renderer.create(
-      <Provider store={store}>
-        <App
-          cityOffers={testProps.cityOffersProps}
-          placeOffer={null}
-          nameCities={[`test`]}
-          cityActive={`test`}
-          onTitlePlaceClick={() => {}}
-          onMenuCityClick={() => {}}
-          onCardPlaceHoverMove={() => {}}
-        />
-      </Provider>,
-      {
-        createNodeMock: () => {
-          return {};
+          return document.createElement(`div`);
         }
       }).toJSON();
 
