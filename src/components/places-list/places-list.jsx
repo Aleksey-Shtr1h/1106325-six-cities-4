@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import {connect} from 'react-redux';
 
 import {PlaceCard} from "../place-card/place-card.jsx";
 
@@ -7,40 +8,38 @@ import {propsTypeAll} from "../../propsType/propsType.js";
 export class PlacesList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      active: null,
-    };
-
-    this._hadleArticleMoveMouse = this._hadleArticleMoveMouse.bind(this);
   }
 
   render() {
-    const {onTitlePlaceClick, offers} = this.props;
+    const {onTitlePlaceClick, offersActive, onCardPlaceHoverMove} = this.props;
 
     return (
       <React.Fragment>
-        {offers.map((offer, index) =>
+        {offersActive.map((offer, index) =>
           <PlaceCard
             key={offer.id}
             offer={offer}
             onTitlePlaceClick={onTitlePlaceClick}
-            onArticleMoveMouse={this._hadleArticleMoveMouse}
             index={index}
+            onCardPlaceHoverMove={onCardPlaceHoverMove}
           />
         )}
       </React.Fragment>
     );
   }
-
-  _hadleArticleMoveMouse(cardPlace) {
-    this.setState({
-      active: cardPlace,
-    });
-  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    offersActive: state.offersActive,
+  };
+};
+
+export const WrapperPlacesList = connect(mapStateToProps, null)(PlacesList);
 
 PlacesList.propTypes = {
   offers: propsTypeAll.offers,
+  offersActive: propsTypeAll.offers,
   onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
+  onCardPlaceHoverMove: propsTypeAll.func,
 };

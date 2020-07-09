@@ -9,7 +9,7 @@ test(`Should PlaceCard render correctly`, () => {
       <PlaceCard
         offer={testProps.offerProps}
         onTitlePlaceClick={() => {}}
-        onArticleMoveMouse={() => {}}
+        onCardPlaceHoverMove={() => {}}
       />).toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -13,13 +13,13 @@ describe(`Should PlaceCard logic correctly`, () => {
 
   test(`Should PlaceCard button be pressed`, () => {
     const onTitlePlaceClick = jest.fn();
-    const onArticleMoveMouse = jest.fn();
+    const onCardPlaceHoverMove = jest.fn();
 
     const placeCard = shallow(
         <PlaceCard
           offer={offerProps}
           onTitlePlaceClick={onTitlePlaceClick}
-          onArticleMoveMouse={onArticleMoveMouse}
+          onCardPlaceHoverMove={onCardPlaceHoverMove}
         />);
 
     const titleClick = placeCard.find(`.place-card__name a`);
@@ -29,36 +29,36 @@ describe(`Should PlaceCard logic correctly`, () => {
 
   test(`Should PlaceCard onMouseEnter be pressed`, () => {
     const onTitlePlaceClick = jest.fn();
-    const onArticleMoveMouse = jest.fn();
+    const onCardPlaceHoverMove = jest.fn();
 
     const placeCard = shallow(
         <PlaceCard
           offer={offerProps}
           onTitlePlaceClick={onTitlePlaceClick}
-          onArticleMoveMouse={onArticleMoveMouse}
+          onCardPlaceHoverMove={onCardPlaceHoverMove}
         />);
 
     const articleMoveMouseEnter = placeCard.find(`.place-card`);
     articleMoveMouseEnter.props().onMouseEnter();
 
-    expect(onArticleMoveMouse).toBeCalled();
-    expect(onArticleMoveMouse).toBeCalledWith(offerProps);
+    expect(onCardPlaceHoverMove).toBeCalled();
+    expect(onCardPlaceHoverMove).toBeCalledWith(offerProps);
   });
 
   test(`Should PlaceCard onMouseLeave be pressed`, () => {
     const onTitlePlaceClick = jest.fn();
-    const onArticleMoveMouse = jest.fn();
+    const onCardPlaceHoverMove = jest.fn();
 
     const placeCard = shallow(
         <PlaceCard
           offer={offerProps}
           onTitlePlaceClick={onTitlePlaceClick}
-          onArticleMoveMouse={onArticleMoveMouse}
+          onCardPlaceHoverMove={onCardPlaceHoverMove}
         />);
 
     const articleMouseLeave = placeCard.find(`.place-card`);
     articleMouseLeave.props().onMouseLeave();
-    expect(onArticleMoveMouse).toBeCalledWith(null);
+    expect(onCardPlaceHoverMove).toBeCalledWith(null);
   });
 
 });

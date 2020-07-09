@@ -7,9 +7,10 @@ import {testProps} from "../../test/offersProps.js";
 test(`Should PlacesList render correctly`, () => {
   const tree = renderer.create(
       <PlacesList
-        placesCount={50}
         offers={testProps.offersProps}
+        offersActive={testProps.offersProps}
         onTitlePlaceClick = {() => {}}
+        onCardPlaceHoverMove = {() => {}}
       />).toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -1,8 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import leaflet from 'leaflet';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
+
+const PIN_SRANDART_URL = `img/pin.svg`;
+const PIN_ACTIVE_URL = `img/pin-active.svg`;
+const PIN_SIZE = [30, 30];
+
+const getPinStyle = (url, size) => {
+  return leaflet.icon({
+    iconUrl: url,
+    iconSize: size,
+  });
+};
+
+const getPinMarker = (coordinates, iconStyle, map) => {
+  return leaflet
+    .marker(coordinates, {icon: iconStyle})
+    .addTo(map);
+};
+
 
 const getMapPlace = (offers, idPlace) => {
   const place = [];
@@ -34,9 +53,10 @@ export class MapCities extends React.PureComponent {
     this._city = null;
 
     this._map = null;
-    this._icon = null;
+
     this._pins = [];
   }
+
 
   componentDidMount() {
     this._centerCity = this.props.cityCoordinates;
@@ -63,51 +83,57 @@ export class MapCities extends React.PureComponent {
   }
 
   componentDidUpdate() {
+    const offerId = this.props.offerId;
+    const placeId = this.props.idPlace;
+
     this._centerCity = this.props.cityCoordinates;
     this._city = getCenterMap(this._centerCity, this.props.offers, this.props.idPlace);
-
-    this._mapPlaces = getMapPlace(this.props.offers, this.props.idPlace);
 
     this._map.setView(this._city, this._zoom);
 
     this._removePinsMap();
-    this._getPinsMap();
+
+    if (offerId === placeId) {
+      this._getPinsMap(placeId);
+    } else if (offerId !== null) {
+      this._getPinsMap(offerId);
+    } else {
+      this._getPinsMap(placeId);
+    }
   }
 
-  _getPinsMap() {
-    this._icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30],
-    });
+  _getPinsMap(id) {
+    const iconPin = getPinStyle(PIN_SRANDART_URL, PIN_SIZE);
+
+    this._mapPlaces = getMapPlace(this.props.offers, id);
 
     this._pins = this._mapPlaces.map((mapPlace) => {
-      return leaflet
-        .marker(mapPlace.coordinates, {icon: this._icon})
-        .addTo(this._map);
+      return getPinMarker(mapPlace.coordinates, iconPin, this._map);
     });
 
-    if (this.props.idPlace !== `city`) {
-      const offerActive = this.props.offers.find((offer) => offer.id === this.props.idPlace);
+    this._updatePinMap(id);
 
-      const iconActive = leaflet.icon({
-        iconUrl: `img/pin-active.svg`,
-        iconSize: [30, 30],
-      });
+  }
 
-      const pinActive = leaflet
-        .marker(offerActive.coordinates, {iconActive})
-        .addTo(this._map);
+  _updatePinMap(idActive) {
+    const idCard = idActive === undefined ? this.props.idPlace : idActive;
 
-      this._pins.push(pinActive);
+    const offerActive = this.props.offers.find((offer) => offer.id === idCard);
+
+    if (offerActive) {
+      const iconActive = getPinStyle(PIN_ACTIVE_URL, PIN_SIZE);
+
+      getPinMarker(offerActive.coordinates, iconActive, this._map);
     }
   }
 
   _removePinsMap() {
-    this._pins.forEach((pin) => {
-      this._map.removeLayer(pin);
+    const pins = document.querySelectorAll(`.leaflet-pane .leaflet-marker-icon`);
+
+    pins.forEach((pin) => {
+      pin.remove();
     });
   }
-
 
   render() {
     return (
@@ -116,8 +142,17 @@ export class MapCities extends React.PureComponent {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    offerId: state.offerId,
+  };
+};
+
+export const WrapperMapCities = connect(mapStateToProps, null)(MapCities);
+
 MapCities.propTypes = {
   offers: propsTypeAll.offers,
   idPlace: PropTypes.string.isRequired,
   cityCoordinates: propsTypeAll.cityCoordinates,
+  offerId: propsTypeAll.stringAndNull,
 };

@@ -5,16 +5,15 @@ import {MapCities} from './map-cities.jsx';
 
 import {testProps} from "../../test/offersProps.js";
 
-const idString = `test`;
-
 it(`MapCities is rendered correctly`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
 
   const tree = renderer.create(
       <MapCities
         offersProps={testProps.offersProps}
-        idPlace={idString}
+        idPlace={`test`}
         cityCoordinates={[1, 2]}
+        offerId={`test2`}
       />,
       {
         createNodeMock: () => {
