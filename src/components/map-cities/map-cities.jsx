@@ -9,34 +9,34 @@ const PIN_SRANDART_URL = `img/pin.svg`;
 const PIN_ACTIVE_URL = `img/pin-active.svg`;
 const PIN_SIZE = [30, 30];
 
-const getPinStyle = (url, size) => {
+export const getPinStyle = (url, size) => {
   return leaflet.icon({
     iconUrl: url,
     iconSize: size,
   });
 };
 
-const getPinMarker = (coordinates, iconStyle, map) => {
+export const getPinMarker = (coordinates, iconStyle, map) => {
   return leaflet
     .marker(coordinates, {icon: iconStyle})
     .addTo(map);
 };
 
 
-const getMapPlace = (offers, idPlace) => {
+export const getMapPlace = (offers, offerStaticId) => {
   const place = [];
   offers.map((offer) => {
-    if (offer.id !== idPlace) {
+    if (offer.id !== offerStaticId) {
       place.push(offer);
     }
   });
   return place;
 };
 
-const getCenterMap = (centerCity, offers, idPlace) => {
+export const getCenterMap = (centerCity, offers, offerStaticId) => {
   let center = centerCity;
-  if (idPlace !== `city`) {
-    const offerActive = offers.find((offer) => offer.id === idPlace);
+  if (offerStaticId !== `city`) {
+    const offerActive = offers.find((offer) => offer.id === offerStaticId);
     center = offerActive.coordinates;
   }
   return center;
@@ -60,9 +60,9 @@ export class MapCities extends React.PureComponent {
 
   componentDidMount() {
     this._centerCity = this.props.cityCoordinates;
-    this._mapPlaces = getMapPlace(this.props.offers, this.props.idPlace);
+    this._mapPlaces = getMapPlace(this.props.offers, this.props.offerStaticId);
 
-    this._city = getCenterMap(this._centerCity, this.props.offers, this.props.idPlace);
+    this._city = getCenterMap(this._centerCity, this.props.offers, this.props.offerStaticId);
 
     this._map = leaflet.map(`map`, {
       center: this._city,
@@ -84,10 +84,10 @@ export class MapCities extends React.PureComponent {
 
   componentDidUpdate() {
     const offerId = this.props.offerId;
-    const placeId = this.props.idPlace;
+    const placeId = this.props.offerStaticId;
 
     this._centerCity = this.props.cityCoordinates;
-    this._city = getCenterMap(this._centerCity, this.props.offers, this.props.idPlace);
+    this._city = getCenterMap(this._centerCity, this.props.offers, this.props.offerStaticId);
 
     this._map.setView(this._city, this._zoom);
 
@@ -116,7 +116,7 @@ export class MapCities extends React.PureComponent {
   }
 
   _updatePinMap(idActive) {
-    const idCard = idActive === undefined ? this.props.idPlace : idActive;
+    const idCard = idActive === undefined ? this.props.offerStaticId : idActive;
 
     const offerActive = this.props.offers.find((offer) => offer.id === idCard);
 
@@ -152,7 +152,7 @@ export const WrapperMapCities = connect(mapStateToProps, null)(MapCities);
 
 MapCities.propTypes = {
   offers: propsTypeAll.offers,
-  idPlace: PropTypes.string.isRequired,
+  offerStaticId: PropTypes.string.isRequired,
   cityCoordinates: propsTypeAll.cityCoordinates,
   offerId: propsTypeAll.stringAndNull,
 };

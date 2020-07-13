@@ -7,7 +7,7 @@ import {ReviewsList} from '../reviews-list/reviews-list.jsx';
 import {WrapperMapCities} from '../map-cities/map-cities.jsx';
 import {WrapperPlacesList} from "../places-list/places-list.jsx";
 
-export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordinates, onCardPlaceHoverMove}) => {
+export const Property = ({offer, reviews, offers, cityCoordinates}) => {
 
   const {id, isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = offer;
 
@@ -164,7 +164,7 @@ export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordin
           <section className="property__map map">
             {<WrapperMapCities
               offers={offers}
-              idPlace={id}
+              offerStaticId={id}
               cityCoordinates={cityCoordinates}
             />}
           </section>
@@ -173,10 +173,7 @@ export const Property = ({offer, reviews, offers, onTitlePlaceClick, cityCoordin
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {<WrapperPlacesList
-                onTitlePlaceClick={onTitlePlaceClick}
-                onCardPlaceHoverMove={onCardPlaceHoverMove}
-              />}
+              {<WrapperPlacesList />}
             </div>
           </section>
         </div>
@@ -189,7 +186,5 @@ Property.propTypes = {
   offer: propsTypeAll.offer,
   reviews: propsTypeAll.reviews,
   offers: propsTypeAll.offers,
-  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
   cityCoordinates: propsTypeAll.cityCoordinates,
-  onCardPlaceHoverMove: propsTypeAll.funcAndUndefined,
 };

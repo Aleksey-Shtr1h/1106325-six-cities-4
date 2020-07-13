@@ -1,9 +1,27 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import leaflet from 'leaflet';
 
-import {MapCities} from './map-cities.jsx';
+import {MapCities, getPinStyle, getMapPlace, getCenterMap} from './map-cities.jsx';
 
 import {testProps} from "../../test/offersProps.js";
+
+const iconPin = leaflet.icon({
+  iconUrl: `test.svg`,
+  iconSize: [1, 1],
+});
+
+it(`Testing func pin style return`, () => {
+  expect(getPinStyle(`test.svg`, [1, 1])).toEqual(iconPin);
+});
+
+it(`Testing func map place return`, () => {
+  expect(getMapPlace(testProps.offersProps, `test`)).toEqual(testProps.offersProps);
+});
+
+it(`Testing func center map return`, () => {
+  expect(getCenterMap([1, 1], testProps.offersProps, `1`)).toEqual([52.3909553943508, 4.85309666406198]);
+});
 
 it(`MapCities is rendered correctly`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
@@ -11,7 +29,7 @@ it(`MapCities is rendered correctly`, () => {
   const tree = renderer.create(
       <MapCities
         offersProps={testProps.offersProps}
-        idPlace={`test`}
+        offerStaticId={`test`}
         cityCoordinates={[1, 2]}
         offerId={`test2`}
       />,

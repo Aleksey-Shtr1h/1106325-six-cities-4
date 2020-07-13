@@ -1,4 +1,8 @@
 import React from "react";
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import {ActionCreator} from '../../store/city-action/city-action.js';
 
 import {CitiesItem} from '../cities-item/cities-item.jsx';
 
@@ -20,6 +24,20 @@ export const CitiesList = ({nameCities, onMenuCityClick, cityActive}) => {
     </ul>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    nameCities: state.nameCities,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onMenuCityClick: bindActionCreators(ActionCreator.actionCity, dispatch),
+  };
+};
+
+export const WrapperCitiesList = connect(mapStateToProps, mapDispatchToProps)(CitiesList);
 
 CitiesList.propTypes = {
   nameCities: propsTypeAll.nameCities,
