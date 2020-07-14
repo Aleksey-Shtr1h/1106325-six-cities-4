@@ -14,13 +14,11 @@ it(`Should App render correctly 1`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
 
   const store = mockStore({
-    nameCities: [`test1`, `test2`],
+    nameCities: [`test1`],
     cityOffers: testProps.cityOffersProps,
     cityActive: testProps.cityOffersProps.cityName,
-    placeOffer: null,
     activeSort: `popular`,
     offersActive: testProps.offersProps,
-    offerId: null,
   });
 
   const tree = renderer.create(
@@ -32,7 +30,6 @@ it(`Should App render correctly 1`, () => {
           cityActive={`test`}
           onTitlePlaceClick={() => {}}
           onMenuCityClick={() => {}}
-          onCardPlaceHoverMove={() => {}}
         />
       </Provider>,
       {

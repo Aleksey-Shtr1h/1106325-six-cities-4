@@ -3,11 +3,11 @@ import React from "react";
 import {MainOffersAvailable} from '../main-offers-available/main-offers-available.jsx';
 import {MainOffersNotAvailable} from '../main-offers-not-available/main-offers-not-available.js';
 
-import {CitiesList} from '../cities-list/cities-list.jsx';
+import {WrapperCitiesList} from '../cities-list/cities-list.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, nameCities, cityActive, cityCoordinates, onCardPlaceHoverMove}) => {
+export const Main = ({placesCount, offers, cityActive, cityCoordinates}) => {
 
   return (
     <div className="page page--gray page--main">
@@ -38,9 +38,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CitiesList
-              nameCities={nameCities}
-              onMenuCityClick={onMenuCityClick}
+            <WrapperCitiesList
               cityActive={cityActive}
             />
           </section>
@@ -54,9 +52,7 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
               placesCount={placesCount}
               offers={offers}
               cityActive={cityActive}
-              onTitlePlaceClick={onTitlePlaceClick}
               cityCoordinates={cityCoordinates}
-              onCardPlaceHoverMove={onCardPlaceHoverMove}
             /> ||
             <MainOffersNotAvailable
             />
@@ -71,10 +67,8 @@ export const Main = ({placesCount, offers, onTitlePlaceClick, onMenuCityClick, n
 Main.propTypes = {
   placesCount: propsTypeAll.placesCount,
   offers: propsTypeAll.offers,
-  nameCities: propsTypeAll.nameCities,
+  // nameCities: propsTypeAll.nameCities,
   cityActive: propsTypeAll.cityActive,
-  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
-  onMenuCityClick: propsTypeAll.onMenuCityClick,
+  // onMenuCityClick: propsTypeAll.onMenuCityClick,
   cityCoordinates: propsTypeAll.cityCoordinates,
-  onCardPlaceHoverMove: propsTypeAll.func,
 };

@@ -18,6 +18,7 @@ test(`Should Main render correctly`, () => {
     activeSort: `popular`,
     offersActive: testProps.offersProps,
     onSortingOffersChange,
+    nameCities: [`test`],
   });
 
   const tree = renderer.create(
@@ -25,12 +26,10 @@ test(`Should Main render correctly`, () => {
         <Main
           placesCount={50}
           offers={testProps.offersProps}
-          nameCities={[`test`]}
           cityActive={`test`}
           onTitlePlaceClick={() => {}}
           onMenuCityClick={() => {}}
           cityCoordinates={[1, 2]}
-          onCardPlaceHoverMove={() => {}}
         />
       </Provider>,
       {

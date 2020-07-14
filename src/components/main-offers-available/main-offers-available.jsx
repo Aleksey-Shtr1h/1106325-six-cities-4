@@ -6,7 +6,7 @@ import {WrapperSortOffers} from '../sort-offers/sort-offers.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePlaceClick, cityCoordinates, onCardPlaceHoverMove}) => {
+export const MainOffersAvailable = ({placesCount, cityActive, offers, cityCoordinates}) => {
 
   const cityMap = `city`;
 
@@ -21,17 +21,14 @@ export const MainOffersAvailable = ({placesCount, cityActive, offers, onTitlePla
         />
 
         <div className="cities__places-list places__list tabs__content">
-          {<WrapperPlacesList
-            onTitlePlaceClick={onTitlePlaceClick}
-            onCardPlaceHoverMove={onCardPlaceHoverMove}
-          />}
+          {<WrapperPlacesList />}
         </div>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
           {<WrapperMapCities
             offers={offers}
-            idPlace={cityMap}
+            offerStaticId={cityMap}
             cityCoordinates={cityCoordinates}
           />}
         </section>
@@ -44,7 +41,5 @@ MainOffersAvailable.propTypes = {
   placesCount: propsTypeAll.placesCount,
   cityActive: propsTypeAll.cityActive,
   offers: propsTypeAll.offers,
-  onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
   cityCoordinates: propsTypeAll.cityCoordinates,
-  onCardPlaceHoverMove: propsTypeAll.func,
 };
