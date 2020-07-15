@@ -26,7 +26,7 @@ const SortOptions = [
   },
 ];
 
-export const SortOffers = ({activeSort, onSortingOffersChange, offersActive, originalOffers}) => {
+export const SortOffers = ({activeSort, onSortingOffersChange, offersActive, offersOriginal}) => {
   return (
     <form className="places__sorting" action="#" method="get">
 
@@ -37,7 +37,7 @@ export const SortOffers = ({activeSort, onSortingOffersChange, offersActive, ori
         id={activeSort}
         value={activeSort}
         onChange={(evt) =>
-          onSortingOffersChange(evt.target.value, offersActive, originalOffers)
+          onSortingOffersChange(evt.target.value, offersActive, offersOriginal)
         }
       >
 
@@ -75,5 +75,5 @@ SortOffers.propTypes = {
   activeSort: propsTypeAll.string,
   onSortingOffersChange: propsTypeAll.func,
   offersActive: propsTypeAll.offers,
-  originalOffers: propsTypeAll.offers,
+  offersOriginal: propsTypeAll.offers,
 };

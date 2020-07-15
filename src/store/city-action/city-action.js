@@ -13,12 +13,12 @@ const SortingFunction = {
   [SortType.RATED]: (a, b) => b.ratingStars - a.ratingStars,
 };
 
-export const getSortedOffers = (offersActive, sortType, originalOffers) => {
+export const getSortedOffers = (offersActive, sortType, offersOriginal) => {
   let sortedOffers = [];
   const showingOffers = offersActive.slice();
 
   if (sortType === SortType.POPULAR) {
-    return originalOffers;
+    return offersOriginal;
   }
 
   sortedOffers = showingOffers.sort(SortingFunction[sortType]);
@@ -56,11 +56,11 @@ export const ActionCreator = {
     payload: offer,
   }),
 
-  actionSortingOffersChange: (sortType, offersActive, originalOffers) => ({
+  actionSortingOffersChange: (sortType, offersActive, offersOriginal) => ({
     type: ActionType.SORTING_OFFERS_CHANGE,
     payload: {
       sortType,
-      offersActive: getSortedOffers(offersActive, sortType, originalOffers),
+      offersActive: getSortedOffers(offersActive, sortType, offersOriginal),
     }
   }),
 
