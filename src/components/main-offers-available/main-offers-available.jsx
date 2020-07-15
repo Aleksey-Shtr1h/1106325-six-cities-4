@@ -17,7 +17,7 @@ export const MainOffersAvailable = ({placesCount, cityActive, offers, cityCoordi
         <b className="places__found">{placesCount} places to stay in {cityActive}</b>
 
         <WrapperSortOffers
-          originalOffers={offers}
+          offersOriginal={offers}
         />
 
         <div className="cities__places-list places__list tabs__content">
