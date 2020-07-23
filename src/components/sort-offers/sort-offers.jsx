@@ -58,8 +58,8 @@ export const SortOffers = ({activeSort, onSortingOffersChange, offersActive, off
 
 const mapStateToProps = (state) => {
   return {
-    activeSort: state.activeSort,
-    offersActive: state.offersActive,
+    activeSort: state.DATA.activeSort,
+    offersActive: state.DATA.offersActive,
   };
 };
 

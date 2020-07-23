@@ -34,7 +34,7 @@ export class PlacesList extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    offersActive: state.offersActive,
+    offersActive: state.DATA.offersActive,
   };
 };
 

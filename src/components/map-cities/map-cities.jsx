@@ -144,7 +144,7 @@ export class MapCities extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    offerId: state.offerId,
+    offerId: state.DATA.offerId,
   };
 };
 

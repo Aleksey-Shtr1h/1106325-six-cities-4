@@ -27,7 +27,7 @@ export const CitiesList = ({nameCities, onMenuCityClick, cityActive}) => {
 
 const mapStateToProps = (state) => {
   return {
-    nameCities: state.nameCities,
+    nameCities: state.DATA.nameCities,
   };
 };
 

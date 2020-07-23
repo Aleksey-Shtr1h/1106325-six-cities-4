@@ -67,8 +67,6 @@ export const Main = ({placesCount, offers, cityActive, cityCoordinates}) => {
 Main.propTypes = {
   placesCount: propsTypeAll.placesCount,
   offers: propsTypeAll.offers,
-  // nameCities: propsTypeAll.nameCities,
   cityActive: propsTypeAll.cityActive,
-  // onMenuCityClick: propsTypeAll.onMenuCityClick,
   cityCoordinates: propsTypeAll.cityCoordinates,
 };
