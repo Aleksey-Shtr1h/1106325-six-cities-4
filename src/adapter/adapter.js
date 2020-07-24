@@ -1,5 +1,4 @@
 const changeOffer = (offer) => {
-  const coord = [];
   return {
     id: offer.id,
     isCheckedPremium: offer.is_premium,
@@ -8,7 +7,7 @@ const changeOffer = (offer) => {
     ratingStars: offer.rating,
     titleCard: offer.title,
     typeCard: offer.type,
-    descriptions: offer.description,
+    descriptions: [offer.description],
     numberBadrooms: offer.bedrooms,
     numberGuests: offer.max_adults,
     householdItems: offer.goods,
@@ -21,20 +20,20 @@ const changeOffer = (offer) => {
     },
     coordinates: [offer.location.latitude, offer.location.longitude],
     zoom: offer.location.zoom,
-    reviews: {
+    reviews: [{
       id: 1,
       ratingStars: 3,
       descriptions: `Test`,
       date: new Date(),
       nameUser: `User1`,
-    },
+    }],
   };
-}
+};
 
 export const adapterOffers = (offersApi) => {
   let cities = [];
   let newOffers = {};
-  let cityCoords= {};
+  let cityCoords = {};
 
   offersApi.map((offerApi) => {
     const {name, location} = offerApi.city;
@@ -43,8 +42,6 @@ export const adapterOffers = (offersApi) => {
     const cityNew = cities.find((city) => city === name);
 
     if (name === cityNew && `${name}` in newOffers) {
-      const a = changeOffer(offerApi);
-      // Object.assign(newOffers, {[name]: a});
       newOffers[name].push(changeOffer(offerApi));
     } else {
       newOffers[name] = [changeOffer(offerApi)];
@@ -54,7 +51,7 @@ export const adapterOffers = (offersApi) => {
 
   cities.sort((a, b) => a.localeCompare(b));
 
-  const cityOffers = cities.map((city, index) => {
+  const cityOffers = cities.map((city) => {
     const placesCount = newOffers[city].length;
     return {
       cityName: city,

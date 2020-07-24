@@ -1,4 +1,4 @@
 export const NameSpace = {
   DATA: `DATA`,
-  CITY: `CITY`,
+  APP: `APP`,
 };

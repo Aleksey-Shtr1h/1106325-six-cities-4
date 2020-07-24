@@ -42,6 +42,14 @@ export class App extends React.PureComponent {
   }
 
   render() {
+    if (this.props.cityOffers === null) {
+      return (
+        <React.Fragment>
+
+        </React.Fragment>
+      );
+    }
+
     return (
       <BrowserRouter>
         <Switch>
@@ -60,11 +68,10 @@ export class App extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     cityOffers: state.DATA.cityOffers,
     cityActive: state.DATA.cityActive,
-    placeOffer: state.DATA.placeOffer,
+    placeOffer: state.APP.placeOffer,
   };
 };
 

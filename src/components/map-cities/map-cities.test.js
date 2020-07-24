@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import leaflet from 'leaflet';
 
 import {MapCities, getPinStyle, getMapPlace, getCenterMap} from './map-cities.jsx';
+// import {MapCities} from './map-cities.jsx';
 
 import {testProps} from "../../test/offersProps.js";
 
@@ -20,7 +21,7 @@ it(`Testing func map place return`, () => {
 });
 
 it(`Testing func center map return`, () => {
-  expect(getCenterMap([1, 1], testProps.offersProps, `1`)).toEqual([52.3909553943508, 4.85309666406198]);
+  expect(getCenterMap([1, 1], testProps.offersProps, `city`)).toEqual([1, 1]);
 });
 
 it(`MapCities is rendered correctly`, () => {
@@ -31,7 +32,7 @@ it(`MapCities is rendered correctly`, () => {
         offersProps={testProps.offersProps}
         offerStaticId={`test`}
         cityCoordinates={[1, 2]}
-        offerId={`test2`}
+        offerId={1}
       />,
       {
         createNodeMock: () => {

@@ -1,52 +1,14 @@
 import {extend} from '../../utils/utils.js';
+import {ActionTypeData, ActionCreatorData} from '../data-action/data-action.js';
 import {adapterOffers} from '../../adapter/adapter.js';
 
 const initialState = {
-  nameCities: [],
-  cityOffers: {},
-  cityActive: ``,
-  placeOffer: null,
-
+  citiesAll: null, // данные приложения с сервера
+  nameCities: null, // данные приложения с сервера
+  cityOffers: null, // данные приложения с сервера
+  cityActive: null, // данные приложения с сервера
   activeSort: `popular`,
-  offerId: null,
-  offersActive: [],
-};
-
-export const ActionTypeData = {
-  LOAD_CITIES_OFFERS: `LOAD_CITIES_OFFERS`,
-  LOAD_CITIES_NAME: `LOAD_CITIES_NAME`,
-  LOAD_CITY_ACTIVE: `LOAD_CITY_ACTIVE`,
-  LOAD_OFFERS_ACTIVE: `LOAD_OFFERS_ACTIVE`,
-};
-
-export const ActionCreatorData = {
-  loadCitiesOffers: (citiesOffers) => {
-    return {
-      type: ActionTypeData.LOAD_CITIES_OFFERS,
-      payload: citiesOffers,
-    };
-  },
-
-  loadCitiesName: (citiesName) => {
-    return {
-      type: ActionTypeData.LOAD_CITIES_NAME,
-      payload: citiesName,
-    };
-  },
-
-  loadCityActive: (citiesOffers) => {
-    return {
-      type: ActionTypeData.LOAD_CITY_ACTIVE,
-      payload: citiesOffers[0].cityName,
-    };
-  },
-
-  loadOffersActive: (citiesOffers) => {
-    return {
-      type: ActionTypeData.LOAD_OFFERS_ACTIVE,
-      payload: citiesOffers[0].offers,
-    };
-  },
+  offersActive: null, // данные приложения с сервера
 };
 
 export const OperationData = {
@@ -54,16 +16,32 @@ export const OperationData = {
     return api.get(`/hotels`)
       .then((response) => {
         const adapterData = adapterOffers(response.data);
-        dispatch(ActionCreatorData.loadCitiesOffers(adapterData.cityOffers[0]));
+        dispatch(ActionCreatorData.loadCitiesAll(adapterData.cityOffers));
         dispatch(ActionCreatorData.loadCitiesName(adapterData.cities));
-        dispatch(ActionCreatorData.loadCityActive(adapterData.cityOffers));
+        dispatch(ActionCreatorData.loadCityActive(adapterData.cityOffers[0].cityName));
         dispatch(ActionCreatorData.loadOffersActive(adapterData.cityOffers));
+        dispatch(ActionCreatorData.loadCitiesOffers(adapterData.cityOffers[0]));
       });
   },
 };
 
-export const reducerData = (state = initialState, action) => {
+export const dataReducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case ActionTypeData.CHANGE_CITY:
+      return extend(state, {
+        cityOffers: action.payload,
+        cityActive: action.payload.cityName,
+        offersActive: action.payload.offers,
+        activeSort: `popular`,
+      });
+
+    case ActionTypeData.SORTING_OFFERS_CHANGE:
+      return extend(state, {
+        activeSort: action.payload.sortType,
+        offersActive: action.payload.offersActive,
+      });
+
     case ActionTypeData.LOAD_CITIES_OFFERS:
       return extend(state, {
         cityOffers: action.payload,
@@ -82,6 +60,11 @@ export const reducerData = (state = initialState, action) => {
     case ActionTypeData.LOAD_OFFERS_ACTIVE:
       return extend(state, {
         offersActive: action.payload,
+      });
+
+    case ActionTypeData.LOAD_CITIES_ALL:
+      return extend(state, {
+        citiesAll: action.payload,
       });
   }
 

@@ -2,13 +2,14 @@ import React from "react";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {ActionCreator} from '../../store/city-action/city-action.js';
+import {ActionCreatorData} from '../../store/data-action/data-action.js';
 
 import {CitiesItem} from '../cities-item/cities-item.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const CitiesList = ({nameCities, onMenuCityClick, cityActive}) => {
+export const CitiesList = ({nameCities, cityActive, onMenuCityClick, citiesAll}) => {
+
   return (
     <ul className="locations__list tabs__list">
 
@@ -18,6 +19,7 @@ export const CitiesList = ({nameCities, onMenuCityClick, cityActive}) => {
           cityName={cityName}
           onMenuCityClick={onMenuCityClick}
           cityActive={cityActive}
+          citiesAll={citiesAll}
         />
       )}
 
@@ -27,13 +29,14 @@ export const CitiesList = ({nameCities, onMenuCityClick, cityActive}) => {
 
 const mapStateToProps = (state) => {
   return {
+    citiesAll: state.DATA.citiesAll,
     nameCities: state.DATA.nameCities,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMenuCityClick: bindActionCreators(ActionCreator.actionCity, dispatch),
+    onMenuCityClick: bindActionCreators(ActionCreatorData.actionCity, dispatch),
   };
 };
 
@@ -43,4 +46,5 @@ CitiesList.propTypes = {
   nameCities: propsTypeAll.nameCities,
   onMenuCityClick: propsTypeAll.onMenuCityClick,
   cityActive: propsTypeAll.cityActive,
+  citiesAll: propsTypeAll.citiesAll,
 };

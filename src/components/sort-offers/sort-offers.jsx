@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators} from 'redux';
 
-import {ActionCreator} from '../../store/city-action/city-action.js';
+import {ActionCreatorData} from '../../store/data-action/data-action.js';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
@@ -65,7 +65,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSortingOffersChange: bindActionCreators(ActionCreator.actionSortingOffersChange, dispatch),
+    onSortingOffersChange: bindActionCreators(ActionCreatorData.actionSortingOffersChange, dispatch),
   };
 };
 

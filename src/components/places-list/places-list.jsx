@@ -6,7 +6,7 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-import {ActionCreator} from '../../store/city-action/city-action.js';
+import {ActionCreatorApp} from '../../store/app-action/app-action.js';
 
 export class PlacesList extends PureComponent {
   constructor(props) {
@@ -40,8 +40,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTitlePlaceClick: bindActionCreators(ActionCreator.actionTitleClick, dispatch),
-    onCardPlaceHoverMove: bindActionCreators(ActionCreator.actionChangePinMapHoverCard, dispatch),
+    onTitlePlaceClick: bindActionCreators(ActionCreatorApp.actionTitleClick, dispatch),
+    onCardPlaceHoverMove: bindActionCreators(ActionCreatorApp.actionChangePinMapHoverCard, dispatch),
   };
 };
 

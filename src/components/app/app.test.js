@@ -14,11 +14,19 @@ it(`Should App render correctly 1`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
 
   const store = mockStore({
-    nameCities: [`test1`],
-    cityOffers: testProps.cityOffersProps,
-    cityActive: testProps.cityOffersProps.cityName,
-    activeSort: `popular`,
-    offersActive: testProps.offersProps,
+    DATA: {
+      nameCities: [`test1`],
+      cityOffers: testProps.cityOffersProps,
+      cityActive: testProps.cityOffersProps.cityName,
+      activeSort: `popular`,
+      offersActive: testProps.offersProps,
+      citiesAll: testProps.cityOffersArrayProps,
+    },
+
+    APP: {
+      offerId: 1,
+    }
+
   });
 
   const tree = renderer.create(

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import leaflet from 'leaflet';
 
@@ -59,6 +58,7 @@ export class MapCities extends React.PureComponent {
 
 
   componentDidMount() {
+
     this._centerCity = this.props.cityCoordinates;
     this._mapPlaces = getMapPlace(this.props.offers, this.props.offerStaticId);
 
@@ -144,7 +144,7 @@ export class MapCities extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    offerId: state.DATA.offerId,
+    offerId: state.APP.offerId,
   };
 };
 
@@ -152,7 +152,7 @@ export const WrapperMapCities = connect(mapStateToProps, null)(MapCities);
 
 MapCities.propTypes = {
   offers: propsTypeAll.offers,
-  offerStaticId: PropTypes.string.isRequired,
+  offerStaticId: propsTypeAll.stringAndNumber,
   cityCoordinates: propsTypeAll.cityCoordinates,
-  offerId: propsTypeAll.stringAndNull,
+  offerId: propsTypeAll.numberAndNull,
 };

@@ -1,6 +1,6 @@
 export const offersProps = [
   {
-    id: `1`,
+    id: 1,
     isCheckedPremium: true,
     images: [`test`],
     price: 120,
@@ -18,7 +18,7 @@ export const offersProps = [
     },
     coordinates: [52.3909553943508, 4.85309666406198],
     reviews: [{
-      id: `1`,
+      id: 1,
       ratingStars: 0.5,
       descriptions: `test`,
       date: new Date(),
@@ -27,7 +27,7 @@ export const offersProps = [
   },
 
   {
-    id: `2`,
+    id: 2,
     isCheckedPremium: false,
     images: [`test`],
     price: 80,
@@ -45,7 +45,7 @@ export const offersProps = [
     },
     coordinates: [52.369553943508, 4.85309666406198],
     reviews: [{
-      id: `2`,
+      id: 2,
       ratingStars: 0.6,
       descriptions: `test`,
       date: new Date(),
@@ -54,7 +54,7 @@ export const offersProps = [
   },
 
   {
-    id: `3`,
+    id: 3,
     isCheckedPremium: false,
     images: [`test`],
     price: 132,
@@ -72,7 +72,7 @@ export const offersProps = [
     },
     coordinates: [52.3909553943508, 4.929309666406198],
     reviews: [{
-      id: `3`,
+      id: 3,
       ratingStars: 0.7,
       descriptions: `test`,
       date: new Date(),
@@ -81,7 +81,7 @@ export const offersProps = [
   },
 
   {
-    id: `4`,
+    id: 4,
     isCheckedPremium: true,
     images: [`test`],
     price: 180,
@@ -99,7 +99,7 @@ export const offersProps = [
     },
     coordinates: [52.3809553943508, 4.939309666406198],
     reviews: [{
-      id: `4`,
+      id: 4,
       ratingStars: 0.8,
       descriptions: `test`,
       date: new Date(),
@@ -109,7 +109,7 @@ export const offersProps = [
 ];
 
 export const offerProps = {
-  id: `1`,
+  id: 1,
   isCheckedPremium: true,
   images: [`test`],
   price: 120,
@@ -128,7 +128,7 @@ export const offerProps = {
   coordinates: [52.3909553943508, 4.85309666406198],
   reviews: [
     {
-      id: `1`,
+      id: 1,
       ratingStars: 0.5,
       descriptions: `test`,
       date: new Date(),
@@ -136,7 +136,7 @@ export const offerProps = {
     },
 
     {
-      id: `2`,
+      id: 2,
       ratingStars: 0.6,
       descriptions: `test`,
       date: new Date(Date.now()),
@@ -144,7 +144,7 @@ export const offerProps = {
     },
 
     {
-      id: `3`,
+      id: 3,
       ratingStars: 0.7,
       descriptions: `test`,
       date: new Date(),
@@ -152,7 +152,7 @@ export const offerProps = {
     },
 
     {
-      id: `4`,
+      id: 4,
       ratingStars: 0.8,
       descriptions: `test`,
       date: new Date(),
