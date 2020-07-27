@@ -175,9 +175,84 @@ export const cityOffersArrayProps = [{
   cityCoordinates: [1, 2],
 }];
 
+export const apiHostels = [{
+  bedrooms: 1,
+  city: {
+    location: {
+      latitude: 50.0,
+      longitude: 4.0,
+      zoom: 1
+    },
+    name: `test`
+  },
+  description: `test`,
+  goods: [`test`],
+  host: {
+    [`avatar_url`]: `test`,
+    id: 1,
+    [`is_pro`]: true,
+    name: `test`
+  },
+  id: 1,
+  images: [`test`],
+  [`is_favorite`]: true,
+  [`is_premium`]: true,
+  location: {
+    latitude: 50.0,
+    longitude: 4.0,
+    zoom: 1
+  },
+  [`max_adults`]: 1,
+  [`preview_image`]: `test`,
+  price: 1,
+  rating: 1.0,
+  title: `test`,
+  type: `test`
+}];
+
+export const apiAdapterHostels = [{
+  id: 1,
+  isCheckedPremium: true,
+  images: [`test`],
+  price: 1,
+  ratingStars: 1.0,
+  titleCard: `test`,
+  typeCard: `test`,
+  descriptions: [`test`],
+  numberBadrooms: 1,
+  numberGuests: 1,
+  householdItems: [`test`],
+  previewImage: `test`,
+  infoUser: {
+    id: 1,
+    avatarUser: `test`,
+    nameUser: `test`,
+    markSuper: true,
+  },
+  coordinates: [50.0, 4.0],
+  zoom: 1,
+  reviews: [{
+    id: 1,
+    ratingStars: 3,
+    descriptions: `Test`,
+    date: new Date(`1995-12-17T03:24:00`),
+    nameUser: `User1`,
+  }],
+}];
+
+export const apiCitiesOffers = [{
+  cityName: `test`,
+  offers: apiAdapterHostels,
+  placesCount: 1,
+  cityCoordinates: [50.0, 4.0],
+}];
+
 export const testProps = {
   cityOffersProps,
   cityOffersArrayProps,
   offersProps,
   offerProps,
+  apiHostels,
+  apiAdapterHostels,
+  apiCitiesOffers,
 };
