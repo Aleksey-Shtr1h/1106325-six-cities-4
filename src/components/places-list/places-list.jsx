@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {PlaceCard} from "../place-card/place-card.jsx";
+import {getOffersActive} from '../../store/data-reducer/data-selectors.js';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
@@ -34,7 +35,8 @@ export class PlacesList extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    offersActive: state.DATA.offersActive,
+    // offersActive: state.DATA.offersActive,
+    offersActive: getOffersActive(state),
   };
 };
 

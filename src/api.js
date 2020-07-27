@@ -1,4 +1,8 @@
+import React from "react";
+import ReactDOM from "react-dom";
 import axios from "axios";
+
+import {ErrorNetwork} from './components/error-network/error-network.jsx';
 
 const Error = {
   UNAUTHORIZED: 401
@@ -25,6 +29,13 @@ export const createAPI = (onUnauthorized) => {
       // Запрос авторизации - это особый случай и важно дать понять приложению, что запрос был неудачным.
       throw err;
     }
+
+    ReactDOM.render(
+        <ErrorNetwork
+          err={response.status}
+        />,
+        document.querySelector(`#root`)
+    );
 
     throw err;
   };

@@ -1,7 +1,12 @@
-import {dataReducer} from './data-reducer.js';
+import MockAdapter from 'axios-mock-adapter';
+import {createAPI} from '../../api.js';
+
+import {dataReducer, OperationData} from './data-reducer.js';
 import {ActionTypeData} from '../data-action/data-action.js';
 import {getOffersActive, getSortedOffers} from '../data-action/data-action.js';
 import {testProps} from '../../test/offersProps.js';
+
+const api = createAPI(() => {});
 
 const citiesAll = testProps.cityOffersArrayProps;
 const cityOffers = testProps.cityOffersArrayProps[0];
@@ -50,3 +55,22 @@ it(`Reducer should set 3`, () => {
     offersActive,
   });
 });
+
+// it(`Should make a correct API call to /questions`, function () {
+//   const apiMock = new MockAdapter(api);
+//   const dispatch = jest.fn();
+//   const loadCitiesOffers = OperationData.loadCitiesOffers();
+
+//   apiMock
+//   .onGet(`/hotels`)
+//   .reply(200, [{fake: true}]);
+
+//   return loadCitiesOffers(dispatch, () => {}, api)
+//   .then(() => {
+//     expect(dispatch).toHaveBeenCalledTimes(1);
+//     expect(dispatch).toHaveBeenNthCalledWith(1, {
+//       type: ActionTypeData.LOAD_CITIES_ALL,
+//       payload: [{fake: true}],
+//     });
+//   });
+// });

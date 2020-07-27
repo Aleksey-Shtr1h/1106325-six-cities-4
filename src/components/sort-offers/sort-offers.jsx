@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
 import {bindActionCreators} from 'redux';
 
 import {ActionCreatorData} from '../../store/data-action/data-action.js';
+import {getOffersActive, getActiveSort} from '../../store/data-reducer/data-selectors.js';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
@@ -58,8 +58,10 @@ export const SortOffers = ({activeSort, onSortingOffersChange, offersActive, off
 
 const mapStateToProps = (state) => {
   return {
-    activeSort: state.DATA.activeSort,
-    offersActive: state.DATA.offersActive,
+    // activeSort: state.DATA.activeSort,
+    // offersActive: state.DATA.offersActive,
+    activeSort: getActiveSort(state),
+    offersActive: getOffersActive(state),
   };
 };
 

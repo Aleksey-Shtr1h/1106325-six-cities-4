@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 
 import {Main} from "../main/main.jsx";
 import {Property} from "../property/property.jsx";
+import {getChangeCity, getCityActive} from '../../store/data-reducer/data-selectors.js';
+import {getPlaceOffer} from '../../store/app-reducer/app-selectors.js';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
@@ -69,9 +71,12 @@ export class App extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    cityOffers: state.DATA.cityOffers,
-    cityActive: state.DATA.cityActive,
-    placeOffer: state.APP.placeOffer,
+    // cityOffers: state.DATA.cityOffers,
+    // cityActive: state.DATA.cityActive,
+    // placeOffer: state.APP.placeOffer,
+    placeOffer: getPlaceOffer(state),
+    cityActive: getCityActive(state),
+    cityOffers: getChangeCity(state),
   };
 };
 

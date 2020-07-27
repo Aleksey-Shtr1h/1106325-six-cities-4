@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import leaflet from 'leaflet';
 
+import {getOfferId} from '../../store/app-reducer/app-selectors.js';
+
 import {propsTypeAll} from "../../propsType/propsType.js";
 
 const PIN_SRANDART_URL = `img/pin.svg`;
@@ -144,7 +146,7 @@ export class MapCities extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    offerId: state.APP.offerId,
+    offerId: getOfferId(state),
   };
 };
 

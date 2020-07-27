@@ -2,9 +2,10 @@ import React from "react";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {ActionCreatorData} from '../../store/data-action/data-action.js';
-
 import {CitiesItem} from '../cities-item/cities-item.jsx';
+import {getNameCities, getCitiesAll} from '../../store/data-reducer/data-selectors.js';
+
+import {ActionCreatorData} from '../../store/data-action/data-action.js';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
@@ -29,8 +30,10 @@ export const CitiesList = ({nameCities, cityActive, onMenuCityClick, citiesAll})
 
 const mapStateToProps = (state) => {
   return {
-    citiesAll: state.DATA.citiesAll,
-    nameCities: state.DATA.nameCities,
+    // citiesAll: state.DATA.citiesAll,
+    // nameCities: state.DATA.nameCities,
+    citiesAll: getCitiesAll(state),
+    nameCities: getNameCities(state),
   };
 };
 
