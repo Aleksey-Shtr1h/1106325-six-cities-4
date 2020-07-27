@@ -16,7 +16,6 @@ export const OperationData = {
     return api.get(`/hotels`)
       .then((response) => {
         const adapterData = adapterOffers(response.data);
-        console.log(response.data)
         dispatch(ActionCreatorData.loadCitiesAll(adapterData.cityOffers));
         dispatch(ActionCreatorData.loadCitiesName(adapterData.cities));
         dispatch(ActionCreatorData.loadCityActive(adapterData.cityOffers[0].cityName));

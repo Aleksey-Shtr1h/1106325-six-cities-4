@@ -1,12 +1,12 @@
-import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../api.js';
+// import MockAdapter from 'axios-mock-adapter';
+// import {createAPI} from '../../api.js';
 
-import {dataReducer, OperationData} from './data-reducer.js';
+import {dataReducer} from './data-reducer.js';
 import {ActionTypeData} from '../data-action/data-action.js';
 import {getOffersActive, getSortedOffers} from '../data-action/data-action.js';
 import {testProps} from '../../test/offersProps.js';
 
-const api = createAPI(() => {});
+// const api = createAPI(() => {});
 
 const citiesAll = testProps.cityOffersArrayProps;
 const cityOffers = testProps.cityOffersArrayProps[0];
