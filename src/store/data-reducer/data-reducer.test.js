@@ -72,5 +72,21 @@ it(`Should make a correct API call to /hotels`, function () {
       type: ActionTypeData.LOAD_CITIES_ALL,
       payload: testProps.apiCitiesOffers,
     });
+    expect(dispatch).toHaveBeenNthCalledWith(2, {
+      type: ActionTypeData.LOAD_CITIES_NAME,
+      payload: [`test`],
+    });
+    expect(dispatch).toHaveBeenNthCalledWith(3, {
+      type: ActionTypeData.LOAD_CITY_ACTIVE,
+      payload: `test`,
+    });
+    expect(dispatch).toHaveBeenNthCalledWith(4, {
+      type: ActionTypeData.LOAD_OFFERS_ACTIVE,
+      payload: testProps.apiAdapterHostels,
+    });
+    expect(dispatch).toHaveBeenNthCalledWith(5, {
+      type: ActionTypeData.LOAD_CITIES_OFFERS,
+      payload: testProps.apiCitiesOffers[0],
+    });
   });
 });
