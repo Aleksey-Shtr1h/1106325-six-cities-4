@@ -80,6 +80,7 @@ export const propsTypeAll = {
   cityName: PropTypes.string.isRequired,
   reviews: propsTypeOffer.reviews,
   review: PropTypes.shape(propsTypeReview).isRequired,
+
   cityCoordinates: PropTypes.oneOfType([
     PropTypes.oneOf([undefined]).isRequired,
     PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
@@ -88,20 +89,29 @@ export const propsTypeAll = {
   func: PropTypes.func.isRequired,
   string: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
+
   stringAndNull: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
     PropTypes.string.isRequired,
   ]),
+
   numberAndNull: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
     PropTypes.number.isRequired,
   ]),
+
   funcAndUndefined: PropTypes.oneOfType([
     PropTypes.oneOf([undefined]).isRequired,
     PropTypes.func.isRequired,
   ]),
+
   stringAndNumber: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.number.isRequired,
   ]),
+
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };

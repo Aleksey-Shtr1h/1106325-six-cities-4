@@ -38,6 +38,9 @@ it(`Should App render correctly 1`, () => {
           cityActive={`test`}
           onTitlePlaceClick={() => {}}
           onMenuCityClick={() => {}}
+          login={() => {}}
+          authorizationStatus={`test`}
+          userAuthEmail={`test`}
         />
       </Provider>,
       {
