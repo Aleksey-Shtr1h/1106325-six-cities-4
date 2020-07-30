@@ -1,5 +1,5 @@
 import React from 'react';
-import {propsTypeAll} from "../../propsType/propsType.js";
+import {propsTypeAll} from '../../propsType/propsType.js';
 
 const StatusError = {
   '400': {

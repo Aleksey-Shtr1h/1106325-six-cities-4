@@ -6,7 +6,7 @@ import {ErrorNetwork} from '../error-network/error-network.jsx';
 import {ActionCreatorUser} from '../../store/user-action/user-action.js';
 import {getError} from '../../store/user-reducer/user-selectors.js';
 
-import {propsTypeAll} from "../../propsType/propsType.js";
+import {propsTypeAll} from '../../propsType/propsType.js';
 
 export const HeaderSite = ({type, children, userAuthEmail, error, onHideErrorBlock}) => {
 
@@ -14,7 +14,7 @@ export const HeaderSite = ({type, children, userAuthEmail, error, onHideErrorBlo
     <div className={`page page--gray ${type}`}>
       {error !== null &&
         <ErrorNetwork
-          err={userAuthEmail}
+          err={error}
           onHideErrorBlock={onHideErrorBlock}
         />
       }

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should ErrorNetwork render correctly 1 1`] = `
+<section
+  className="error-network"
+>
+  <p
+    className="error-network__text"
+  >
+    Произошла ошибка
+  </p>
+  <p
+    className="error-network__status"
+  >
+    
+  </p>
+  <p
+    className="error-network__infoError"
+  >
+    Произошла ошибка
+  </p>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Скрыть
+  </button>
+</section>
+`;
