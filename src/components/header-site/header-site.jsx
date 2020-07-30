@@ -1,10 +1,23 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import {ErrorNetwork} from '../error-network/error-network.jsx';
+import {ActionCreatorUser} from '../../store/user-action/user-action.js';
+import {getError} from '../../store/user-reducer/user-selectors.js';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const HeaderSite = ({type, children, userAuthEmail}) => {
+export const HeaderSite = ({type, children, userAuthEmail, error, onHideErrorBlock}) => {
+
   return (
     <div className={`page page--gray ${type}`}>
+      {error !== null &&
+        <ErrorNetwork
+          err={userAuthEmail}
+          onHideErrorBlock={onHideErrorBlock}
+        />
+      }
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -32,8 +45,24 @@ export const HeaderSite = ({type, children, userAuthEmail}) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    error: getError(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onHideErrorBlock: bindActionCreators(ActionCreatorUser.hideErrorBlock, dispatch),
+  };
+};
+
+export const WrapperHeaderSite = connect(mapStateToProps, mapDispatchToProps)(HeaderSite);
+
 HeaderSite.propTypes = {
   type: propsTypeAll.string,
   children: propsTypeAll.children,
   userAuthEmail: propsTypeAll.string,
+  error: propsTypeAll.numberAndNull,
+  onHideErrorBlock: propsTypeAll.func,
 };

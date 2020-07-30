@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {Main} from '../main/main.jsx';
 import {Property} from '../property/property.jsx';
 import {SignIn} from '../sign-in/sign-in.jsx';
-import {HeaderSite} from '../header-site/header-site.jsx';
+import {WrapperHeaderSite} from '../header-site/header-site.jsx';
 
 import {getChangeCity, getCityActive} from '../../store/data-reducer/data-selectors.js';
 import {getPlaceOffer} from '../../store/app-reducer/app-selectors.js';
@@ -30,7 +30,7 @@ export class App extends React.PureComponent {
       const reviews = placeOffer.reviews;
 
       return (
-        <HeaderSite
+        <WrapperHeaderSite
           type={HeaderType.property}
           userAuthEmail={userAuthEmail}
         >
@@ -40,13 +40,13 @@ export class App extends React.PureComponent {
             offers={offers}
             cityCoordinates={cityCoordinates}
           />
-        </HeaderSite>
+        </WrapperHeaderSite>
       );
     }
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       return (
-        <HeaderSite
+        <WrapperHeaderSite
           type={HeaderType.main}
           userAuthEmail={userAuthEmail}
         >
@@ -56,18 +56,18 @@ export class App extends React.PureComponent {
             cityActive={cityActive}
             cityCoordinates={cityCoordinates}
           />
-        </HeaderSite>
+        </WrapperHeaderSite>
       );
     } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
       return (
-        <HeaderSite
+        <WrapperHeaderSite
           type={HeaderType.signIn}
           userAuthEmail={userAuthEmail}
         >
           <SignIn
             onSubmit={login}
           />
-        </HeaderSite>
+        </WrapperHeaderSite>
       );
     }
 
@@ -107,9 +107,6 @@ export class App extends React.PureComponent {
 const mapStateToProps = (state) => {
   // console.log(state);
   return {
-    // cityOffers: state.DATA.cityOffers,
-    // cityActive: state.DATA.cityActive,
-    // placeOffer: state.APP.placeOffer,
     placeOffer: getPlaceOffer(state),
     cityActive: getCityActive(state),
     cityOffers: getChangeCity(state),

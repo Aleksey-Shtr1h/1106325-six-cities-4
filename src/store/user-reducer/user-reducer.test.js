@@ -5,6 +5,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducerUser(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
     email: `Sign in`,
+    error: null,
   });
 });
 

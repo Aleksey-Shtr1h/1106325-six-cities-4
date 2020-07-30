@@ -100,6 +100,12 @@ export const propsTypeAll = {
     PropTypes.number.isRequired,
   ]),
 
+  numberAndNullAndString: PropTypes.oneOfType([
+    PropTypes.oneOf([null]).isRequired,
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired,
+  ]),
+
   funcAndUndefined: PropTypes.oneOfType([
     PropTypes.oneOf([undefined]).isRequired,
     PropTypes.func.isRequired,

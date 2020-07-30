@@ -19,7 +19,7 @@ const onUnauthorized = () => {
 
 const api = createAPI(onUnauthorized);
 
-const store = createStore(
+export const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(thunk.withExtraArgument(api)),
@@ -29,7 +29,6 @@ const store = createStore(
 
 store.dispatch(OperationUser.checkAuth());
 store.dispatch(OperationData.loadCitiesOffers());
-
 
 ReactDOM.render(
     <Provider store={store}>

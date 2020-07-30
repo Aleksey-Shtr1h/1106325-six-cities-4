@@ -1,8 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
+// import React from "react";
+// import ReactDOM from "react-dom";
 import axios from "axios";
 
-import {ErrorNetwork} from './components/error-network/error-network.jsx';
+// import {ErrorNetwork} from './components/error-network/error-network.jsx';
+
+import {store} from './index.js';
+import {ActionCreatorUser} from './store/user-action/user-action.js';
 
 const Error = {
   UNAUTHORIZED: 401
@@ -30,12 +33,7 @@ export const createAPI = (onUnauthorized) => {
       throw err;
     }
 
-    ReactDOM.render(
-        <ErrorNetwork
-          err={response.status}
-        />,
-        document.querySelector(`#root`)
-    );
+    store.dispatch(ActionCreatorUser.getError(response));
 
     throw err;
   };

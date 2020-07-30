@@ -1,4 +1,8 @@
 .error-network {
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
@@ -10,9 +14,11 @@
   -o-flex-direction: column;
   flex-direction: column;
 
-  background-color: #797272;
+  background-color: #1f634a99;
 
-  width: 100%;
+  width: inherit;
+
+  z-index: 100;
 }
 
 .error-network__text {

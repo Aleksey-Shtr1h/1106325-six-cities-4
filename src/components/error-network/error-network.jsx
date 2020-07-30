@@ -2,24 +2,29 @@ import React from 'react';
 import {propsTypeAll} from "../../propsType/propsType.js";
 
 const StatusError = {
-  '200': {
+  '400': {
+    status: `400`,
+    infoError: `Введите корректные данные`,
+  },
+
+  '401': {
     status: `401`,
-    infoError: `Требуется авторизация`
+    infoError: `Требуется авторизация`,
   },
 
   '404': {
     status: `404`,
-    infoError: `Требуется авторизация`
+    infoError: `Требуется авторизация`,
   },
 
   'any': {
     status: ``,
-    infoError: `Попробуйте зайти позже`
+    infoError: `Произошла ошибка`,
   },
 
 };
 
-export const ErrorNetwork = ({err}) => {
+export const ErrorNetwork = ({err, onHideErrorBlock}) => {
 
   const error = err in StatusError ? StatusError[err] : StatusError.any;
 
@@ -37,10 +42,18 @@ export const ErrorNetwork = ({err}) => {
       <p className="error-network__infoError">
         {error.infoError}
       </p>
+
+      <button
+        type="button"
+        onClick={() => onHideErrorBlock()}
+      >
+        Скрыть
+      </button>
     </section>
   );
 };
 
 ErrorNetwork.propTypes = {
-  err: propsTypeAll.number,
+  err: propsTypeAll.numberAndNullAndString,
+  onHideErrorBlock: propsTypeAll.func,
 };

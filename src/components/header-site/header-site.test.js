@@ -11,6 +11,8 @@ it(`Should HeaderSite render correctly 1`, () => {
       <HeaderSite
         type={`test`}
         userAuthEmail={`test`}
+        error={null}
+        onHideErrorBlock={() => {}}
       >
         {children}
       </HeaderSite>,

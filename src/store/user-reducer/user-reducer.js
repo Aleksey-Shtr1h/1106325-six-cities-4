@@ -8,6 +8,7 @@ export const AuthorizationStatus = {
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   email: `Sign in`,
+  error: null,
 };
 
 export const OperationUser = {
@@ -35,6 +36,7 @@ export const OperationUser = {
 
 export const reducerUser = (state = initialState, action) => {
   switch (action.type) {
+
     case ActionTypeUser.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
@@ -43,6 +45,16 @@ export const reducerUser = (state = initialState, action) => {
     case ActionTypeUser.GET_EMAIL:
       return Object.assign({}, state, {
         email: action.payload,
+      });
+
+    case ActionTypeUser.GET_ERROR:
+      return Object.assign({}, state, {
+        error: action.payload,
+      });
+
+    case ActionTypeUser.HIDE_ERROR_BLOCK:
+      return Object.assign({}, state, {
+        error: action.payload,
       });
   }
 
