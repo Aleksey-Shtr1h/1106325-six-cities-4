@@ -30,6 +30,9 @@ export const OperationUser = {
     })
       .then(() => {
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
+      })
+      .catch((err) => {
+        dispatch(ActionCreatorUser.getError(err.request));
       });
   },
 };

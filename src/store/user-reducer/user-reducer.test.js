@@ -58,6 +58,28 @@ it(`Reducer should change auth email`, () => {
   });
 });
 
+it(`Reducer should get error status`, () => {
+  expect(reducerUser({
+    error: 1,
+  }, {
+    type: ActionTypeUser.GET_ERROR,
+    payload: 1,
+  })).toEqual({
+    error: 1,
+  });
+});
+
+it(`Reducer should replace error number with null`, () => {
+  expect(reducerUser({
+    error: 1,
+  }, {
+    type: ActionTypeUser.HIDE_ERROR_BLOCK,
+    payload: null,
+  })).toEqual({
+    error: null,
+  });
+});
+
 describe(`Action creators work correctly`, () => {
   it(`Action creator for require authorization returns correct action`, () => {
     expect(ActionCreatorUser.requireAuthorization(AuthorizationStatus.NO_AUTH)).toEqual({

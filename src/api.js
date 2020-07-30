@@ -1,11 +1,4 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
 import axios from "axios";
-
-// import {ErrorNetwork} from './components/error-network/error-network.jsx';
-
-import {store} from './index.js';
-import {ActionCreatorUser} from './store/user-action/user-action.js';
 
 const Error = {
   UNAUTHORIZED: 401
@@ -32,8 +25,6 @@ export const createAPI = (onUnauthorized) => {
       // Запрос авторизации - это особый случай и важно дать понять приложению, что запрос был неудачным.
       throw err;
     }
-
-    store.dispatch(ActionCreatorUser.getError(response));
 
     throw err;
   };

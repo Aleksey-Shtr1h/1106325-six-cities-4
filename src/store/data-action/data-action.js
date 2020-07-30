@@ -31,7 +31,6 @@ export const getOffersActive = (city, citiesAll) => {
 export const ActionTypeData = {
   CHANGE_CITY: `CHANGE_CITY`,
   SORTING_OFFERS_CHANGE: `SORTING_OFFERS_CHANGE`,
-
   LOAD_CITIES_OFFERS: `LOAD_CITIES_OFFERS`,
   LOAD_CITIES_NAME: `LOAD_CITIES_NAME`,
   LOAD_CITY_ACTIVE: `LOAD_CITY_ACTIVE`,

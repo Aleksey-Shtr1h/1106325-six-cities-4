@@ -40,7 +40,7 @@ it(`Reducer should set active city and active offer`, () => {
   });
 });
 
-it(`Reducer should set 3`, () => {
+it(`Reducer should set sorting offers change`, () => {
   expect(dataReducer({
     activeSort,
     offersActive,
@@ -55,6 +55,63 @@ it(`Reducer should set 3`, () => {
     offersActive,
   });
 });
+
+it(`Reducer should load cities offers`, () => {
+  expect(dataReducer({
+    cityOffers,
+  }, {
+    type: ActionTypeData.LOAD_CITIES_OFFERS,
+    payload: cityOffers,
+  })).toEqual({
+    cityOffers,
+  });
+});
+
+it(`Reducer should load cities name`, () => {
+  expect(dataReducer({
+    citiesName: [`test`],
+  }, {
+    type: ActionTypeData.LOAD_CITIES_OFFERS,
+    payload: [`test`],
+  })).toEqual({
+    citiesName: [`test`],
+    cityOffers: [`test`],
+  });
+});
+
+it(`Reducer should load city active`, () => {
+  expect(dataReducer({
+    cityActive: `test`,
+  }, {
+    type: ActionTypeData.LOAD_CITY_ACTIVE,
+    payload: `test`,
+  })).toEqual({
+    cityActive: `test`,
+  });
+});
+
+it(`Reducer should load offers active`, () => {
+  expect(dataReducer({
+    offersActive,
+  }, {
+    type: ActionTypeData.LOAD_OFFERS_ACTIVE,
+    payload: offersActive,
+  })).toEqual({
+    offersActive,
+  });
+});
+
+it(`Reducer should load cities all`, () => {
+  expect(dataReducer({
+    citiesAll,
+  }, {
+    type: ActionTypeData.LOAD_CITIES_ALL,
+    payload: citiesAll,
+  })).toEqual({
+    citiesAll,
+  });
+});
+
 
 it(`Should make a correct API call to /hotels`, function () {
   const apiMock = new MockAdapter(api);
