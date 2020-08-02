@@ -8,6 +8,7 @@ import {getOffersActive} from '../../store/data-reducer/data-selectors.js';
 import {propsTypeAll} from "../../propsType/propsType.js";
 
 import {ActionCreatorApp} from '../../store/app-action/app-action.js';
+import {OperationApp} from '../../store/app-reducer/app-reducer.js';
 
 export class PlacesList extends PureComponent {
   constructor(props) {
@@ -35,14 +36,13 @@ export class PlacesList extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    // offersActive: state.DATA.offersActive,
     offersActive: getOffersActive(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTitlePlaceClick: bindActionCreators(ActionCreatorApp.actionTitleClick, dispatch),
+    onTitlePlaceClick: bindActionCreators(OperationApp.loadComments, dispatch),
     onCardPlaceHoverMove: bindActionCreators(ActionCreatorApp.actionChangePinMapHoverCard, dispatch),
   };
 };

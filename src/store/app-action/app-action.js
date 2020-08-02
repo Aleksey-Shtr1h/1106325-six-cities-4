@@ -6,6 +6,12 @@ export const getOfferId = (offer) => {
   return null;
 };
 
+export const getCommentsOffer = (offer, comments) => {
+  offer.reviews = comments;
+
+  return offer;
+};
+
 export const ActionTypeApp = {
   PLACE_TITLE_CLICK: `PLACE_TITLE_CLICK`,
   CHANGE_PIN_MAP_HOVER_CARD: `CHANGE_PIN_MAP_HOVER_CARD`,
@@ -13,9 +19,9 @@ export const ActionTypeApp = {
 
 export const ActionCreatorApp = {
 
-  actionTitleClick: (offer) => ({
+  actionTitleClick: (offer, comments) => ({
     type: ActionTypeApp.PLACE_TITLE_CLICK,
-    payload: offer,
+    payload: getCommentsOffer(offer, comments),
   }),
 
   actionChangePinMapHoverCard: (offer) => ({

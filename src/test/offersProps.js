@@ -231,13 +231,13 @@ export const apiAdapterHostels = [{
   },
   coordinates: [50.0, 4.0],
   zoom: 1,
-  reviews: [{
-    id: 1,
-    ratingStars: 3,
-    descriptions: `Test`,
-    date: new Date(`1995-12-17T03:24:00`),
-    nameUser: `User1`,
-  }],
+  // reviews: [{
+  //   id: 1,
+  //   ratingStars: 3,
+  //   descriptions: `Test`,
+  //   date: new Date(`1995-12-17T03:24:00`),
+  //   nameUser: `User1`,
+  // }],
 }];
 
 export const apiCitiesOffers = [{

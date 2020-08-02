@@ -17,6 +17,7 @@ it(`Reducer should change authorizationStatus by a given value`, () => {
     payload: AuthorizationStatus.AUTH,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.AUTH,
+    error: null,
   });
 
   expect(reducerUser({
@@ -26,6 +27,7 @@ it(`Reducer should change authorizationStatus by a given value`, () => {
     payload: AuthorizationStatus.NO_AUTH,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    error: null,
   });
 
   expect(reducerUser({
@@ -35,6 +37,7 @@ it(`Reducer should change authorizationStatus by a given value`, () => {
     payload: AuthorizationStatus.AUTH,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.AUTH,
+    error: null,
   });
 
   expect(reducerUser({
@@ -44,6 +47,7 @@ it(`Reducer should change authorizationStatus by a given value`, () => {
     payload: AuthorizationStatus.NO_AUTH,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    error: null,
   });
 });
 

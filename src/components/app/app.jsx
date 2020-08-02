@@ -105,7 +105,6 @@ export class App extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     placeOffer: getPlaceOffer(state),
     cityActive: getCityActive(state),

@@ -13,26 +13,36 @@ import {OperationUser, AuthorizationStatus} from './store/user-reducer/user-redu
 
 import {rootReducer} from './store/root-reducer.js';
 
-const onUnauthorized = () => {
-  store.dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.NO_AUTH));
+const init = () => {
+  const onUnauthorized = () => {
+    store.dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  };
+
+  const api = createAPI(onUnauthorized);
+
+  const store = createStore(
+      rootReducer,
+      compose(
+          applyMiddleware(thunk.withExtraArgument(api)),
+          window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      )
+  );
+
+  store.dispatch(OperationUser.checkAuth())
+  .then(() => {
+    store.dispatch(OperationData.loadCitiesOffers());
+  })
+  .then(() => {
+    ReactDOM.render(
+        <Provider store={store}>
+          <WrapperApp/>
+        </Provider>,
+        document.querySelector(`#root`)
+    );
+  });
+  // .then(() => {
+  //   store.dispatch(OperationData.loadComments());
+  // });
 };
 
-const api = createAPI(onUnauthorized);
-
-export const store = createStore(
-    rootReducer,
-    compose(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-);
-
-store.dispatch(OperationUser.checkAuth());
-store.dispatch(OperationData.loadCitiesOffers());
-
-ReactDOM.render(
-    <Provider store={store}>
-      <WrapperApp/>
-    </Provider>,
-    document.querySelector(`#root`)
-);
+init();

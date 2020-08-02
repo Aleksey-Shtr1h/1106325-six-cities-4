@@ -19,7 +19,7 @@ export const OperationUser = {
         dispatch(ActionCreatorUser.getEmail(response.data.email));
       })
       .catch((err) => {
-        throw err;
+        // throw err;
       });
   },
 
@@ -29,6 +29,7 @@ export const OperationUser = {
       password: authData.password,
     })
       .then(() => {
+        dispatch(ActionCreatorUser.getEmail(authData.login));
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
       })
       .catch((err) => {
@@ -43,6 +44,7 @@ export const reducerUser = (state = initialState, action) => {
     case ActionTypeUser.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
+        error: null,
       });
 
     case ActionTypeUser.GET_EMAIL:

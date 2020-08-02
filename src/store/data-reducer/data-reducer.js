@@ -15,15 +15,23 @@ export const OperationData = {
   loadCitiesOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        const adapterData = adapterOffers(response.data);
-        // console.log(adapterData.cityOffers);
-        dispatch(ActionCreatorData.loadCitiesAll(adapterData.cityOffers));
-        dispatch(ActionCreatorData.loadCitiesName(adapterData.cities));
-        dispatch(ActionCreatorData.loadCityActive(adapterData.cityOffers[0].cityName));
-        dispatch(ActionCreatorData.loadOffersActive(adapterData.cityOffers));
-        dispatch(ActionCreatorData.loadCitiesOffers(adapterData.cityOffers[0]));
+        return adapterOffers(response.data);
+      })
+      .then((AdapterOffers) => {
+        dispatch(ActionCreatorData.loadCitiesAll(AdapterOffers.cityOffers));
+        dispatch(ActionCreatorData.loadCitiesName(AdapterOffers.cities));
+        dispatch(ActionCreatorData.loadCityActive(AdapterOffers.cityOffers[0].cityName));
+        dispatch(ActionCreatorData.loadOffersActive(AdapterOffers.cityOffers));
+        dispatch(ActionCreatorData.loadCitiesOffers(AdapterOffers.cityOffers[0]));
       });
   },
+
+  // loadComments: () => (dispatch, getState, api) => {
+  //   return api.get(`/comments/1`)
+  //     .then((response) => {
+  //       const adapterData = adapterComment(response.data);
+  //     });
+  // },
 };
 
 export const dataReducer = (state = initialState, action) => {
