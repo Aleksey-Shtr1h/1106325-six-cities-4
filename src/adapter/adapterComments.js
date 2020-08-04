@@ -5,6 +5,14 @@ const changeComment = (commentData) => {
     ratingStars: commentData.rating,
     descriptions: commentData.comment,
     nameUser: commentData.user.name,
+
+    user: {
+      avatar: commentData.user.avatar_url,
+      id: commentData.user.id,
+      pro: commentData.user.is_pro,
+      name: commentData.user.name,
+    },
+
   };
 };
 

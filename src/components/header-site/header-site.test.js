@@ -13,6 +13,9 @@ it(`Should HeaderSite render correctly 1`, () => {
         userAuthEmail={`test`}
         error={null}
         onHideErrorBlock={() => {}}
+        onSignInPage={() => {}}
+        onMainPage={() => {}}
+        authorizationStatus={() => {}}
       >
         {children}
       </HeaderSite>,

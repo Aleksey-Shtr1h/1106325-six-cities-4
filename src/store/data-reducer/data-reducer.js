@@ -26,12 +26,6 @@ export const OperationData = {
       });
   },
 
-  // loadComments: () => (dispatch, getState, api) => {
-  //   return api.get(`/comments/1`)
-  //     .then((response) => {
-  //       const adapterData = adapterComment(response.data);
-  //     });
-  // },
 };
 
 export const dataReducer = (state = initialState, action) => {

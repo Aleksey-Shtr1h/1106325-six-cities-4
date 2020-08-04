@@ -30,16 +30,23 @@ const getTransformDate = (date) => {
 };
 
 export const ReviewsItem = ({review}) => {
-  const {ratingStars, descriptions, date, nameUser} = review;
+  const {ratingStars, descriptions, date, user} = review;
+  const {avatar, name} = user;
 
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
+          <img
+            className="reviews__avatar user__avatar"
+            width="54"
+            height="54"
+            alt="Reviews avatar"
+            src={avatar}
+          />
         </div>
         <span className="reviews__user-name">
-          {nameUser}
+          {name}
         </span>
       </div>
       <div className="reviews__info">

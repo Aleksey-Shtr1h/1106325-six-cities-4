@@ -1,4 +1,5 @@
 const changeOffer = (offer) => {
+
   return {
     id: offer.id,
     isCheckedPremium: offer.is_premium,

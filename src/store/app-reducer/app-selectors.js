@@ -9,3 +9,7 @@ export const getPlaceOffer = (state) => {
 export const getOfferId = (state) => {
   return state[NAME_SPACE].offerId;
 };
+
+export const getPageApp = (state) => {
+  return state[NAME_SPACE].pageApp;
+}

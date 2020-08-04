@@ -40,9 +40,6 @@ const init = () => {
         document.querySelector(`#root`)
     );
   });
-  // .then(() => {
-  //   store.dispatch(OperationData.loadComments());
-  // });
 };
 
 init();

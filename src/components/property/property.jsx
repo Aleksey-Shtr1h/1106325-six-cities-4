@@ -7,8 +7,7 @@ import {ReviewsList} from '../reviews-list/reviews-list.jsx';
 import {WrapperMapCities} from '../map-cities/map-cities.jsx';
 import {WrapperPlacesList} from "../places-list/places-list.jsx";
 
-export const Property = ({offer, reviews, offers, cityCoordinates}) => {
-
+export const Property = ({offer, reviews, offers, cityCoordinates, authorizationStatus}) => {
   const {id, isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = offer;
 
   return (
@@ -134,6 +133,7 @@ export const Property = ({offer, reviews, offers, cityCoordinates}) => {
 
             <ReviewsList
               reviews={reviews}
+              authorizationStatus={authorizationStatus}
             />
 
           </div>
@@ -164,4 +164,5 @@ Property.propTypes = {
   reviews: propsTypeAll.reviews,
   offers: propsTypeAll.offers,
   cityCoordinates: propsTypeAll.cityCoordinates,
+  authorizationStatus: propsTypeAll.stringAndUndefined,
 };

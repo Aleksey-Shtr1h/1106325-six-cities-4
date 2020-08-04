@@ -22,7 +22,12 @@ export const offersProps = [
       ratingStars: 0.5,
       descriptions: `test`,
       date: new Date(),
-      nameUser: `test`,
+      user: {
+        avatar: `test`,
+        id: 1,
+        pro: true,
+        name: `test`,
+      },
     }],
   },
 
@@ -49,7 +54,12 @@ export const offersProps = [
       ratingStars: 0.6,
       descriptions: `test`,
       date: new Date(),
-      nameUser: `test`,
+      user: {
+        avatar: `test`,
+        id: 2,
+        pro: true,
+        name: `test`,
+      },
     }],
   },
 
@@ -76,7 +86,12 @@ export const offersProps = [
       ratingStars: 0.7,
       descriptions: `test`,
       date: new Date(),
-      nameUser: `test`,
+      user: {
+        avatar: `test`,
+        id: 3,
+        pro: true,
+        name: `test`,
+      },
     }],
   },
 
@@ -103,7 +118,12 @@ export const offersProps = [
       ratingStars: 0.8,
       descriptions: `test`,
       date: new Date(),
-      nameUser: `test`,
+      user: {
+        avatar: `test`,
+        id: 4,
+        pro: true,
+        name: `test`,
+      },
     }],
   },
 ];
@@ -132,7 +152,12 @@ export const offerProps = {
       ratingStars: 0.5,
       descriptions: `test`,
       date: new Date(),
-      nameUser: `test`,
+      user: {
+        avatar: `test`,
+        id: 1,
+        pro: true,
+        name: `test`,
+      },
     },
 
     {
@@ -140,7 +165,12 @@ export const offerProps = {
       ratingStars: 0.6,
       descriptions: `test`,
       date: new Date(Date.now()),
-      nameUser: `test`,
+      user: {
+        avatar: `test`,
+        id: 2,
+        pro: true,
+        name: `test`,
+      },
     },
 
     {
@@ -148,7 +178,12 @@ export const offerProps = {
       ratingStars: 0.7,
       descriptions: `test`,
       date: new Date(),
-      nameUser: `test`,
+      user: {
+        avatar: `test`,
+        id: 3,
+        pro: true,
+        name: `test`,
+      },
     },
 
     {
@@ -156,7 +191,12 @@ export const offerProps = {
       ratingStars: 0.8,
       descriptions: `test`,
       date: new Date(),
-      nameUser: `test`,
+      user: {
+        avatar: `test`,
+        id: 4,
+        pro: true,
+        name: `test`,
+      },
     },
   ],
 };
@@ -231,13 +271,6 @@ export const apiAdapterHostels = [{
   },
   coordinates: [50.0, 4.0],
   zoom: 1,
-  // reviews: [{
-  //   id: 1,
-  //   ratingStars: 3,
-  //   descriptions: `Test`,
-  //   date: new Date(`1995-12-17T03:24:00`),
-  //   nameUser: `User1`,
-  // }],
 }];
 
 export const apiCitiesOffers = [{

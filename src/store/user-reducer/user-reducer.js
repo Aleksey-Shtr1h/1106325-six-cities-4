@@ -19,7 +19,7 @@ export const OperationUser = {
         dispatch(ActionCreatorUser.getEmail(response.data.email));
       })
       .catch((err) => {
-        // throw err;
+        throw err;
       });
   },
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {Main} from '../main/main.jsx';
 import {Property} from '../property/property.jsx';
@@ -8,11 +9,12 @@ import {SignIn} from '../sign-in/sign-in.jsx';
 import {WrapperHeaderSite} from '../header-site/header-site.jsx';
 
 import {getChangeCity, getCityActive} from '../../store/data-reducer/data-selectors.js';
-import {getPlaceOffer} from '../../store/app-reducer/app-selectors.js';
+import {getPlaceOffer, getPageApp} from '../../store/app-reducer/app-selectors.js';
 import {getAuthorizationStatus, getUserAuthEmail} from '../../store/user-reducer/user-selectors.js';
-import {AuthorizationStatus, OperationUser} from '../../store/user-reducer/user-reducer.js';
+import {OperationUser} from '../../store/user-reducer/user-reducer.js';
+import {ActionCreatorApp} from '../../store/app-action/app-action.js';
 
-import {HeaderType} from '../../constans.js';
+import {HeaderType, PageApp} from '../../constans.js';
 
 import {propsTypeAll} from '../../propsType/propsType.js';
 
@@ -22,54 +24,114 @@ export class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {cityOffers, placeOffer, cityActive, authorizationStatus, login, userAuthEmail} = this.props;
+    const {cityOffers, placeOffer, cityActive, authorizationStatus, login, userAuthEmail, pageApp} = this.props;
 
     const {offers, placesCount, cityCoordinates} = cityOffers;
 
-    if (placeOffer) {
-      const reviews = placeOffer.reviews;
+    switch (pageApp) {
 
-      return (
-        <WrapperHeaderSite
-          type={HeaderType.property}
-          userAuthEmail={userAuthEmail}
-        >
-          <Property
-            offer={placeOffer}
-            reviews={reviews}
-            offers={offers}
-            cityCoordinates={cityCoordinates}
-          />
-        </WrapperHeaderSite>
-      );
+      case PageApp.MAIN:
+
+        return (
+          <WrapperHeaderSite
+            type={HeaderType.main}
+            userAuthEmail={userAuthEmail}
+            authorizationStatus={authorizationStatus}
+          >
+            <Main
+              placesCount={placesCount}
+              offers={offers}
+              cityActive={cityActive}
+              cityCoordinates={cityCoordinates}
+            />
+          </WrapperHeaderSite>
+        );
+
+      case PageApp.PROPERTY:
+
+        if (placeOffer) {
+          const reviews = placeOffer.reviews;
+
+          return (
+            <WrapperHeaderSite
+              type={HeaderType.property}
+              userAuthEmail={userAuthEmail}
+              authorizationStatus={authorizationStatus}
+            >
+              <Property
+                offer={placeOffer}
+                reviews={reviews}
+                offers={offers}
+                cityCoordinates={cityCoordinates}
+                authorizationStatus={authorizationStatus}
+              />
+            </WrapperHeaderSite>
+          );
+        }
+
+        break;
+
+      case PageApp.LOGIN:
+        return (
+          <WrapperHeaderSite
+            type={HeaderType.signIn}
+            userAuthEmail={userAuthEmail}
+            authorizationStatus={authorizationStatus}
+          >
+            <SignIn
+              onSubmit={login}
+            />
+          </WrapperHeaderSite>
+        );
+
+      default:
+        return null;
     }
 
-    if (authorizationStatus === AuthorizationStatus.AUTH) {
-      return (
-        <WrapperHeaderSite
-          type={HeaderType.main}
-          userAuthEmail={userAuthEmail}
-        >
-          <Main
-            placesCount={placesCount}
-            offers={offers}
-            cityActive={cityActive}
-            cityCoordinates={cityCoordinates}
-          />
-        </WrapperHeaderSite>
-      );
-    } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      return (
-        <WrapperHeaderSite
-          type={HeaderType.signIn}
-          userAuthEmail={userAuthEmail}
-        >
-          <SignIn
-            onSubmit={login}
-          />
-        </WrapperHeaderSite>
-      );
-    }
+    // if (placeOffer) {
+    //   const reviews = placeOffer.reviews;
+
+    //   return (
+    //     <WrapperHeaderSite
+    //       type={HeaderType.property}
+    //       userAuthEmail={userAuthEmail}
+    //     >
+    //       <Property
+    //         offer={placeOffer}
+    //         reviews={reviews}
+    //         offers={offers}
+    //         cityCoordinates={cityCoordinates}
+    //       />
+    //     </WrapperHeaderSite>
+    //   );
+    // }
+
+    // if (authorizationStatus === AuthorizationStatus.AUTH) {
+    //   return (
+    //     <WrapperHeaderSite
+    //       type={HeaderType.main}
+    //       userAuthEmail={userAuthEmail}
+    //     >
+    //       <Main
+    //         placesCount={placesCount}
+    //         offers={offers}
+    //         cityActive={cityActive}
+    //         cityCoordinates={cityCoordinates}
+    //       />
+    //     </WrapperHeaderSite>
+    //   );
+    // } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+    //   return (
+    //     <WrapperHeaderSite
+    //       type={HeaderType.signIn}
+    //       userAuthEmail={userAuthEmail}
+    //     >
+    //       <SignIn
+    //         onSubmit={login}
+    //       />
+    //     </WrapperHeaderSite>
+    //   );
+    // }
 
     return null;
   }
@@ -111,12 +173,14 @@ const mapStateToProps = (state) => {
     cityOffers: getChangeCity(state),
     authorizationStatus: getAuthorizationStatus(state),
     userAuthEmail: getUserAuthEmail(state),
+    pageApp: getPageApp(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(OperationUser.login(authData));
+    dispatch(ActionCreatorApp.actionGetMainPage());
   },
 });
 
@@ -129,4 +193,5 @@ App.propTypes = {
   authorizationStatus: propsTypeAll.string,
   login: propsTypeAll.func,
   userAuthEmail: propsTypeAll.string,
+  pageApp: propsTypeAll.string,
 };

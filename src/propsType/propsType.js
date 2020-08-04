@@ -5,7 +5,12 @@ export const propsTypeReview = {
   ratingStars: PropTypes.number.isRequired,
   descriptions: PropTypes.string.isRequired,
   date: PropTypes.object.isRequired,
-  nameUser: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    avatar: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    pro: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export const propsTypeOffer = {
@@ -92,6 +97,11 @@ export const propsTypeAll = {
 
   stringAndNull: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
+    PropTypes.string.isRequired,
+  ]),
+
+  stringAndUndefined: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
     PropTypes.string.isRequired,
   ]),
 

@@ -10,6 +10,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(appReducer(void 0, {})).toEqual({
     placeOffer: null,
     offerId: null,
+    pageApp: `main`,
   });
 });
 
@@ -21,15 +22,36 @@ it(`Reducer should set in property null and active offer`, () => {
     payload: placeOfferActive,
   })).toEqual({
     placeOffer: placeOfferActive,
+    pageApp: `property`,
   });
 });
 
-it(`Reducer should set 4`, () => {
+it(`Reducer should set offerId in Map component`, () => {
   expect(appReducer({
   }, {
     type: ActionTypeApp.CHANGE_PIN_MAP_HOVER_CARD,
     payload: getOfferId(null),
   })).toEqual({
     offerId: null,
+  });
+});
+
+it(`Reducer should set offerId in Map component`, () => {
+  expect(appReducer({
+  }, {
+    type: ActionTypeApp.GET_SIGN_IN_PAGE,
+    payload: `login`,
+  })).toEqual({
+    pageApp: `login`,
+  });
+});
+
+it(`Reducer should set offerId in Map component`, () => {
+  expect(appReducer({
+  }, {
+    type: ActionTypeApp.GET_MAIN_PAGE,
+    payload: `main`,
+  })).toEqual({
+    pageApp: `main`,
   });
 });

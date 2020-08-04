@@ -41,6 +41,7 @@ it(`Should App render correctly 1`, () => {
           authorizationStatus={`test`}
           login={() => {}}
           userAuthEmail={`test`}
+          pageApp={`test`}
         />
       </Provider>,
       {
