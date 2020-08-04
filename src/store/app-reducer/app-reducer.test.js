@@ -11,6 +11,8 @@ it(`Reducer without additional parameters should return initial state`, () => {
     placeOffer: null,
     offerId: null,
     pageApp: `main`,
+    rating: 0,
+    comment: ``,
   });
 });
 
@@ -36,22 +38,14 @@ it(`Reducer should set offerId in Map component`, () => {
   });
 });
 
-it(`Reducer should set offerId in Map component`, () => {
+it(`Reducer should change page `, () => {
   expect(appReducer({
+    pageApp: `main`,
   }, {
-    type: ActionTypeApp.GET_SIGN_IN_PAGE,
-    payload: `login`,
-  })).toEqual({
-    pageApp: `login`,
-  });
-});
-
-it(`Reducer should set offerId in Map component`, () => {
-  expect(appReducer({
-  }, {
-    type: ActionTypeApp.GET_MAIN_PAGE,
+    type: ActionTypeApp.onPageChange,
     payload: `main`,
   })).toEqual({
     pageApp: `main`,
   });
 });
+

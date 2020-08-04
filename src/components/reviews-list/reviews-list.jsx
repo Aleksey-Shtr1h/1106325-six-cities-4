@@ -5,7 +5,7 @@ import {WrapperUserNewReview} from '../user-new-review/user-new-review.jsx';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const ReviewsList = ({reviews, authorizationStatus}) => {
+export const ReviewsList = ({reviews}) => {
   const reviewsCount = reviews.length;
 
   return (
@@ -29,7 +29,7 @@ export const ReviewsList = ({reviews, authorizationStatus}) => {
 
       <WrapperUserNewReview />
 
-      {/*<form className="reviews__form form" action="#" method="post">
+      {/* <form className="reviews__form form" action="#" method="post">
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
           {ratingKeys.map((key, id) => {
@@ -116,7 +116,7 @@ export const ReviewsList = ({reviews, authorizationStatus}) => {
           </p>
           <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
         </div>
-      </form>*/}
+      </form> */}
 
     </section>
   );

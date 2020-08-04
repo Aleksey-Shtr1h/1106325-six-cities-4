@@ -7,6 +7,9 @@ const initialState = {
   placeOffer: null,
   offerId: null,
   pageApp: PageApp.MAIN,
+
+  rating: 0,
+  comment: ``,
 };
 
 export const OperationApp = {
@@ -19,8 +22,24 @@ export const OperationApp = {
         dispatch(ActionCreatorApp.actionTitleClick(offer, comments));
       });
   },
-};
 
+  postComments: (rating, comment) => (dispatch, getState, api) => {
+
+    const idOffer = getState().APP.placeOffer.id;
+
+    return api.post(`/comments/${idOffer}`, {
+      "rating": rating,
+      "comment": comment,
+    });
+    // .then(() => {
+    //   dispatch(ActionCreatorUser.getEmail(authData.login));
+    //   dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
+    // })
+    // .catch((err) => {
+
+    // });
+  },
+};
 
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -36,15 +55,23 @@ export const appReducer = (state = initialState, action) => {
         offerId: action.payload,
       });
 
-    case ActionTypeApp.GET_SIGN_IN_PAGE:
+    case ActionTypeApp.GET_PAGE:
       return extend(state, {
         pageApp: action.payload,
+        rating: 0,
+        comment: ``,
       });
 
-    case ActionTypeApp.GET_MAIN_PAGE:
+    case ActionTypeApp.CHANGE_RATING_PLACE:
       return extend(state, {
-        pageApp: action.payload,
+        rating: action.payload,
       });
+
+    case ActionTypeApp.CHANGE_COMMENT_PLACE:
+      return extend(state, {
+        comment: action.payload,
+      });
+
   }
 
   return state;

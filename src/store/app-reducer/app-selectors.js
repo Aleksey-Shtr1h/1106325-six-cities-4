@@ -12,4 +12,12 @@ export const getOfferId = (state) => {
 
 export const getPageApp = (state) => {
   return state[NAME_SPACE].pageApp;
-}
+};
+
+export const getRatingPlace = (state) => {
+  return state[NAME_SPACE].rating;
+};
+
+export const getCommentPlace = (state) => {
+  return state[NAME_SPACE].comment;
+};

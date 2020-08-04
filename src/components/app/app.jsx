@@ -1,7 +1,6 @@
 import React from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {Main} from '../main/main.jsx';
 import {Property} from '../property/property.jsx';
@@ -88,51 +87,6 @@ export class App extends React.PureComponent {
         return null;
     }
 
-    // if (placeOffer) {
-    //   const reviews = placeOffer.reviews;
-
-    //   return (
-    //     <WrapperHeaderSite
-    //       type={HeaderType.property}
-    //       userAuthEmail={userAuthEmail}
-    //     >
-    //       <Property
-    //         offer={placeOffer}
-    //         reviews={reviews}
-    //         offers={offers}
-    //         cityCoordinates={cityCoordinates}
-    //       />
-    //     </WrapperHeaderSite>
-    //   );
-    // }
-
-    // if (authorizationStatus === AuthorizationStatus.AUTH) {
-    //   return (
-    //     <WrapperHeaderSite
-    //       type={HeaderType.main}
-    //       userAuthEmail={userAuthEmail}
-    //     >
-    //       <Main
-    //         placesCount={placesCount}
-    //         offers={offers}
-    //         cityActive={cityActive}
-    //         cityCoordinates={cityCoordinates}
-    //       />
-    //     </WrapperHeaderSite>
-    //   );
-    // } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-    //   return (
-    //     <WrapperHeaderSite
-    //       type={HeaderType.signIn}
-    //       userAuthEmail={userAuthEmail}
-    //     >
-    //       <SignIn
-    //         onSubmit={login}
-    //       />
-    //     </WrapperHeaderSite>
-    //   );
-    // }
-
     return null;
   }
 
@@ -180,7 +134,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(OperationUser.login(authData));
-    dispatch(ActionCreatorApp.actionGetMainPage());
+    dispatch(ActionCreatorApp.actionPage(PageApp.MAIN));
   },
 });
 

@@ -259,6 +259,7 @@ exports[`Should ReviewsList render correctly 1`] = `
     action="#"
     className="reviews__form form"
     method="post"
+    onSubmit={[Function]}
   >
     <label
       className="reviews__label form__label"
@@ -273,6 +274,7 @@ exports[`Should ReviewsList render correctly 1`] = `
         className="form__rating-input visually-hidden"
         id="5-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
         value={5}
       />
@@ -295,6 +297,7 @@ exports[`Should ReviewsList render correctly 1`] = `
         className="form__rating-input visually-hidden"
         id="4-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
         value={4}
       />
@@ -317,6 +320,7 @@ exports[`Should ReviewsList render correctly 1`] = `
         className="form__rating-input visually-hidden"
         id="3-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
         value={3}
       />
@@ -339,6 +343,7 @@ exports[`Should ReviewsList render correctly 1`] = `
         className="form__rating-input visually-hidden"
         id="2-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
         value={2}
       />
@@ -361,6 +366,7 @@ exports[`Should ReviewsList render correctly 1`] = `
         className="form__rating-input visually-hidden"
         id="1-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
         value={1}
       />
@@ -383,8 +389,12 @@ exports[`Should ReviewsList render correctly 1`] = `
     <textarea
       className="reviews__textarea form__textarea"
       id="review"
+      maxLength={300}
+      minLength={50}
       name="review"
+      onChange={[Function]}
       placeholder="Tell how was your stay, what you like and what can be improved"
+      value="test"
     />
     <div
       className="reviews__button-wrapper"

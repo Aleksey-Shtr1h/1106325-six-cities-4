@@ -25,6 +25,12 @@ it(`Should App render correctly 1`, () => {
 
     APP: {
       offerId: 1,
+      rating: 1,
+      comment: `test`,
+    },
+
+    USER: {
+      authorizationStatus: `test`,
     }
 
   });

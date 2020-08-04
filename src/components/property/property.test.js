@@ -20,6 +20,12 @@ it(`Should Property render correctly`, () => {
 
     APP: {
       offerId: 1,
+      rating: 1,
+      comment: `test`,
+    },
+
+    USER: {
+      authorizationStatus: `test`,
     }
 
   });
@@ -32,7 +38,7 @@ it(`Should Property render correctly`, () => {
           offers={testProps.offersProps}
           onTitlePlaceClick={() => {}}
           cityCoordinates={[1, 2]}
-          onCardPlaceHoverMove={() => {}}
+          authorizationStatus={`test`}
         />
       </Provider>,
       {
