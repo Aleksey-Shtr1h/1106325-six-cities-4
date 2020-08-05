@@ -1,7 +1,7 @@
 .error-network {
   position: fixed;
-  margin-top: auto;
-  margin-bottom: auto;
+  top: 50%;
+  margin: 0 auto;
 
   display: -webkit-flex;
   display: -moz-flex;
@@ -15,10 +15,12 @@
   flex-direction: column;
 
   background-color: #1f634a99;
+  border-radius: 20px;
+  border: 2px solid #000;
 
   width: inherit;
 
-  z-index: 100;
+  z-index: 1000;
 }
 
 .error-network__text {
@@ -37,4 +39,10 @@
   color: #fff;
   margin: 0 auto;
   font-size: 40px;
+}
+
+.error-network__btn {
+  margin: 0px 40% 10px;
+  background-color: #000;
+  color: #fff;
 }

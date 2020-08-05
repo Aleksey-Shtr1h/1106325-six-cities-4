@@ -44,6 +44,7 @@ export const ErrorNetwork = ({err, onHideErrorBlock}) => {
       </p>
 
       <button
+        className="error-network__btn"
         type="button"
         onClick={() => onHideErrorBlock()}
       >
