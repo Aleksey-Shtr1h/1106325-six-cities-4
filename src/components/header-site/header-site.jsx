@@ -18,16 +18,14 @@ export const HeaderSite = ({type, children, userAuthEmail, error, onHideErrorBlo
 
   return (
     <div className={`page page--gray ${type}`}>
-
-      {error !== null &&
-        <ErrorNetwork
-          err={error}
-          onHideErrorBlock={onHideErrorBlock}
-        />
-      }
-
       <header className="header">
         <div className="container">
+          {error !== null &&
+            <ErrorNetwork
+              err={error}
+              onHideErrorBlock={onHideErrorBlock}
+            />
+          }
           <div className="header__wrapper">
             <div className="header__left">
               <a

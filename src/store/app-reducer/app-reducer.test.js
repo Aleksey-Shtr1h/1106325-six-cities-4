@@ -42,10 +42,34 @@ it(`Reducer should change page `, () => {
   expect(appReducer({
     pageApp: `main`,
   }, {
-    type: ActionTypeApp.onPageChange,
+    type: ActionTypeApp.GET_PAGE,
     payload: `main`,
   })).toEqual({
     pageApp: `main`,
+    rating: 0,
+    comment: ``,
+  });
+});
+
+it(`Reducer should change rating place `, () => {
+  expect(appReducer({
+    rating: 0,
+  }, {
+    type: ActionTypeApp.CHANGE_RATING_PLACE,
+    rating: 0,
+  })).toEqual({
+    rating: undefined,
+  });
+});
+
+it(`Reducer should change comment place `, () => {
+  expect(appReducer({
+    comment: `test`,
+  }, {
+    type: ActionTypeApp.CHANGE_COMMENT_PLACE,
+    comment: `test`,
+  })).toEqual({
+    comment: undefined,
   });
 });
 

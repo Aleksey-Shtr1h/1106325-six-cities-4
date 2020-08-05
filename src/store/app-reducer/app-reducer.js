@@ -1,5 +1,7 @@
 import {extend} from '../../utils/utils.js';
 import {ActionTypeApp, ActionCreatorApp} from '../app-action/app-action.js';
+import {ActionCreatorUser} from '../user-action/user-action.js';
+
 import {adapterComment} from '../../adapter/adapterComments.js';
 import {PageApp} from '../../constans.js';
 
@@ -20,24 +22,30 @@ export const OperationApp = {
       })
       .then((comments) => {
         dispatch(ActionCreatorApp.actionTitleClick(offer, comments));
+      })
+      .catch((err) => {
+        dispatch(ActionCreatorUser.getError(err.request));
       });
   },
 
   postComments: (rating, comment) => (dispatch, getState, api) => {
 
     const idOffer = getState().APP.placeOffer.id;
+    const offer = getState().APP.placeOffer;
 
     return api.post(`/comments/${idOffer}`, {
-      "rating": rating,
-      "comment": comment,
+      'rating': rating,
+      'comment': comment,
+    })
+    .then((response) => {
+      return adapterComment(response.data);
+    })
+    .then((comments) => {
+      dispatch(ActionCreatorApp.actionTitleClick(offer, comments));
+    })
+    .catch((err) => {
+      dispatch(ActionCreatorUser.getError(err.request));
     });
-    // .then(() => {
-    //   dispatch(ActionCreatorUser.getEmail(authData.login));
-    //   dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
-    // })
-    // .catch((err) => {
-
-    // });
   },
 };
 

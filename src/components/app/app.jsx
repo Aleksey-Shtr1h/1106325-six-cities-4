@@ -11,7 +11,6 @@ import {getChangeCity, getCityActive} from '../../store/data-reducer/data-select
 import {getPlaceOffer, getPageApp} from '../../store/app-reducer/app-selectors.js';
 import {getAuthorizationStatus, getUserAuthEmail} from '../../store/user-reducer/user-selectors.js';
 import {OperationUser} from '../../store/user-reducer/user-reducer.js';
-import {ActionCreatorApp} from '../../store/app-action/app-action.js';
 
 import {HeaderType, PageApp} from '../../constans.js';
 
@@ -134,7 +133,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(OperationUser.login(authData));
-    dispatch(ActionCreatorApp.actionPage(PageApp.MAIN));
   },
 });
 

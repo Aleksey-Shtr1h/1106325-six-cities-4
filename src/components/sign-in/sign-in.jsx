@@ -73,6 +73,7 @@ export class SignIn extends React.PureComponent {
 
     );
   }
+
 }
 
 SignIn.propTypes = {

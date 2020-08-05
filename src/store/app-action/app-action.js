@@ -8,8 +8,8 @@ export const getOfferId = (offer) => {
 
 export const getCommentsOffer = (offer, comments) => {
   offer.reviews = comments;
-
-  return offer;
+  const newOffer = Object.assign({}, offer);
+  return newOffer;
 };
 
 export const ActionTypeApp = {

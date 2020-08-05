@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-// import PropTypes from 'prop-types';
+
 import {bindActionCreators} from 'redux';
 
 import {ActionCreatorApp} from '../../store/app-action/app-action.js';
@@ -12,7 +12,6 @@ import {ratingTitle} from '../../constans.js';
 import {propsTypeAll} from '../../propsType/propsType.js';
 
 export const UserNewReview = ({rating, comment, onChangeRaitingPlace, onChangeCommentPlace, onSubmitReview}) => {
-
   const ratingKeys = Object.keys(ratingTitle);
 
   return (
@@ -67,12 +66,15 @@ export const UserNewReview = ({rating, comment, onChangeRaitingPlace, onChangeCo
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
-        value={comment}
         placeholder="Tell how was your stay, what you like and what can be improved"
         minLength={50}
         maxLength={300}
-        onChange={(evt) => onChangeCommentPlace(evt.target.value)}
+        onChange={(evt) => {
+          onChangeCommentPlace(evt.target.value);
+        }}
+        required
       >
+
       </textarea>
 
       <div className="reviews__button-wrapper">

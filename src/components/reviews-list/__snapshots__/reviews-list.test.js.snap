@@ -394,7 +394,7 @@ exports[`Should ReviewsList render correctly 1`] = `
       name="review"
       onChange={[Function]}
       placeholder="Tell how was your stay, what you like and what can be improved"
-      value="test"
+      required={true}
     />
     <div
       className="reviews__button-wrapper"

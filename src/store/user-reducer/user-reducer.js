@@ -1,4 +1,7 @@
 import {ActionTypeUser, ActionCreatorUser} from '../user-action/user-action.js';
+import {ActionCreatorApp} from '../app-action/app-action.js';
+
+import {PageApp} from '../../constans.js';
 
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -31,6 +34,7 @@ export const OperationUser = {
       .then(() => {
         dispatch(ActionCreatorUser.getEmail(authData.login));
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreatorApp.actionPage(PageApp.MAIN));
       })
       .catch((err) => {
         dispatch(ActionCreatorUser.getError(err.request));
