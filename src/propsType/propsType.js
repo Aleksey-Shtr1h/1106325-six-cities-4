@@ -46,11 +46,26 @@ export const propsTypeCityOffers = {
 };
 
 export const hostData = {
-  id: PropTypes.number.isRequired,
-  email: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  [`avatar_url`]: PropTypes.string.isRequired,
-  [`is_pro`]: PropTypes.bool.isRequired,
+  id: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.number.isRequired,
+  ]),
+  email: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.string.isRequired,
+  ]),
+  name: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.string.isRequired,
+  ]),
+  [`avatar_url`]: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.string.isRequired,
+  ]),
+  [`is_pro`]: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.bool.isRequired,
+  ]),
 };
 
 

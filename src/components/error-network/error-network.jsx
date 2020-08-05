@@ -30,26 +30,27 @@ export const ErrorNetwork = ({err, onHideErrorBlock}) => {
 
   return (
     <section className="error-network">
+      <div className="error-network__container">
+        <p className="error-network__text">
+          Произошла ошибка
+        </p>
 
-      <p className="error-network__text">
-        Произошла ошибка
-      </p>
+        <p className="error-network__status">
+          {error.status}
+        </p>
 
-      <p className="error-network__status">
-        {error.status}
-      </p>
+        <p className="error-network__infoError">
+          {error.infoError}
+        </p>
 
-      <p className="error-network__infoError">
-        {error.infoError}
-      </p>
-
-      <button
-        className="error-network__btn"
-        type="button"
-        onClick={() => onHideErrorBlock()}
-      >
-        Скрыть
-      </button>
+        <button
+          className="error-network__btn"
+          type="button"
+          onClick={() => onHideErrorBlock()}
+        >
+          Скрыть
+        </button>
+      </div>
     </section>
   );
 };

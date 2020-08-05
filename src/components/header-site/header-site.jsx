@@ -16,11 +16,13 @@ export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBloc
 
   const emptyFunc = () => {};
 
+  const userLogo = userAuthData[`avatar_url`] ? `url(https://htmlacademy-react-3.appspot.com/six-cities${userAuthData[`avatar_url`]})` : `url(../img/avatar.svg)`;
+
   return (
     <div className={`page page--gray ${type}`}>
       <header className="header">
         <div className="container">
-          {error !== null &&
+          {(error !== null && type !== `page--main`) &&
             <ErrorNetwork
               err={error}
               onHideErrorBlock={onHideErrorBlock}
@@ -47,7 +49,7 @@ export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBloc
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div
                       className="header__avatar-wrapper user__avatar-wrapper"
-                      style={{backgroundImage: `url(https://htmlacademy-react-3.appspot.com/six-cities${userAuthData[`avatar_url`]})`}}
+                      style={{backgroundImage: userLogo}}
                     >
                     </div>
                     <span
