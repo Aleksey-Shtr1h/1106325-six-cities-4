@@ -1,6 +1,6 @@
 export const ActionTypeUser = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  GET_EMAIL: `GET_EMAIL`,
+  GET_HOST_DATA: `GET_HOST_DATA`,
   GET_ERROR: `GET_ERROR`,
   HIDE_ERROR_BLOCK: `HIDE_ERROR_BLOCK`,
 };
@@ -13,10 +13,10 @@ export const ActionCreatorUser = {
     };
   },
 
-  getEmail: (email) => {
+  getHostData: (hostData) => {
     return {
-      type: ActionTypeUser.GET_EMAIL,
-      payload: email,
+      type: ActionTypeUser.GET_HOST_DATA,
+      payload: hostData,
     };
   },
 

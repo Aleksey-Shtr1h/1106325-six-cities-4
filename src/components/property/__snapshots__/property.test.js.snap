@@ -442,6 +442,7 @@ exports[`Should Property render correctly 1`] = `
           <form
             action="#"
             className="reviews__form form"
+            disabled="disabled"
             method="post"
             onSubmit={[Function]}
           >
@@ -455,7 +456,9 @@ exports[`Should Property render correctly 1`] = `
               className="reviews__rating-form form__rating"
             >
               <input
+                checked={false}
                 className="form__rating-input visually-hidden"
+                disabled={false}
                 id="5-stars"
                 name="rating"
                 onChange={[Function]}
@@ -478,7 +481,9 @@ exports[`Should Property render correctly 1`] = `
                 </svg>
               </label>
               <input
+                checked={false}
                 className="form__rating-input visually-hidden"
+                disabled={false}
                 id="4-stars"
                 name="rating"
                 onChange={[Function]}
@@ -501,7 +506,9 @@ exports[`Should Property render correctly 1`] = `
                 </svg>
               </label>
               <input
+                checked={false}
                 className="form__rating-input visually-hidden"
+                disabled={false}
                 id="3-stars"
                 name="rating"
                 onChange={[Function]}
@@ -524,7 +531,9 @@ exports[`Should Property render correctly 1`] = `
                 </svg>
               </label>
               <input
+                checked={false}
                 className="form__rating-input visually-hidden"
+                disabled={false}
                 id="2-stars"
                 name="rating"
                 onChange={[Function]}
@@ -547,7 +556,9 @@ exports[`Should Property render correctly 1`] = `
                 </svg>
               </label>
               <input
+                checked={true}
                 className="form__rating-input visually-hidden"
+                disabled={false}
                 id="1-stars"
                 name="rating"
                 onChange={[Function]}
@@ -572,6 +583,7 @@ exports[`Should Property render correctly 1`] = `
             </div>
             <textarea
               className="reviews__textarea form__textarea"
+              disabled={false}
               id="review"
               maxLength={300}
               minLength={50}
@@ -579,6 +591,7 @@ exports[`Should Property render correctly 1`] = `
               onChange={[Function]}
               placeholder="Tell how was your stay, what you like and what can be improved"
               required={true}
+              value="test"
             />
             <div
               className="reviews__button-wrapper"
@@ -602,7 +615,7 @@ exports[`Should Property render correctly 1`] = `
               </p>
               <button
                 className="reviews__submit form__submit button"
-                disabled=""
+                disabled={true}
                 type="submit"
               >
                 Submit

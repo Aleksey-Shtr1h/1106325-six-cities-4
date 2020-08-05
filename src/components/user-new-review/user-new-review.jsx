@@ -5,20 +5,34 @@ import {bindActionCreators} from 'redux';
 
 import {ActionCreatorApp} from '../../store/app-action/app-action.js';
 import {OperationApp} from '../../store/app-reducer/app-reducer.js';
-import {getRatingPlace, getCommentPlace} from '../../store/app-reducer/app-selectors.js';
+import {getRatingPlace, getCommentPlace, getActiveForm} from '../../store/app-reducer/app-selectors.js';
 
 import {ratingTitle} from '../../constans.js';
 
 import {propsTypeAll} from '../../propsType/propsType.js';
 
-export const UserNewReview = ({rating, comment, onChangeRaitingPlace, onChangeCommentPlace, onSubmitReview}) => {
+const getActiveBtn = (rating, comment) => {
+
+  let result = true;
+  if (rating > 0 && comment.length > 49 && comment.length < 300) {
+    result = false;
+    return result;
+  }
+
+  return result;
+};
+
+export const UserNewReview = ({rating, comment, activeForm, onChangeRaitingPlace, onChangeCommentPlace, onSubmitReview}) => {
+
   const ratingKeys = Object.keys(ratingTitle);
+  const activeBtn = getActiveBtn(rating, comment);
 
   return (
     <form
       className="reviews__form form"
       action="#"
       method="post"
+      disabled="disabled"
       onSubmit={(evt) => {
         evt.preventDefault();
         onSubmitReview(rating, comment);
@@ -40,6 +54,8 @@ export const UserNewReview = ({rating, comment, onChangeRaitingPlace, onChangeCo
                 value={starId}
                 id={`${starId}-stars`}
                 type="radio"
+                checked={rating === starId}
+                disabled={activeForm}
                 onChange={() => {
                   onChangeRaitingPlace(starId);
                 }}
@@ -69,6 +85,8 @@ export const UserNewReview = ({rating, comment, onChangeRaitingPlace, onChangeCo
         placeholder="Tell how was your stay, what you like and what can be improved"
         minLength={50}
         maxLength={300}
+        disabled={activeForm}
+        value={comment}
         onChange={(evt) => {
           onChangeCommentPlace(evt.target.value);
         }}
@@ -81,7 +99,13 @@ export const UserNewReview = ({rating, comment, onChangeRaitingPlace, onChangeCo
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={activeBtn || activeForm}
+        >
+          Submit
+        </button>
       </div>
     </form>
   );
@@ -91,6 +115,7 @@ const mapStateToProps = (state) => {
   return {
     rating: getRatingPlace(state),
     comment: getCommentPlace(state),
+    activeForm: getActiveForm(state),
   };
 };
 
@@ -112,5 +137,6 @@ UserNewReview.propTypes = {
   onChangeRaitingPlace: propsTypeAll.func,
   onChangeCommentPlace: propsTypeAll.func,
   onSubmitReview: propsTypeAll.func,
+  activeForm: propsTypeAll.bool,
 };
 

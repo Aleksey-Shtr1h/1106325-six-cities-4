@@ -13,6 +13,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     pageApp: `main`,
     rating: 0,
     comment: ``,
+    activeForm: false,
   });
 });
 
@@ -56,9 +57,9 @@ it(`Reducer should change rating place `, () => {
     rating: 0,
   }, {
     type: ActionTypeApp.CHANGE_RATING_PLACE,
-    rating: 0,
+    payload: 0,
   })).toEqual({
-    rating: undefined,
+    rating: 0,
   });
 });
 
@@ -67,9 +68,32 @@ it(`Reducer should change comment place `, () => {
     comment: `test`,
   }, {
     type: ActionTypeApp.CHANGE_COMMENT_PLACE,
-    comment: `test`,
+    payload: `test`,
   })).toEqual({
-    comment: undefined,
+    comment: `test`,
+  });
+});
+
+it(`Reducer should disable form`, () => {
+  expect(appReducer({
+    activeForm: false,
+  }, {
+    type: ActionTypeApp.DISABLED_FORM,
+    payload: false,
+  })).toEqual({
+    activeForm: false,
+  });
+});
+
+it(`Reducer should reset form`, () => {
+  expect(appReducer({
+
+  }, {
+    type: ActionTypeApp.RESET_FORM,
+    payload: {rating: 0, comment: ``},
+  })).toEqual({
+    rating: 0,
+    comment: ``,
   });
 });
 

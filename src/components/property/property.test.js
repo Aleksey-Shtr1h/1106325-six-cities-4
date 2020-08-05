@@ -22,6 +22,7 @@ it(`Should Property render correctly`, () => {
       offerId: 1,
       rating: 1,
       comment: `test`,
+      activeForm: false,
     },
 
     USER: {

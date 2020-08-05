@@ -6,8 +6,8 @@ export const getAuthorizationStatus = (state) => {
   return state[NAME_SPACE].authorizationStatus;
 };
 
-export const getUserAuthEmail = (state) => {
-  return state[NAME_SPACE].email;
+export const getUserAuthData = (state) => {
+  return state[NAME_SPACE].host;
 };
 
 export const getError = (state) => {

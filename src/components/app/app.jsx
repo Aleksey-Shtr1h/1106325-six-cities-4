@@ -9,7 +9,7 @@ import {WrapperHeaderSite} from '../header-site/header-site.jsx';
 
 import {getChangeCity, getCityActive} from '../../store/data-reducer/data-selectors.js';
 import {getPlaceOffer, getPageApp} from '../../store/app-reducer/app-selectors.js';
-import {getAuthorizationStatus, getUserAuthEmail} from '../../store/user-reducer/user-selectors.js';
+import {getAuthorizationStatus, getUserAuthData} from '../../store/user-reducer/user-selectors.js';
 import {OperationUser} from '../../store/user-reducer/user-reducer.js';
 
 import {HeaderType, PageApp} from '../../constans.js';
@@ -22,7 +22,7 @@ export class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {cityOffers, placeOffer, cityActive, authorizationStatus, login, userAuthEmail, pageApp} = this.props;
+    const {cityOffers, placeOffer, cityActive, authorizationStatus, login, userAuthData, pageApp} = this.props;
 
     const {offers, placesCount, cityCoordinates} = cityOffers;
 
@@ -33,7 +33,7 @@ export class App extends React.PureComponent {
         return (
           <WrapperHeaderSite
             type={HeaderType.main}
-            userAuthEmail={userAuthEmail}
+            userAuthData={userAuthData}
             authorizationStatus={authorizationStatus}
           >
             <Main
@@ -53,7 +53,7 @@ export class App extends React.PureComponent {
           return (
             <WrapperHeaderSite
               type={HeaderType.property}
-              userAuthEmail={userAuthEmail}
+              userAuthData={userAuthData}
               authorizationStatus={authorizationStatus}
             >
               <Property
@@ -73,7 +73,7 @@ export class App extends React.PureComponent {
         return (
           <WrapperHeaderSite
             type={HeaderType.signIn}
-            userAuthEmail={userAuthEmail}
+            userAuthData={userAuthData}
             authorizationStatus={authorizationStatus}
           >
             <SignIn
@@ -125,7 +125,7 @@ const mapStateToProps = (state) => {
     cityActive: getCityActive(state),
     cityOffers: getChangeCity(state),
     authorizationStatus: getAuthorizationStatus(state),
-    userAuthEmail: getUserAuthEmail(state),
+    userAuthData: getUserAuthData(state),
     pageApp: getPageApp(state),
   };
 };
@@ -144,6 +144,6 @@ App.propTypes = {
   cityActive: propsTypeAll.cityActive,
   authorizationStatus: propsTypeAll.string,
   login: propsTypeAll.func,
-  userAuthEmail: propsTypeAll.string,
+  userAuthData: propsTypeAll.userAuthData,
   pageApp: propsTypeAll.string,
 };

@@ -20,6 +20,7 @@ exports[`Should ErrorNetwork render correctly 1 1`] = `
     Произошла ошибка
   </p>
   <button
+    className="error-network__btn"
     onClick={[Function]}
     type="button"
   >

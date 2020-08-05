@@ -9,9 +9,9 @@ const initialState = {
   placeOffer: null,
   offerId: null,
   pageApp: PageApp.MAIN,
-
   rating: 0,
   comment: ``,
+  activeForm: false,
 };
 
 export const OperationApp = {
@@ -32,16 +32,19 @@ export const OperationApp = {
 
     const idOffer = getState().APP.placeOffer.id;
     const offer = getState().APP.placeOffer;
+    dispatch(ActionCreatorApp.actionDisabledForm(true));
 
     return api.post(`/comments/${idOffer}`, {
       'rating': rating,
       'comment': comment,
     })
     .then((response) => {
+      dispatch(ActionCreatorApp.actionResetForm());
       return adapterComment(response.data);
     })
     .then((comments) => {
       dispatch(ActionCreatorApp.actionTitleClick(offer, comments));
+      dispatch(ActionCreatorApp.actionDisabledForm(false));
     })
     .catch((err) => {
       dispatch(ActionCreatorUser.getError(err.request));
@@ -78,6 +81,17 @@ export const appReducer = (state = initialState, action) => {
     case ActionTypeApp.CHANGE_COMMENT_PLACE:
       return extend(state, {
         comment: action.payload,
+      });
+
+    case ActionTypeApp.DISABLED_FORM:
+      return extend(state, {
+        activeForm: action.payload,
+      });
+
+    case ActionTypeApp.RESET_FORM:
+      return extend(state, {
+        rating: action.payload.rating,
+        comment: action.payload.comment,
       });
 
   }

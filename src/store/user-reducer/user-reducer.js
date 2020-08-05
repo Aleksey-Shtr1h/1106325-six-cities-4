@@ -10,7 +10,7 @@ export const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  email: `Sign in`,
+  host: {email: `Sign In`},
   error: null,
 };
 
@@ -19,7 +19,7 @@ export const OperationUser = {
     return api.get(`/login`)
       .then((response) => {
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreatorUser.getEmail(response.data.email));
+        dispatch(ActionCreatorUser.getHostData(response.data));
       })
       .catch((err) => {
         dispatch(ActionCreatorUser.getError(err.request));
@@ -31,8 +31,8 @@ export const OperationUser = {
       email: authData.login,
       password: authData.password,
     })
-      .then(() => {
-        dispatch(ActionCreatorUser.getEmail(authData.login));
+      .then((response) => {
+        dispatch(ActionCreatorUser.getHostData(response.data));
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreatorApp.actionPage(PageApp.MAIN));
       })
@@ -51,9 +51,9 @@ export const reducerUser = (state = initialState, action) => {
         error: null,
       });
 
-    case ActionTypeUser.GET_EMAIL:
+    case ActionTypeUser.GET_HOST_DATA:
       return Object.assign({}, state, {
-        email: action.payload,
+        host: action.payload,
       });
 
     case ActionTypeUser.GET_ERROR:

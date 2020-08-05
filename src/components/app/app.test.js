@@ -10,6 +10,14 @@ import {testProps} from '../../test/offersProps.js';
 
 const mockStore = configureStore([]);
 
+const host = {
+  id: 1,
+  email: `test`,
+  name: `test`,
+  [`avatar_url`]: `test`,
+  [`is_pro`]: true,
+};
+
 it(`Should App render correctly 1`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
 
@@ -46,7 +54,7 @@ it(`Should App render correctly 1`, () => {
           onMenuCityClick={() => {}}
           authorizationStatus={`test`}
           login={() => {}}
-          userAuthEmail={`test`}
+          userAuthData={host}
           pageApp={`test`}
         />
       </Provider>,

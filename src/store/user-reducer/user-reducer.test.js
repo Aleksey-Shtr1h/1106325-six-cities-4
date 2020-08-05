@@ -4,7 +4,7 @@ import {ActionTypeUser, ActionCreatorUser} from '../user-action/user-action.js';
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducerUser(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
-    email: `Sign in`,
+    host: {email: `Sign In`},
     error: null,
   });
 });
@@ -51,14 +51,14 @@ it(`Reducer should change authorizationStatus by a given value`, () => {
   });
 });
 
-it(`Reducer should change auth email`, () => {
+it(`Reducer should change auth data`, () => {
   expect(reducerUser({
-    email: `test`,
+    host: {email: `test`},
   }, {
-    type: ActionTypeUser.GET_EMAIL,
-    payload: `test_2`,
+    type: ActionTypeUser.GET_HOST_DATA,
+    payload: {email: `test`},
   })).toEqual({
-    email: `test_2`,
+    host: {email: `test`},
   });
 });
 

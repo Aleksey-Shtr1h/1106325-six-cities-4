@@ -36,7 +36,6 @@ export const propsTypeOffer = {
   ),
 };
 
-
 export const propsTypeCityOffers = {
   cityName: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(
@@ -44,6 +43,14 @@ export const propsTypeCityOffers = {
   ),
   placesCount: PropTypes.number.isRequired,
   cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+};
+
+export const hostData = {
+  id: PropTypes.number.isRequired,
+  email: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  [`avatar_url`]: PropTypes.string.isRequired,
+  [`is_pro`]: PropTypes.bool.isRequired,
 };
 
 
@@ -130,4 +137,8 @@ export const propsTypeAll = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+
+  userAuthData: PropTypes.shape(hostData).isRequired,
+
+  bool: PropTypes.bool.isRequired,
 };

@@ -21,3 +21,7 @@ export const getRatingPlace = (state) => {
 export const getCommentPlace = (state) => {
   return state[NAME_SPACE].comment;
 };
+
+export const getActiveForm = (state) => {
+  return state[NAME_SPACE].activeForm;
+};

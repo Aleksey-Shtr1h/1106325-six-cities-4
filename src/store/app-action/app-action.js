@@ -15,11 +15,12 @@ export const getCommentsOffer = (offer, comments) => {
 export const ActionTypeApp = {
   PLACE_TITLE_CLICK: `PLACE_TITLE_CLICK`,
   CHANGE_PIN_MAP_HOVER_CARD: `CHANGE_PIN_MAP_HOVER_CARD`,
-
   GET_PAGE: `GET_PAGE`,
-
   CHANGE_RATING_PLACE: `CHANGE_RATING_PLACE`,
   CHANGE_COMMENT_PLACE: `CHANGE_COMMENT_PLACE`,
+
+  DISABLED_FORM: `DISABLED_FORM`,
+  RESET_FORM: `RESET_FORM`,
 };
 
 export const ActionCreatorApp = {
@@ -52,6 +53,16 @@ export const ActionCreatorApp = {
   actionChangeCommentPlace: (comment) => ({
     type: ActionTypeApp.CHANGE_COMMENT_PLACE,
     payload: comment,
+  }),
+
+  actionDisabledForm: (disabled) => ({
+    type: ActionTypeApp.DISABLED_FORM,
+    payload: disabled,
+  }),
+
+  actionResetForm: () => ({
+    type: ActionTypeApp.RESET_FORM,
+    payload: {rating: 0, comment: ``},
   }),
 
 };

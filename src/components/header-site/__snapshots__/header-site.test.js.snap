@@ -44,6 +44,11 @@ exports[`Should HeaderSite render correctly 1 1`] = `
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://htmlacademy-react-3.appspot.com/six-citiestest)",
+                    }
+                  }
                 />
                 <span
                   className="header__user-name user__name"

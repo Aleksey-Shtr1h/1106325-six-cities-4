@@ -14,6 +14,7 @@ test(`Should ReviewsList render correctly`, () => {
     APP: {
       rating: 1,
       comment: `test`,
+      activeForm: false,
     },
 
   });
