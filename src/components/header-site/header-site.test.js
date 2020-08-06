@@ -23,6 +23,7 @@ it(`Should HeaderSite render correctly 1`, () => {
         onHideErrorBlock={() => {}}
         onPageChange={() => {}}
         authorizationStatus={`test`}
+        activeError={false}
       >
         {children}
       </HeaderSite>,

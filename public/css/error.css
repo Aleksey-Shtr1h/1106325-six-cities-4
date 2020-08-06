@@ -69,3 +69,25 @@
   background-color: #000;
   color: #fff;
 }
+
+.error-network-hide {
+  position: fixed;
+  top: 0;
+  left: 45%;
+  margin: 0 auto;
+
+  z-index: 1000;
+}
+
+.error-network-hide__container {
+  position: relative;
+  margin: 0 auto;
+  padding: 5px;
+
+  border-radius: 5px;
+  background-color: #741c5d63;
+}
+
+.error-network-hide__btn {
+  min-width: 200px;
+}

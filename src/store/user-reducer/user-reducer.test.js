@@ -6,6 +6,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     authorizationStatus: AuthorizationStatus.NO_AUTH,
     host: {email: `Sign In`},
     error: null,
+    activeError: false,
   });
 });
 
@@ -75,12 +76,12 @@ it(`Reducer should get error status`, () => {
 
 it(`Reducer should replace error number with null`, () => {
   expect(reducerUser({
-    error: 1,
+    activeError: false,
   }, {
     type: ActionTypeUser.HIDE_ERROR_BLOCK,
-    payload: null,
+    payload: false,
   })).toEqual({
-    error: null,
+    activeError: false,
   });
 });
 

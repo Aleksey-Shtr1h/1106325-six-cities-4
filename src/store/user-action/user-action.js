@@ -27,10 +27,10 @@ export const ActionCreatorUser = {
     };
   },
 
-  hideErrorBlock: () => {
+  hideErrorBlock: (bool) => {
     return {
       type: ActionTypeUser.HIDE_ERROR_BLOCK,
-      payload: null,
+      payload: !bool,
     };
   }
 

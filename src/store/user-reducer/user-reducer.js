@@ -12,6 +12,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   host: {email: `Sign In`},
   error: null,
+  activeError: false,
 };
 
 export const OperationUser = {
@@ -20,6 +21,7 @@ export const OperationUser = {
       .then((response) => {
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreatorUser.getHostData(response.data));
+        dispatch(ActionCreatorUser.getError({status: null}));
       })
       .catch((err) => {
         dispatch(ActionCreatorUser.getError(err.request));
@@ -35,6 +37,7 @@ export const OperationUser = {
         dispatch(ActionCreatorUser.getHostData(response.data));
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreatorApp.actionPage(PageApp.MAIN));
+        dispatch(ActionCreatorUser.getError({status: null}));
       })
       .catch((err) => {
         dispatch(ActionCreatorUser.getError(err.request));
@@ -63,7 +66,7 @@ export const reducerUser = (state = initialState, action) => {
 
     case ActionTypeUser.HIDE_ERROR_BLOCK:
       return Object.assign({}, state, {
-        error: action.payload,
+        activeError: action.payload,
       });
   }
 

@@ -12,6 +12,7 @@ it(`Should ErrorNetwork render correctly 1`, () => {
       <ErrorNetwork
         err={`test`}
         onHideErrorBlock={() => {}}
+        activeError={false}
       />,
       {
         createNodeMock: () => {

@@ -24,38 +24,56 @@ const StatusError = {
 
 };
 
-export const ErrorNetwork = ({err, onHideErrorBlock}) => {
+export const ErrorNetwork = ({err, onHideErrorBlock, activeError}) => {
 
   const error = err in StatusError ? StatusError[err] : StatusError.any;
 
   return (
-    <section className="error-network">
-      <div className="error-network__container">
-        <p className="error-network__text">
-          Произошла ошибка
-        </p>
+    <React.Fragment>
+      {activeError ?
 
-        <p className="error-network__status">
-          {error.status}
-        </p>
+        <section className="error-network">
+          <div className="error-network__container">
+            <p className="error-network__text">
+              Произошла ошибка
+            </p>
 
-        <p className="error-network__infoError">
-          {error.infoError}
-        </p>
+            <p className="error-network__status">
+              {error.status}
+            </p>
 
-        <button
-          className="error-network__btn"
-          type="button"
-          onClick={() => onHideErrorBlock()}
-        >
-          Скрыть
-        </button>
-      </div>
-    </section>
+            <p className="error-network__infoError">
+              {error.infoError}
+            </p>
+
+            <button
+              className="error-network__btn"
+              type="button"
+              onClick={() => onHideErrorBlock(activeError)}
+            >
+              Скрыть
+            </button>
+          </div>
+        </section> :
+
+        <section className="error-network-hide">
+          <div className="error-network-hide__container">
+            <button
+              className="error-network-hide__btn"
+              type="button"
+              onClick={() => onHideErrorBlock(activeError)}
+            >
+              {error.infoError}
+            </button>
+          </div>
+        </section>
+      }
+    </React.Fragment>
   );
 };
 
 ErrorNetwork.propTypes = {
   err: propsTypeAll.numberAndNullAndString,
   onHideErrorBlock: propsTypeAll.func,
+  activeError: propsTypeAll.bool,
 };

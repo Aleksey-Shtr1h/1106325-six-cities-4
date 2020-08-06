@@ -12,7 +12,7 @@ import {PageApp} from '../../constans.js';
 
 import {propsTypeAll} from '../../propsType/propsType.js';
 
-export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBlock, onPageChange, authorizationStatus}) => {
+export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBlock, onPageChange, authorizationStatus, activeError}) => {
 
   const emptyFunc = () => {};
 
@@ -26,6 +26,7 @@ export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBloc
             <ErrorNetwork
               err={error}
               onHideErrorBlock={onHideErrorBlock}
+              activeError={activeError}
             />
           }
           <div className="header__wrapper">
@@ -73,6 +74,7 @@ export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBloc
 const mapStateToProps = (state) => {
   return {
     error: getError(state),
+    activeError: state.USER.activeError,
   };
 };
 
@@ -93,4 +95,5 @@ HeaderSite.propTypes = {
   onHideErrorBlock: propsTypeAll.func,
   onPageChange: propsTypeAll.func,
   authorizationStatus: propsTypeAll.string,
+  activeError: propsTypeAll.bool,
 };
