@@ -2,17 +2,32 @@
 
 exports[`Should ErrorNetwork render correctly 1 1`] = `
 <section
-  className="error-network-hide"
+  className="error-network"
 >
   <div
-    className="error-network-hide__container"
+    className="error-network__container"
   >
+    <p
+      className="error-network__text"
+    >
+      Произошла ошибка
+    </p>
+    <p
+      className="error-network__status"
+    >
+      
+    </p>
+    <p
+      className="error-network__infoError"
+    >
+      Произошла ошибка
+    </p>
     <button
-      className="error-network-hide__btn"
+      className="error-network__btn"
       onClick={[Function]}
       type="button"
     >
-      Произошла ошибка
+      Скрыть
     </button>
   </div>
 </section>
