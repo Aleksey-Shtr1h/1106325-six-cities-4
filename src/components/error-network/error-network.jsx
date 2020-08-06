@@ -30,7 +30,7 @@ export const ErrorNetwork = ({err, onHideErrorBlock, activeError}) => {
 
   return (
     <React.Fragment>
-      {activeError ?
+      {!activeError ?
 
         <section className="error-network">
           <div className="error-network__container">
