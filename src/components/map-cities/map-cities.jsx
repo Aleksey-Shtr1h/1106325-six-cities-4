@@ -6,8 +6,8 @@ import {getOfferId} from '../../store/app-reducer/app-selectors.js';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-const PIN_SRANDART_URL = `img/pin.svg`;
-const PIN_ACTIVE_URL = `img/pin-active.svg`;
+const PIN_SRANDART_URL = `/img/pin.svg`;
+const PIN_ACTIVE_URL = `/img/pin-active.svg`;
 const PIN_SIZE = [30, 30];
 
 export const getPinStyle = (url, size) => {

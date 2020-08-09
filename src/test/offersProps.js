@@ -2,6 +2,7 @@ export const offersProps = [
   {
     id: 1,
     isCheckedPremium: true,
+    isFavorite: true,
     images: [`test`],
     price: 120,
     ratingStars: 0.5,
@@ -34,6 +35,7 @@ export const offersProps = [
   {
     id: 2,
     isCheckedPremium: false,
+    isFavorite: true,
     images: [`test`],
     price: 80,
     ratingStars: 1.6,
@@ -66,6 +68,7 @@ export const offersProps = [
   {
     id: 3,
     isCheckedPremium: false,
+    isFavorite: true,
     images: [`test`],
     price: 132,
     ratingStars: 2.5,
@@ -98,6 +101,7 @@ export const offersProps = [
   {
     id: 4,
     isCheckedPremium: true,
+    isFavorite: true,
     images: [`test`],
     price: 180,
     ratingStars: 4.5,
@@ -131,6 +135,7 @@ export const offersProps = [
 export const offerProps = {
   id: 1,
   isCheckedPremium: true,
+  isFavorite: true,
   images: [`test`],
   price: 120,
   ratingStars: 2.5,
@@ -253,6 +258,7 @@ export const apiHostels = [{
 export const apiAdapterHostels = [{
   id: 1,
   isCheckedPremium: true,
+  isFavorite: true,
   images: [`test`],
   price: 1,
   ratingStars: 1.0,
@@ -265,7 +271,7 @@ export const apiAdapterHostels = [{
   previewImage: `test`,
   infoUser: {
     id: 1,
-    avatarUser: `test`,
+    avatarUser: `/test`,
     nameUser: `test`,
     markSuper: true,
   },

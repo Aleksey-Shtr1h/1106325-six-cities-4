@@ -1,9 +1,15 @@
 import {extend} from '../../utils/utils.js';
 import {ActionTypeApp, ActionCreatorApp} from '../app-action/app-action.js';
 import {ActionCreatorUser} from '../user-action/user-action.js';
+import {ActionCreatorData} from '../data-action/data-action.js';
 
 import {adapterComment} from '../../adapter/adapterComments.js';
 import {PageApp} from '../../constans.js';
+
+const getOfferServer = (offers, router) => {
+  const result = offers.find((offer) => offer.id === Number(router.id));
+  return result;
+};
 
 const initialState = {
   placeOffer: null,
@@ -14,14 +20,42 @@ const initialState = {
   activeForm: false,
 };
 
+
 export const OperationApp = {
-  loadComments: (offer) => (dispatch, getState, api) => {
-    return api.get(`/comments/${offer.id}`)
+  loadComments: (data) => (dispatch, getState, api) => {
+    let citySearch = {};
+    const offersAll = [];
+    const citiesAll = getState().DATA.citiesAll;
+
+    getState().DATA.citiesAll.forEach((city) => {
+      city.offers.forEach((offer) => {
+        if (offer.id === Number(data.id)) {
+          citySearch = Object.assign({}, city);
+        }
+      });
+    });
+
+    if (`offers` in citySearch !== true) {
+      return false;
+    }
+
+    citySearch.offers.forEach((offer) => {
+      offersAll.push(offer);
+    });
+
+    const offerServer = getOfferServer(offersAll, data);
+
+    return api.get(`/comments/${data.id}`)
       .then((response) => {
         return adapterComment(response.data);
       })
       .then((comments) => {
-        dispatch(ActionCreatorApp.actionTitleClick(offer, comments));
+        if (data.price) {
+          dispatch(ActionCreatorApp.actionTitleClick(data, comments));
+          return;
+        }
+        dispatch(ActionCreatorData.actionCity(citySearch.cityName, citiesAll));
+        dispatch(ActionCreatorApp.actionTitleClick(offerServer, comments));
       })
       .catch((err) => {
         dispatch(ActionCreatorUser.getError(err.request));
@@ -58,7 +92,7 @@ export const appReducer = (state = initialState, action) => {
     case ActionTypeApp.PLACE_TITLE_CLICK:
       return extend(state, {
         placeOffer: action.payload,
-        pageApp: PageApp.PROPERTY,
+        // pageApp: PageApp.PROPERTY,
       });
 
     case ActionTypeApp.CHANGE_PIN_MAP_HOVER_CARD:
@@ -92,6 +126,11 @@ export const appReducer = (state = initialState, action) => {
       return extend(state, {
         rating: action.payload.rating,
         comment: action.payload.comment,
+      });
+
+    case ActionTypeApp.TEST:
+      return extend(state, {
+        placeOffer: action.payload,
       });
 
   }

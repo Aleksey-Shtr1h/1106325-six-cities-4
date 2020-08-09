@@ -51,7 +51,6 @@ export const reducerUser = (state = initialState, action) => {
     case ActionTypeUser.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
-        error: null,
       });
 
     case ActionTypeUser.GET_HOST_DATA:

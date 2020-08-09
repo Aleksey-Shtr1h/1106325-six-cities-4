@@ -148,6 +148,11 @@ export const propsTypeAll = {
     PropTypes.number.isRequired,
   ]),
 
+  boolAndUndefined: PropTypes.oneOfType([
+    PropTypes.bool.isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]),
+
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

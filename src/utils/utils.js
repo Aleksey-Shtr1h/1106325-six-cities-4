@@ -43,3 +43,13 @@ export const randomDate = (start, end) => {
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
+
+export const getOffer = (place, router, routerOffer) => {
+
+  if (place) {
+    return place;
+  }
+
+  routerOffer({id: router.match.params.id});
+  return false;
+};

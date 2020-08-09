@@ -17,3 +17,9 @@ export const ratingTitle = {
   '4': `good`,
   '5': `perfect`,
 };
+
+export const AppRoute = {
+  MAIN: `/`,
+  PROPERTY: `/property/:id`,
+  LOGIN: `/login`,
+};

@@ -1,5 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Router} from "react-router-dom";
+import {history} from '../../history.js';
+
 
 import {HeaderSite} from './header-site.jsx';
 
@@ -16,17 +19,19 @@ const host = {
 it(`Should HeaderSite render correctly 1`, () => {
 
   const tree = renderer.create(
-      <HeaderSite
-        type={`test`}
-        userAuthData={host}
-        error={null}
-        onHideErrorBlock={() => {}}
-        onPageChange={() => {}}
-        authorizationStatus={`test`}
-        activeError={false}
-      >
-        {children}
-      </HeaderSite>,
+      <Router history={history}>
+        <HeaderSite
+          type={`test`}
+          userAuthData={host}
+          error={null}
+          onHideErrorBlock={() => {}}
+          onPageChange={() => {}}
+          authorizationStatus={`test`}
+          activeError={false}
+        >
+          {children}
+        </HeaderSite>
+      </Router>,
       {
         createNodeMock: () => {
           return document.createElement(`div`);

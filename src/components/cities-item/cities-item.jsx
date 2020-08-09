@@ -1,22 +1,25 @@
-import React from "react";
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-import {propsTypeAll} from "../../propsType/propsType.js";
+import {propsTypeAll} from '../../propsType/propsType.js';
 
 export const CitiesItem = (props) => {
   const {onMenuCityClick, cityActive, cityName, citiesAll} = props;
+
   return (
     <li className="locations__item">
 
-      <a
+      <Link
         onClick={() => onMenuCityClick(cityName, citiesAll)}
 
         className={`locations__item-link tabs__item
         ${cityActive === cityName ? `tabs__item--active` : ``}`}
 
-        href="#">
+        to={{pathName: `/`}}
+      >
 
         <span>{cityName}</span>
-      </a>
+      </Link>
 
     </li>
   );

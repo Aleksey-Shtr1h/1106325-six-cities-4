@@ -44,8 +44,12 @@ export const Property = ({offer, reviews, offers, cityCoordinates, authorization
               <h1 className="property__name">
                 {titleCard}
               </h1>
-              <button className="property__bookmark-button button" type="button">
-                <svg className="property__bookmark-icon" width="31" height="33">
+
+              <button
+                className="property__bookmark-button button property__bookmark-button--active"
+                type="button"
+              >
+                <svg className="place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
                 <span className="visually-hidden">To bookmarks</span>
@@ -166,3 +170,4 @@ Property.propTypes = {
   cityCoordinates: propsTypeAll.cityCoordinates,
   authorizationStatus: propsTypeAll.stringAndUndefined,
 };
+

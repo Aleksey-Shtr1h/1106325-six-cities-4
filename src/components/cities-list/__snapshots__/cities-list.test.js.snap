@@ -10,7 +10,7 @@ exports[`Should CitiesList render correctly 1`] = `
     <a
       className="locations__item-link tabs__item
         tabs__item--active"
-      href="#"
+      href="/"
       onClick={[Function]}
     >
       <span>

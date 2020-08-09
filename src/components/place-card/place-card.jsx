@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 
 import {getModifiedRatingValue} from "../../utils/utils.js";
 
@@ -45,7 +46,14 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onCardPlaceHoverMove}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick={() => onTitlePlaceClick(offer)} href="#">{titleCard}</a>
+          <Link
+            to={{pathname: `/property/${offer.id}`}}
+            onClick={() => onTitlePlaceClick(offer)}
+          >
+
+            {titleCard}
+
+          </Link>
         </h2>
         <p className="place-card__type">{typeCard}</p>
       </div>

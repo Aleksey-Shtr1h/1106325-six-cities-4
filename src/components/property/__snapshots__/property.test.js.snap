@@ -46,11 +46,11 @@ exports[`Should Property render correctly 1`] = `
             test
           </h1>
           <button
-            className="property__bookmark-button button"
+            className="property__bookmark-button button property__bookmark-button--active"
             type="button"
           >
             <svg
-              className="property__bookmark-icon"
+              className="place-card__bookmark-icon"
               height="33"
               width="31"
             >
@@ -561,7 +561,7 @@ exports[`Should Property render correctly 1`] = `
               className="place-card__name"
             >
               <a
-                href="#"
+                href="/property/1"
                 onClick={[Function]}
               >
                 test
@@ -659,7 +659,7 @@ exports[`Should Property render correctly 1`] = `
               className="place-card__name"
             >
               <a
-                href="#"
+                href="/property/2"
                 onClick={[Function]}
               >
                 test
@@ -757,7 +757,7 @@ exports[`Should Property render correctly 1`] = `
               className="place-card__name"
             >
               <a
-                href="#"
+                href="/property/3"
                 onClick={[Function]}
               >
                 test
@@ -862,7 +862,7 @@ exports[`Should Property render correctly 1`] = `
               className="place-card__name"
             >
               <a
-                href="#"
+                href="/property/4"
                 onClick={[Function]}
               >
                 test

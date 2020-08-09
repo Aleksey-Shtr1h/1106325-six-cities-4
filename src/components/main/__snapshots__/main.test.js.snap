@@ -24,7 +24,7 @@ exports[`Should Main render correctly 1`] = `
           <a
             className="locations__item-link tabs__item
         tabs__item--active"
-            href="#"
+            href="/"
             onClick={[Function]}
           >
             <span>
@@ -193,7 +193,7 @@ exports[`Should Main render correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/property/1"
                   onClick={[Function]}
                 >
                   test
@@ -291,7 +291,7 @@ exports[`Should Main render correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/property/2"
                   onClick={[Function]}
                 >
                   test
@@ -389,7 +389,7 @@ exports[`Should Main render correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/property/3"
                   onClick={[Function]}
                 >
                   test
@@ -494,7 +494,7 @@ exports[`Should Main render correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/property/4"
                   onClick={[Function]}
                 >
                   test

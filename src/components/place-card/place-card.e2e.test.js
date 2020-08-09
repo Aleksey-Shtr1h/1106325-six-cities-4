@@ -11,21 +11,21 @@ Enzyme.configure({
 
 describe(`Should PlaceCard logic correctly`, () => {
 
-  test(`Should PlaceCard button be pressed`, () => {
-    const onTitlePlaceClick = jest.fn();
-    const onCardPlaceHoverMove = jest.fn();
+  // test(`Should PlaceCard button be pressed`, () => {
+  //   const onTitlePlaceClick = jest.fn();
+  //   const onCardPlaceHoverMove = jest.fn();
 
-    const placeCard = shallow(
-        <PlaceCard
-          offer={offerProps}
-          onTitlePlaceClick={onTitlePlaceClick}
-          onCardPlaceHoverMove={onCardPlaceHoverMove}
-        />);
+  //   const placeCard = shallow(
+  //       <PlaceCard
+  //         offer={offerProps}
+  //         onTitlePlaceClick={onTitlePlaceClick}
+  //         onCardPlaceHoverMove={onCardPlaceHoverMove}
+  //       />);
 
-    const titleClick = placeCard.find(`.place-card__name a`);
-    titleClick.props().onClick();
-    expect(onTitlePlaceClick.mock.calls.length).toBe(1);
-  });
+  //   const titleClick = placeCard.find(`.place-card__name a`);
+  //   titleClick.props().onClick();
+  //   expect(onTitlePlaceClick.mock.calls.length).toBe(1);
+  // });
 
   test(`Should PlaceCard onMouseEnter be pressed`, () => {
     const onTitlePlaceClick = jest.fn();

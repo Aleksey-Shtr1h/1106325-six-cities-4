@@ -56,6 +56,7 @@ it(`Should App render correctly 1`, () => {
           login={() => {}}
           userAuthData={host}
           pageApp={`test`}
+          routerOffer={() => {}}
         />
       </Provider>,
       {

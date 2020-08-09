@@ -33,6 +33,9 @@ const init = () => {
     store.dispatch(OperationData.loadCitiesOffers());
   })
   .then(() => {
+    store.dispatch(OperationData.loadNearbyOffers());
+  })
+  .then(() => {
     ReactDOM.render(
         <Provider store={store}>
           <WrapperApp/>

@@ -1,18 +1,24 @@
 import React from 'react';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Switch, Route, Router, Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+// import {bindActionCreators} from 'redux';
+import {history} from '../../history.js';
 
 import {Main} from '../main/main.jsx';
 import {Property} from '../property/property.jsx';
 import {SignIn} from '../sign-in/sign-in.jsx';
 import {WrapperHeaderSite} from '../header-site/header-site.jsx';
+import {Preload} from '../preload/preload.jsx';
 
 import {getChangeCity, getCityActive} from '../../store/data-reducer/data-selectors.js';
 import {getPlaceOffer, getPageApp} from '../../store/app-reducer/app-selectors.js';
-import {getAuthorizationStatus, getUserAuthData} from '../../store/user-reducer/user-selectors.js';
-import {OperationUser} from '../../store/user-reducer/user-reducer.js';
 
-import {HeaderType, PageApp} from '../../constans.js';
+import {OperationApp} from '../../store/app-reducer/app-reducer.js';
+import {getAuthorizationStatus, getUserAuthData} from '../../store/user-reducer/user-selectors.js';
+import {OperationUser, AuthorizationStatus} from '../../store/user-reducer/user-reducer.js';
+
+import {HeaderType, PageApp, AppRoute} from '../../constans.js';
+import {getOffer} from '../../utils/utils.js';
 
 import {propsTypeAll} from '../../propsType/propsType.js';
 
@@ -90,31 +96,97 @@ export class App extends React.PureComponent {
   }
 
   render() {
-    if (this.props.cityOffers === null) {
+    const {cityOffers, placeOffer, cityActive, authorizationStatus, login, userAuthData, routerOffer} = this.props;
+
+    if (cityOffers !== null) {
+      const {offers, placesCount, cityCoordinates} = cityOffers;
+
       return (
-        <React.Fragment>
+        <Router history={history}>
+          <Switch>
 
-          <div className="loading-network">
-            <h1 className="loading-network__title">Загрузка...</h1>
-          </div>
+            <Route exact path={AppRoute.MAIN}>
+              <WrapperHeaderSite
+                type={HeaderType.main}
+                userAuthData={userAuthData}
+                authorizationStatus={authorizationStatus}
+              >
+                <Main
+                  placesCount={placesCount}
+                  offers={offers}
+                  cityActive={cityActive}
+                  cityCoordinates={cityCoordinates}
+                />
+              </WrapperHeaderSite>
 
-        </React.Fragment>
+            </Route>
+
+            <Route exact path={AppRoute.PROPERTY}
+              render={(props) =>
+                <React.Fragment>
+
+                  {getOffer(placeOffer, props, routerOffer) &&
+
+                  <WrapperHeaderSite
+                    type={HeaderType.property}
+                    userAuthData={userAuthData}
+                    authorizationStatus={authorizationStatus}
+                  >
+                    <Property
+                      offer={placeOffer}
+                      reviews={placeOffer.reviews}
+                      offers={offers}
+                      cityCoordinates={cityCoordinates}
+                      authorizationStatus={authorizationStatus}
+                    />
+                  </WrapperHeaderSite> ||
+
+                  <Preload />
+                  }
+
+                </React.Fragment>
+              }
+            />
+
+            <Route exact path={AppRoute.LOGIN}>
+              {authorizationStatus !== AuthorizationStatus.AUTH &&
+
+              <WrapperHeaderSite
+                type={HeaderType.signIn}
+                userAuthData={userAuthData}
+                authorizationStatus={authorizationStatus}
+              >
+                <SignIn
+                  onSubmit={login}
+                />
+              </WrapperHeaderSite> ||
+
+              <Redirect to={AppRoute.MAIN} />
+              }
+            </Route>
+
+
+            <Route
+              render={() => (
+                <React.Fragment>
+                  <h1>
+                    404.
+                    <br />
+                    <small>Page not found</small>
+                  </h1>
+                  <Link to={`/`}>Go to main page</Link>
+                </React.Fragment>
+              )}
+            />
+
+
+          </Switch>
+        </Router>
       );
     }
 
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-component">
-            <Property
-              offer={this.props.cityOffers.offers[0]}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <Preload />
     );
   }
 }
@@ -134,6 +206,10 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(OperationUser.login(authData));
   },
+
+  routerOffer(data) {
+    dispatch(OperationApp.loadComments(data));
+  }
 });
 
 export const WrapperApp = connect(mapStateToProps, mapDispatchToProps)(App);
@@ -146,4 +222,5 @@ App.propTypes = {
   login: propsTypeAll.func,
   userAuthData: propsTypeAll.userAuthData,
   pageApp: propsTypeAll.string,
+  routerOffer: propsTypeAll.func,
 };

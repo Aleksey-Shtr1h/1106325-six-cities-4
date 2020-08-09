@@ -94,7 +94,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/property/1"
           onClick={[Function]}
         >
           test
@@ -192,7 +192,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/property/2"
           onClick={[Function]}
         >
           test
@@ -290,7 +290,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/property/3"
           onClick={[Function]}
         >
           test
@@ -395,7 +395,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/property/4"
           onClick={[Function]}
         >
           test

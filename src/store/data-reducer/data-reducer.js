@@ -26,6 +26,16 @@ export const OperationData = {
       });
   },
 
+  loadNearbyOffers: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        return adapterOffers(response.data);
+      });
+    // .then((AdapterOffers) => {
+    // console.log(AdapterOffers);
+    // });
+  },
+
 };
 
 export const dataReducer = (state = initialState, action) => {

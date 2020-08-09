@@ -21,6 +21,8 @@ export const ActionTypeApp = {
 
   DISABLED_FORM: `DISABLED_FORM`,
   RESET_FORM: `RESET_FORM`,
+
+  TEST: `TEST`,
 };
 
 export const ActionCreatorApp = {
@@ -65,4 +67,8 @@ export const ActionCreatorApp = {
     payload: {rating: 0, comment: ``},
   }),
 
+  test: () => ({
+    type: ActionTypeApp.TEST,
+    payload: null,
+  }),
 };

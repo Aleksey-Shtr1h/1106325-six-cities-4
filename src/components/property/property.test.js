@@ -1,10 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
 import {Property} from './property.jsx';
 import {MapCities} from '../map-cities/map-cities.jsx';
+
+import {history} from '../../history.js';
 
 import {testProps} from "../../test/offersProps.js";
 
@@ -32,16 +35,18 @@ it(`Should Property render correctly`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store={store}>
-        <Property
-          offer={testProps.offerProps}
-          reviews={testProps.offerProps.reviews}
-          offers={testProps.offersProps}
-          onTitlePlaceClick={() => {}}
-          cityCoordinates={[1, 2]}
-          authorizationStatus={`test`}
-        />
-      </Provider>,
+      <Router history={history}>
+        <Provider store={store}>
+          <Property
+            offer={testProps.offerProps}
+            reviews={testProps.offerProps.reviews}
+            offers={testProps.offersProps}
+            onTitlePlaceClick={() => {}}
+            cityCoordinates={[1, 2]}
+            authorizationStatus={`test`}
+          />
+        </Provider>
+      </Router>,
       {
         createNodeMock: () => {
           return document.createElement(`div`);

@@ -17,14 +17,17 @@ exports[`Should HeaderSite render correctly 1 1`] = `
           className="header__left"
         >
           <a
-            className="header__logo-link header__logo-link--active"
+            aria-current="page"
+            className="header__logo-link header__logo-link--active active"
+            href="/"
             onClick={[Function]}
+            style={Object {}}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -39,8 +42,10 @@ exports[`Should HeaderSite render correctly 1 1`] = `
               className="header__nav-item user"
             >
               <a
+                aria-current={null}
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -52,7 +57,6 @@ exports[`Should HeaderSite render correctly 1 1`] = `
                 />
                 <span
                   className="header__user-name user__name"
-                  onClick={[Function]}
                 >
                   test
                 </span>
