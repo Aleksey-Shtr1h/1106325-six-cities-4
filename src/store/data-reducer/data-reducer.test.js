@@ -23,6 +23,9 @@ it(`Reducer without additional parameters should return initial state`, () => {
     cityActive: null,
     activeSort: `popular`,
     offersActive: null,
+    nearbyOffers: null,
+    nearbyCity: null,
+    favoritePlaces: null,
   });
 });
 

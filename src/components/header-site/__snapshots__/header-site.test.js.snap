@@ -17,11 +17,9 @@ exports[`Should HeaderSite render correctly 1 1`] = `
           className="header__left"
         >
           <a
-            aria-current="page"
-            className="header__logo-link header__logo-link--active active"
+            className="header__logo-link header__logo-link--active"
             href="/"
             onClick={[Function]}
-            style={Object {}}
           >
             <img
               alt="6 cities logo"
@@ -42,7 +40,6 @@ exports[`Should HeaderSite render correctly 1 1`] = `
               className="header__nav-item user"
             >
               <a
-                aria-current={null}
                 className="header__nav-link header__nav-link--profile"
                 href="/login"
                 onClick={[Function]}

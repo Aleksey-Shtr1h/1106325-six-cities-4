@@ -22,4 +22,5 @@ export const AppRoute = {
   MAIN: `/`,
   PROPERTY: `/property/:id`,
   LOGIN: `/login`,
+  FAVORITE: `/favorite`,
 };

@@ -17,11 +17,9 @@ exports[`Should App render correctly 1 1`] = `
           className="header__left"
         >
           <a
-            aria-current="page"
-            className="header__logo-link header__logo-link--active active"
+            className="header__logo-link header__logo-link--active"
             href="/"
             onClick={[Function]}
-            style={Object {}}
           >
             <img
               alt="6 cities logo"
@@ -42,7 +40,6 @@ exports[`Should App render correctly 1 1`] = `
               className="header__nav-item user"
             >
               <a
-                aria-current={null}
                 className="header__nav-link header__nav-link--profile"
                 href="/login"
                 onClick={[Function]}
@@ -217,6 +214,7 @@ exports[`Should App render correctly 1 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -315,6 +313,7 @@ exports[`Should App render correctly 1 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -413,6 +412,7 @@ exports[`Should App render correctly 1 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -518,6 +518,7 @@ exports[`Should App render correctly 1 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg

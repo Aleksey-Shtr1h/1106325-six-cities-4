@@ -60,7 +60,6 @@ export class MapCities extends React.PureComponent {
 
 
   componentDidMount() {
-
     this._centerCity = this.props.cityCoordinates;
     this._mapPlaces = getMapPlace(this.props.offers, this.props.offerStaticId);
 

@@ -36,6 +36,9 @@ export const ActionTypeData = {
   LOAD_CITY_ACTIVE: `LOAD_CITY_ACTIVE`,
   LOAD_OFFERS_ACTIVE: `LOAD_OFFERS_ACTIVE`,
   LOAD_CITIES_ALL: `LOAD_CITIES_ALL`,
+  LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
+  LOAD_NEARBY_CITIES: `LOAD_NEARBY_CITIES`,
+  LOAD_FAVORITE_PLACES: `LOAD_FAVORITE_PLACES`,
 };
 
 export const ActionCreatorData = {
@@ -84,6 +87,27 @@ export const ActionCreatorData = {
     return {
       type: ActionTypeData.LOAD_CITIES_ALL,
       payload: citiesOffers,
+    };
+  },
+
+  loadNearbyOffers: (cityOffers) => {
+    return {
+      type: ActionTypeData.LOAD_NEARBY_OFFERS,
+      payload: cityOffers.offers,
+    };
+  },
+
+  loadNearbyCities: (citiesName) => {
+    return {
+      type: ActionTypeData.LOAD_NEARBY_CITIES,
+      payload: citiesName,
+    };
+  },
+
+  loadFavoritePlaces: (places) => {
+    return {
+      type: ActionTypeData.LOAD_FAVORITE_PLACES,
+      payload: places,
     };
   },
 

@@ -1,20 +1,28 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import {ErrorNetwork} from '../error-network/error-network.jsx';
-import {ActionCreatorUser} from '../../store/user-action/user-action.js';
+
 import {ActionCreatorApp} from '../../store/app-action/app-action.js';
-import {getError} from '../../store/user-reducer/user-selectors.js';
+import {AuthorizationStatus} from '../../store/user-reducer/user-reducer.js';
+import {getError, getActiveError} from '../../store/user-reducer/user-selectors.js';
+import {ActionCreatorUser} from '../../store/user-action/user-action.js';
 
 import {AppRoute} from '../../constans.js';
 
 import {propsTypeAll} from '../../propsType/propsType.js';
 
-export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBlock, activeError}) => {
-  // console.log(error, type);
+export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBlock, activeError, authorizationStatus}) => {
+
   const userLogo = userAuthData[`avatar_url`] ? `url(https://htmlacademy-react-3.appspot.com/six-cities${userAuthData[`avatar_url`]})` : `url(../img/avatar.svg)`;
+
+  let activeRouteLogin = AppRoute.LOGIN;
+
+  if (authorizationStatus === AuthorizationStatus.AUTH) {
+    activeRouteLogin = AppRoute.FAVORITE;
+  }
 
   return (
     <div className={`page page--gray ${type}`}>
@@ -29,7 +37,7 @@ export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBloc
           }
           <div className="header__wrapper">
             <div className="header__left">
-              <NavLink
+              <Link
                 className="header__logo-link header__logo-link--active"
                 to={AppRoute.MAIN}
               >
@@ -40,12 +48,12 @@ export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBloc
                   width="81"
                   height="41"
                 />
-              </NavLink>
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <NavLink className="header__nav-link header__nav-link--profile" to={AppRoute.LOGIN}
+                  <Link className="header__nav-link header__nav-link--profile" to={activeRouteLogin}
                   >
                     <div
                       className="header__avatar-wrapper user__avatar-wrapper"
@@ -57,7 +65,7 @@ export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBloc
                     >
                       {userAuthData.email}
                     </span>
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -72,7 +80,7 @@ export const HeaderSite = ({type, children, userAuthData, error, onHideErrorBloc
 const mapStateToProps = (state) => {
   return {
     error: getError(state),
-    activeError: state.USER.activeError,
+    activeError: getActiveError(state),
   };
 };
 

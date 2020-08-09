@@ -27,6 +27,10 @@ export const getActiveSort = (state) => {
   return state[NAME_SPACE].activeSort;
 };
 
+export const getNearbyOffers = (state) => {
+  return state[NAME_SPACE].nearbyOffers;
+};
+
 export const getChangeCity = createSelector(
     getCityOffers,
     getCityActive,

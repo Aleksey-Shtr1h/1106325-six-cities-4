@@ -21,16 +21,18 @@ export const MainOffersAvailable = ({placesCount, cityActive, offers, cityCoordi
         />
 
         <div className="cities__places-list places__list tabs__content">
-          {<WrapperPlacesList />}
+          <WrapperPlacesList
+            offersActive={offers}
+          />
         </div>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          {<WrapperMapCities
+          <WrapperMapCities
             offers={offers}
             offerStaticId={cityMap}
             cityCoordinates={cityCoordinates}
-          />}
+          />
         </section>
       </div>
     </div>

@@ -14,6 +14,7 @@ test(`Should PlaceCard render correctly`, () => {
           offer={testProps.offerProps}
           onTitlePlaceClick={() => {}}
           onCardPlaceHoverMove={() => {}}
+          onFavoriteBtnClick={() => {}}
         />
       </Router>
   ).toJSON();

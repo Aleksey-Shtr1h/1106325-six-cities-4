@@ -14,6 +14,7 @@ test(`Should PlacesList render correctly`, () => {
           offersActive={testProps.offersProps}
           onTitlePlaceClick = {() => {}}
           onCardPlaceHoverMove = {() => {}}
+          onFavoriteBtnClick={() => {}}
         />
       </Router>
   ).toJSON();

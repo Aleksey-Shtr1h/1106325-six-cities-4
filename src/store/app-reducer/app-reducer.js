@@ -35,9 +35,9 @@ export const OperationApp = {
       });
     });
 
-    if (`offers` in citySearch !== true) {
-      return false;
-    }
+    // if (`offers` in citySearch !== true) {
+    //   return false;
+    // }
 
     citySearch.offers.forEach((offer) => {
       offersAll.push(offer);
@@ -92,7 +92,7 @@ export const appReducer = (state = initialState, action) => {
     case ActionTypeApp.PLACE_TITLE_CLICK:
       return extend(state, {
         placeOffer: action.payload,
-        // pageApp: PageApp.PROPERTY,
+        pageApp: PageApp.PROPERTY,
       });
 
     case ActionTypeApp.CHANGE_PIN_MAP_HOVER_CARD:

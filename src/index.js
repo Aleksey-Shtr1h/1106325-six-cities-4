@@ -33,7 +33,7 @@ const init = () => {
     store.dispatch(OperationData.loadCitiesOffers());
   })
   .then(() => {
-    store.dispatch(OperationData.loadNearbyOffers());
+    store.dispatch(OperationData.loadFavorite());
   })
   .then(() => {
     ReactDOM.render(

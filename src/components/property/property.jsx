@@ -1,14 +1,27 @@
 import React from "react";
-
-import {getModifiedRatingValue} from '../../utils/utils.js';
-import {propsTypeAll} from "../../propsType/propsType.js";
+import {connect} from 'react-redux';
 
 import {ReviewsList} from '../reviews-list/reviews-list.jsx';
 import {WrapperMapCities} from '../map-cities/map-cities.jsx';
 import {WrapperPlacesList} from "../places-list/places-list.jsx";
+import {Preload} from '../preload/preload.jsx';
 
-export const Property = ({offer, reviews, offers, cityCoordinates, authorizationStatus}) => {
+import {getNearbyOffers} from '../../store/data-reducer/data-selectors.js';
+
+import {getModifiedRatingValue} from '../../utils/utils.js';
+import {propsTypeAll} from "../../propsType/propsType.js";
+
+export const Property = ({offer, reviews, cityCoordinates, authorizationStatus, nearbyOffers}) => {
   const {id, isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = offer;
+
+  if (nearbyOffers === null) {
+    return (
+      <Preload />
+    );
+  }
+
+  const nearbyOffersMap = nearbyOffers.slice();
+  nearbyOffersMap.push(offer);
 
   return (
 
@@ -143,8 +156,8 @@ export const Property = ({offer, reviews, offers, cityCoordinates, authorization
           </div>
         </div>
         <section className="property__map map">
-          {<WrapperMapCities
-            offers={offers}
+          {nearbyOffers && <WrapperMapCities
+            offers={nearbyOffersMap}
             offerStaticId={id}
             cityCoordinates={cityCoordinates}
           />}
@@ -154,7 +167,9 @@ export const Property = ({offer, reviews, offers, cityCoordinates, authorization
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            {<WrapperPlacesList />}
+            {nearbyOffers && <WrapperPlacesList
+              offersActive={nearbyOffers}
+            />}
           </div>
         </section>
       </div>
@@ -163,11 +178,20 @@ export const Property = ({offer, reviews, offers, cityCoordinates, authorization
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    nearbyOffers: getNearbyOffers(state),
+  };
+};
+
+export const WrapperProperty = connect(mapStateToProps, null)(Property);
+
 Property.propTypes = {
   offer: propsTypeAll.offer,
   reviews: propsTypeAll.reviews,
   offers: propsTypeAll.offers,
   cityCoordinates: propsTypeAll.cityCoordinates,
   authorizationStatus: propsTypeAll.stringAndUndefined,
+  nearbyOffers: propsTypeAll.offers,
 };
 

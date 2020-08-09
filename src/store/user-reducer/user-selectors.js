@@ -13,3 +13,7 @@ export const getUserAuthData = (state) => {
 export const getError = (state) => {
   return state[NAME_SPACE].error;
 };
+
+export const getActiveError = (state) => {
+  return state[NAME_SPACE].activeError;
+};

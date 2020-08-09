@@ -44,6 +44,7 @@ it(`Should Property render correctly`, () => {
             onTitlePlaceClick={() => {}}
             cityCoordinates={[1, 2]}
             authorizationStatus={`test`}
+            nearbyOffers={null}
           />
         </Provider>
       </Router>,

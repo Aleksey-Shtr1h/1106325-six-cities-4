@@ -70,11 +70,15 @@ export const hostData = {
 
 
 export const propsTypeAll = {
-  citiesAll: PropTypes.arrayOf(
-      PropTypes.shape(
-          propsTypeCityOffers)
-      .isRequired
-  ).isRequired,
+  citiesAll: PropTypes.oneOfType([
+    PropTypes.oneOf([null]).isRequired,
+    PropTypes.arrayOf(
+        PropTypes.shape(
+            propsTypeCityOffers)
+        .isRequired
+    ).isRequired,
+
+  ]),
   cityOffers: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
     PropTypes.shape(propsTypeCityOffers).isRequired,
@@ -157,6 +161,11 @@ export const propsTypeAll = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+
+  favoritePlacesAndNull: PropTypes.oneOfType([
+    PropTypes.bool.isRequired,
+    PropTypes.oneOf([null]).isRequired,
+  ]),
 
   userAuthData: PropTypes.shape(hostData).isRequired,
 

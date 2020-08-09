@@ -25,6 +25,7 @@ it(`Reducer should set in property null and active offer`, () => {
     payload: placeOfferActive,
   })).toEqual({
     placeOffer: placeOfferActive,
+    pageApp: `property`,
   });
 });
 

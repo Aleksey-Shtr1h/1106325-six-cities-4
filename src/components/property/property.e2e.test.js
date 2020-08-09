@@ -21,6 +21,7 @@ test(`Should Property button be pressed`, () => {
         onTitlePlaceClick={onTitlePlaceClick}
         cityCoordinates={[1, 2]}
         authorizationStatus={`test`}
+        nearbyOffers={null}
       />
   );
 
