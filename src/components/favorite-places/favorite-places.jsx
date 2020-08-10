@@ -1,14 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {Preload} from '../preload/preload.jsx';
+
+import {OperationData} from '../../store/data-reducer/data-reducer.js';
 
 import {AppRoute} from '../../constans.js';
 import {getModifiedRatingValue} from "../../utils/utils.js";
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const FavoritePlaces = ({favoritePlaces}) => {
+export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick}) => {
 
   if (favoritePlaces === null) {
     return (
@@ -61,7 +64,12 @@ export const FavoritePlaces = ({favoritePlaces}) => {
                               <b className="place-card__price-value">&euro;{offer.price}</b>
                               <span className="place-card__price-text">&#47;&nbsp;night</span>
                             </div>
-                            <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+                            <button
+
+                              className={`place-card__bookmark-button place-card__bookmark-button${offer.isFavorite ? `--active` : ``} button`}
+                              type="button"
+                              onClick={() => onFavoriteBtnClick(offer, favoriteLocations.cityName)}
+                            >
                               <svg className="place-card__bookmark-icon" width="18" height="19">
                                 <use xlinkHref="#icon-bookmark"></use>
                               </svg>
@@ -110,13 +118,15 @@ export const FavoritePlaces = ({favoritePlaces}) => {
 //   };
 // };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
+const mapDispatchToProps = (dispatch) => ({
 
-//   };
-// };
+  onFavoriteBtnClick(offer, cityActive) {
+    dispatch(OperationData.postFavorite(offer, cityActive));
+  },
 
-// export const WrapperHeaderSite = connect(mapStateToProps, mapDispatchToProps)(FavoritePlaces);
+});
+
+export const WrapperFavoritePlaces = connect(null, mapDispatchToProps)(FavoritePlaces);
 
 FavoritePlaces.propTypes = {
   favoritePlaces: propsTypeAll.citiesAll,

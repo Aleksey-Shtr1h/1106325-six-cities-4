@@ -1,7 +1,11 @@
+import history from '../../history';
+import {AppRoute} from '../../constans.js';
+
 import {ActionTypeUser, ActionCreatorUser} from '../user-action/user-action.js';
 import {ActionCreatorApp} from '../app-action/app-action.js';
 
 import {PageApp} from '../../constans.js';
+
 
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -40,6 +44,7 @@ export const OperationUser = {
         dispatch(ActionCreatorUser.getError({status: null}));
       })
       .catch((err) => {
+        history.push(`${AppRoute.LOGIN}`);
         dispatch(ActionCreatorUser.getError(err.request));
       });
   },

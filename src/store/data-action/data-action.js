@@ -24,6 +24,23 @@ export const getSortedOffers = (offersActive, sortType, offersOriginal) => {
   return sortedOffers;
 };
 
+const getLoadCities = (citiesOffers, item) => {
+  console.log(citiesOffers[0].offers[0]);
+  const newArr = citiesOffers.slice(0, citiesOffers.length);
+  if (item) {
+    const replacedIndex = citiesOffers.findIndex((it) => it.cityName === item.cityName);
+
+    const replacedIndex2 = citiesOffers[replacedIndex].offers.findIndex((it) => it.id === item.offers[0].id);
+
+    // console.log(item.offers[0]);
+
+    newArr[replacedIndex].offers.splice(replacedIndex2, 1, item.offers[0]);
+
+    newArr.splice(replacedIndex, 1, item);
+  }
+  return newArr;
+}
+
 export const getOffersActive = (city, citiesAll) => {
   return citiesAll.find((cityOffer) => cityOffer.cityName === city);
 };
@@ -83,10 +100,10 @@ export const ActionCreatorData = {
     };
   },
 
-  loadCitiesAll: (citiesOffers) => {
+  loadCitiesAll: (citiesOffers, item) => {
     return {
       type: ActionTypeData.LOAD_CITIES_ALL,
-      payload: citiesOffers,
+      payload: getLoadCities(citiesOffers, item),
     };
   },
 

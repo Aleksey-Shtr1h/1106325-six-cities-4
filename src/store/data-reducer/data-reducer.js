@@ -1,5 +1,6 @@
 import {extend} from '../../utils/utils.js';
 import {ActionTypeData, ActionCreatorData} from '../data-action/data-action.js';
+import {ActionCreatorApp} from '../app-action/app-action.js';
 import {adapterOffers} from '../../adapter/adapter.js';
 
 const initialState = {
@@ -55,19 +56,34 @@ export const OperationData = {
     });
   },
 
-  postFavorite: (offer) => (dispatch, getState, api) => {
+  postFavorite: (offer, cityActive) => (dispatch, getState, api) => {
     const id = offer.id;
     const activeFavorite = offer.isFavorite;
+    // console.log(activeFavorite);
     const status = activeFavorite ? 0 : 1;
+    // console.log(status);
 
     return api.post(`/favorite/${id}/${status}`)
     .then((response) => {
+
       return adapterOffers([response.data]);
     })
     .then((AdapterOffers) => {
-      // console.log(AdapterOffers);
-      dispatch(ActionCreatorData.loadFavoritePlaces(AdapterOffers.cityOffers));
-    });
+      // console.log(getState().DATA.citiesAll);
+      const result = getState().DATA.citiesAll.slice();
+
+      const city = getState().DATA.citiesAll.map((city) => {
+        if (cityActive === city.cityName) {
+          // console.log('yes');
+        }
+      })
+
+      dispatch(ActionCreatorData.loadCitiesAll(getState().DATA.citiesAll, AdapterOffers.cityOffers[0]));
+    })
+
+    // .then((qwer) => {
+
+    // });
     // .catch((err) => {
     //   console.log(err);
     //   // dispatch(ActionCreatorUser.getError(err.request));

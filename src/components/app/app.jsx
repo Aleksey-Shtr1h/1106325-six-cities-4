@@ -8,7 +8,7 @@ import {Main} from '../main/main.jsx';
 import {WrapperHeaderSite} from '../header-site/header-site.jsx';
 import {WrapperProperty} from '../property/property.jsx';
 import {SignIn} from '../sign-in/sign-in.jsx';
-import {FavoritePlaces} from '../favorite-places/favorite-places.jsx';
+import {WrapperFavoritePlaces} from '../favorite-places/favorite-places.jsx';
 import {Preload} from '../preload/preload.jsx';
 
 import {getChangeCity, getCityActive} from '../../store/data-reducer/data-selectors.js';
@@ -176,7 +176,7 @@ export class App extends React.PureComponent {
                 userAuthData={userAuthData}
                 authorizationStatus={authorizationStatus}
               >
-                <FavoritePlaces
+                <WrapperFavoritePlaces
                   favoritePlaces={favoritePlaces}
                 />
 

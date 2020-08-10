@@ -90,12 +90,14 @@ export const appReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case ActionTypeApp.PLACE_TITLE_CLICK:
+      console.log(action.payload);
       return extend(state, {
         placeOffer: action.payload,
-        pageApp: PageApp.PROPERTY,
+        // pageApp: PageApp.PROPERTY,
       });
 
     case ActionTypeApp.CHANGE_PIN_MAP_HOVER_CARD:
+
       return extend(state, {
         offerId: action.payload,
       });
