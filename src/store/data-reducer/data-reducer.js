@@ -56,34 +56,34 @@ export const OperationData = {
     });
   },
 
-  postFavorite: (offer, cityActive) => (dispatch, getState, api) => {
+  postFavorite: (offer, cityActive, citiesAll) => (dispatch, getState, api) => {
     const id = offer.id;
     const activeFavorite = offer.isFavorite;
     // console.log(activeFavorite);
     const status = activeFavorite ? 0 : 1;
-    // console.log(status);
+    console.log(status);
 
     return api.post(`/favorite/${id}/${status}`)
     .then((response) => {
-
       return adapterOffers([response.data]);
     })
     .then((AdapterOffers) => {
       // console.log(getState().DATA.citiesAll);
       const result = getState().DATA.citiesAll.slice();
 
-      const city = getState().DATA.citiesAll.map((city) => {
+      citiesAll.forEach((city) => {
         if (cityActive === city.cityName) {
-          // console.log('yes');
+          city.offers.forEach((offer) => {
+            if (id === offer.id) {
+              offer.isFavorite = !activeFavorite;
+            }
+          })
         }
       })
 
-      dispatch(ActionCreatorData.loadCitiesAll(getState().DATA.citiesAll, AdapterOffers.cityOffers[0]));
+      dispatch(ActionCreatorData.loadCitiesAll(citiesAll));
+      dispatch(ActionCreatorData.loadFavoritePlaces(AdapterOffers.cityOffers));
     })
-
-    // .then((qwer) => {
-
-    // });
     // .catch((err) => {
     //   console.log(err);
     //   // dispatch(ActionCreatorUser.getError(err.request));

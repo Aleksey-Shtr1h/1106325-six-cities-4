@@ -16,7 +16,7 @@ export class PlacesList extends PureComponent {
   }
 
   render() {
-    const {onTitlePlaceClick, offersActive, onCardPlaceHoverMove, onFavoriteBtnClick, cityActive} = this.props;
+    const {onTitlePlaceClick, offersActive, onCardPlaceHoverMove, onFavoriteBtnClick, cityActive, citiesAll} = this.props;
 
     return (
       <React.Fragment>
@@ -29,6 +29,7 @@ export class PlacesList extends PureComponent {
             onCardPlaceHoverMove={onCardPlaceHoverMove}
             onFavoriteBtnClick={onFavoriteBtnClick}
             cityActive={cityActive}
+            citiesAll={citiesAll}
           />
         )}
       </React.Fragment>
@@ -39,6 +40,7 @@ export class PlacesList extends PureComponent {
 const mapStateToProps = (state) => {
   return {
     cityActive: state.DATA.cityActive,
+    citiesAll: state.DATA.citiesAll,
   };
 };
 
@@ -52,8 +54,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreatorApp.actionChangePinMapHoverCard(offer));
   },
 
-  onFavoriteBtnClick(offer, cityActive) {
-    dispatch(OperationData.postFavorite(offer, cityActive));
+  onFavoriteBtnClick(offer, cityActive, citiesAll) {
+    dispatch(OperationData.postFavorite(offer, cityActive, citiesAll));
   },
 });
 

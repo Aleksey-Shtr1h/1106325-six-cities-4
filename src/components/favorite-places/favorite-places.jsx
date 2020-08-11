@@ -11,7 +11,7 @@ import {getModifiedRatingValue} from "../../utils/utils.js";
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick}) => {
+export const FavoritePlaces = ({favoritePlaces, citiesAll, onFavoriteBtnClick}) => {
 
   if (favoritePlaces === null) {
     return (
@@ -68,7 +68,7 @@ export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick}) => {
 
                               className={`place-card__bookmark-button place-card__bookmark-button${offer.isFavorite ? `--active` : ``} button`}
                               type="button"
-                              onClick={() => onFavoriteBtnClick(offer, favoriteLocations.cityName)}
+                              onClick={() => onFavoriteBtnClick(offer, favoriteLocations.cityName, citiesAll)}
                             >
                               <svg className="place-card__bookmark-icon" width="18" height="19">
                                 <use xlinkHref="#icon-bookmark"></use>
@@ -112,21 +112,21 @@ export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick}) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    citiesAll: state.DATA.citiesAll,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
 
-  onFavoriteBtnClick(offer, cityActive) {
-    dispatch(OperationData.postFavorite(offer, cityActive));
+  onFavoriteBtnClick(offer, cityActive, citiesAll) {
+    dispatch(OperationData.postFavorite(offer, cityActive, citiesAll));
   },
 
 });
 
-export const WrapperFavoritePlaces = connect(null, mapDispatchToProps)(FavoritePlaces);
+export const WrapperFavoritePlaces = connect(mapStateToProps, mapDispatchToProps)(FavoritePlaces);
 
 FavoritePlaces.propTypes = {
   favoritePlaces: propsTypeAll.citiesAll,

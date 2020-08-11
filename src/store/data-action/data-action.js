@@ -24,20 +24,20 @@ export const getSortedOffers = (offersActive, sortType, offersOriginal) => {
   return sortedOffers;
 };
 
-const getLoadCities = (citiesOffers, item) => {
-  console.log(citiesOffers[0].offers[0]);
+const getLoadCities = (citiesOffers) => {
+  // console.log(citiesOffers[0].offers[0]);
   const newArr = citiesOffers.slice(0, citiesOffers.length);
-  if (item) {
-    const replacedIndex = citiesOffers.findIndex((it) => it.cityName === item.cityName);
+//   if (item) {
+//     const replacedIndex = citiesOffers.findIndex((it) => it.cityName === item.cityName);
 
-    const replacedIndex2 = citiesOffers[replacedIndex].offers.findIndex((it) => it.id === item.offers[0].id);
+//     const replacedIndex2 = citiesOffers[replacedIndex].offers.findIndex((it) => it.id === item.offers[0].id);
 
-    // console.log(item.offers[0]);
+//     // console.log(item.offers[0]);
 
-    newArr[replacedIndex].offers.splice(replacedIndex2, 1, item.offers[0]);
+//     newArr[replacedIndex].offers.splice(replacedIndex2, 1, item.offers[0]);
 
-    newArr.splice(replacedIndex, 1, item);
-  }
+//     newArr.splice(replacedIndex, 1, item);
+//   }
   return newArr;
 }
 
@@ -100,10 +100,10 @@ export const ActionCreatorData = {
     };
   },
 
-  loadCitiesAll: (citiesOffers, item) => {
+  loadCitiesAll: (citiesOffers) => {
     return {
       type: ActionTypeData.LOAD_CITIES_ALL,
-      payload: getLoadCities(citiesOffers, item),
+      payload: getLoadCities(citiesOffers),
     };
   },
 
