@@ -15,6 +15,9 @@ test(`Should PlaceCard render correctly`, () => {
           onTitlePlaceClick={() => {}}
           onCardPlaceHoverMove={() => {}}
           onFavoriteBtnClick={() => {}}
+          cityActive={undefined}
+          citiesAll={testProps.cityOffersArrayProps}
+          nearbyOffers={testProps.cityOffersProps}
         />
       </Router>
   ).toJSON();

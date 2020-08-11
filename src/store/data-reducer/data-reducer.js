@@ -1,17 +1,20 @@
+import {history} from '../../history';
+import {AppRoute} from '../../constans.js';
+
 import {extend} from '../../utils/utils.js';
 import {ActionTypeData, ActionCreatorData} from '../data-action/data-action.js';
+import {ActionCreatorUser} from '../user-action/user-action.js';
 
 import {adapterOffers} from '../../adapter/adapter.js';
 
 const initialState = {
-  citiesAll: null, // данные приложения с сервера
-  nameCities: null, // данные приложения с сервера
-  cityOffers: null, // данные приложения с сервера
-  cityActive: null, // данные приложения с сервера
-  offersActive: null, // данные приложения с сервера
+  citiesAll: null,
+  nameCities: null,
+  cityOffers: null,
+  cityActive: null,
+  offersActive: null,
   activeSort: `popular`,
   nearbyOffers: null,
-  nearbyAdapterData: null,
   nearbyCity: null,
 
   favoritePlaces: null,
@@ -56,18 +59,18 @@ export const OperationData = {
     });
   },
 
-  postFavorite: (offer, cityActive, citiesAll, nearbyAdapterData) => (dispatch, getState, api) => {
+  postFavorite: (offer, cityActive, citiesAll, nearbyOffers = null) => (dispatch, getState, api) => {
     const id = offer.id;
     const activeFavorite = offer.isFavorite;
     const status = activeFavorite ? 0 : 1;
-    console.log(nearbyAdapterData);
+
+    // console.log(status);
 
     return api.post(`/favorite/${id}/${status}`)
     .then((response) => {
       return adapterOffers([response.data]);
     })
-    .then((adapter) => {
-
+    .then(() => {
       citiesAll.forEach((city) => {
         if (cityActive === city.cityName) {
           city.offers.forEach((offerState) => {
@@ -79,14 +82,29 @@ export const OperationData = {
       });
 
       dispatch(ActionCreatorData.loadCitiesAll(citiesAll.slice()));
-      dispatch(ActionCreatorData.loadFavoritePlaces(adapter.cityOffers));
-      dispatch(ActionCreatorData.loadNearbyOffers(nearbyAdapterData));
+    })
+    .then(() => {
+      if (nearbyOffers) {
+        [nearbyOffers].forEach((city) => {
+          if (cityActive === city.cityName) {
+            city.offers.forEach((offerState) => {
+              if (id === offerState.id) {
+                offerState.isFavorite = !activeFavorite;
+              }
+            });
+          }
+        });
+      }
 
+      offer.isFavorite = !activeFavorite;
+
+      dispatch(ActionCreatorData.loadNearbyOffers(nearbyOffers));
+      dispatch(OperationData.loadFavorite());
+    })
+    .catch((err) => {
+      history.push(`${AppRoute.LOGIN}`);
+      dispatch(ActionCreatorUser.getError(err.request));
     });
-    // .catch((err) => {
-    //   console.log(err);
-    //   // dispatch(ActionCreatorUser.getError(err.request));
-    // });
   },
 
 };
@@ -135,8 +153,7 @@ export const dataReducer = (state = initialState, action) => {
 
     case ActionTypeData.LOAD_NEARBY_OFFERS:
       return extend(state, {
-        nearbyOffers: action.payload.offers,
-        nearbyAdapterData: action.payload,
+        nearbyOffers: action.payload,
       });
 
     case ActionTypeData.LOAD_NEARBY_CITIES:

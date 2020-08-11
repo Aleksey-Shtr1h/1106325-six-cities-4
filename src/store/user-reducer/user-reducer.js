@@ -1,4 +1,4 @@
-import history from '../../history';
+import {history} from '../../history';
 import {AppRoute} from '../../constans.js';
 
 import {ActionTypeUser, ActionCreatorUser} from '../user-action/user-action.js';

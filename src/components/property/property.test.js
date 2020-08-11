@@ -12,6 +12,7 @@ import {history} from '../../history.js';
 import {testProps} from "../../test/offersProps.js";
 
 const mockStore = configureStore([]);
+const nearbyOffers = {offers: null};
 
 it(`Should Property render correctly`, () => {
   MapCities.prototype.componentDidMount = jest.fn();
@@ -44,7 +45,10 @@ it(`Should Property render correctly`, () => {
             onTitlePlaceClick={() => {}}
             cityCoordinates={[1, 2]}
             authorizationStatus={`test`}
-            nearbyOffers={null}
+            nearbyOffers={nearbyOffers}
+            onFavoriteBtnClick={() => {}}
+            cityActive={`test`}
+            citiesAll={testProps.cityOffersArrayProps}
           />
         </Provider>
       </Router>,

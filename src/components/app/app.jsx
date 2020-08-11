@@ -136,7 +136,6 @@ export class App extends React.PureComponent {
                   >
                     <WrapperProperty
                       offer={placeOffer}
-                      reviews={placeOffer.reviews}
                       offers={offers}
                       cityCoordinates={cityCoordinates}
                       authorizationStatus={authorizationStatus}
@@ -239,7 +238,7 @@ const mapDispatchToProps = (dispatch) => ({
 export const WrapperApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
-  cityOffers: propsTypeAll.cityOffers,
+  cityOffers: propsTypeAll.cityOffersAndNull,
   placeOffer: propsTypeAll.placeOffer,
   cityActive: propsTypeAll.cityActive,
   authorizationStatus: propsTypeAll.string,

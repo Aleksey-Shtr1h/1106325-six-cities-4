@@ -6,22 +6,26 @@ import {WrapperMapCities} from '../map-cities/map-cities.jsx';
 import {WrapperPlacesList} from "../places-list/places-list.jsx";
 import {Preload} from '../preload/preload.jsx';
 
+import {OperationData} from '../../store/data-reducer/data-reducer.js';
 import {getNearbyOffers} from '../../store/data-reducer/data-selectors.js';
 
 import {getModifiedRatingValue} from '../../utils/utils.js';
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const Property = ({offer, reviews, cityCoordinates, authorizationStatus, nearbyOffers}) => {
-  const {id, isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser} = offer;
+export const Property = ({offer, cityCoordinates, authorizationStatus, nearbyOffers, onFavoriteBtnClick, cityActive, citiesAll}) => {
+  const {id, isCheckedPremium, images, price, ratingStars, titleCard, typeCard, descriptions, numberBadrooms, numberGuests, householdItems, infoUser, isFavorite, reviews} = offer;
 
-  if (nearbyOffers === null) {
+  const {offers} = nearbyOffers;
+
+  if (!offers) {
     return (
       <Preload />
     );
   }
 
-  const nearbyOffersMap = nearbyOffers.slice();
+  const nearbyOffersMap = offers.slice();
   nearbyOffersMap.push(offer);
+  const activeFavorite = isFavorite ? `--active` : ``;
 
   return (
 
@@ -59,8 +63,9 @@ export const Property = ({offer, reviews, cityCoordinates, authorizationStatus, 
               </h1>
 
               <button
-                className="property__bookmark-button button property__bookmark-button--active"
+                className={`property__bookmark-button button property__bookmark-button${activeFavorite}`}
                 type="button"
+                onClick={() => onFavoriteBtnClick(offer, cityActive, citiesAll, nearbyOffers)}
               >
                 <svg className="place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
@@ -168,7 +173,9 @@ export const Property = ({offer, reviews, cityCoordinates, authorizationStatus, 
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
             {nearbyOffers && <WrapperPlacesList
-              offersActive={nearbyOffers}
+              offersActive={offers}
+              nearbyOffers={nearbyOffers}
+              onFavoriteBtnClick={onFavoriteBtnClick}
             />}
           </div>
         </section>
@@ -181,10 +188,19 @@ export const Property = ({offer, reviews, cityCoordinates, authorizationStatus, 
 const mapStateToProps = (state) => {
   return {
     nearbyOffers: getNearbyOffers(state),
+    cityActive: state.DATA.cityActive,
+    citiesAll: state.DATA.citiesAll,
   };
 };
 
-export const WrapperProperty = connect(mapStateToProps, null)(Property);
+const mapDispatchToProps = (dispatch) => ({
+
+  onFavoriteBtnClick(offer, cityActive, citiesAll, nearbyOffers) {
+    dispatch(OperationData.postFavorite(offer, cityActive, citiesAll, nearbyOffers));
+  },
+});
+
+export const WrapperProperty = connect(mapStateToProps, mapDispatchToProps)(Property);
 
 Property.propTypes = {
   offer: propsTypeAll.offer,
@@ -192,6 +208,9 @@ Property.propTypes = {
   offers: propsTypeAll.offers,
   cityCoordinates: propsTypeAll.cityCoordinates,
   authorizationStatus: propsTypeAll.stringAndUndefined,
-  nearbyOffers: propsTypeAll.offers,
+  nearbyOffers: propsTypeAll.nearbyOffers,
+  onFavoriteBtnClick: propsTypeAll.func,
+  cityActive: propsTypeAll.string,
+  citiesAll: propsTypeAll.citiesAll,
 };
 

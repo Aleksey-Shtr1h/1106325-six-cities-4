@@ -16,7 +16,7 @@ export class PlacesList extends PureComponent {
   }
 
   render() {
-    const {onTitlePlaceClick, offersActive, onCardPlaceHoverMove, onFavoriteBtnClick, cityActive, citiesAll, nearbyAdapterData} = this.props;
+    const {onTitlePlaceClick, offersActive, onCardPlaceHoverMove, onFavoriteBtnClick, cityActive, citiesAll, nearbyOffers} = this.props;
 
     return (
       <React.Fragment>
@@ -30,7 +30,7 @@ export class PlacesList extends PureComponent {
             onFavoriteBtnClick={onFavoriteBtnClick}
             cityActive={cityActive}
             citiesAll={citiesAll}
-            nearbyAdapterData={nearbyAdapterData}
+            nearbyOffers={nearbyOffers}
           />
         )}
       </React.Fragment>
@@ -42,7 +42,6 @@ const mapStateToProps = (state) => {
   return {
     cityActive: state.DATA.cityActive,
     citiesAll: state.DATA.citiesAll,
-    nearbyAdapterData: state.DATA.nearbyAdapterData,
   };
 };
 
@@ -56,8 +55,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreatorApp.actionChangePinMapHoverCard(offer));
   },
 
-  onFavoriteBtnClick(offer, cityActive, citiesAll, nearbyAdapterData) {
-    dispatch(OperationData.postFavorite(offer, cityActive, citiesAll, nearbyAdapterData));
+  onFavoriteBtnClick(offer, cityActive, citiesAll, nearbyOffers) {
+    dispatch(OperationData.postFavorite(offer, cityActive, citiesAll, nearbyOffers));
   },
 });
 
@@ -69,4 +68,7 @@ PlacesList.propTypes = {
   onTitlePlaceClick: propsTypeAll.onTitlePlaceClick,
   onCardPlaceHoverMove: propsTypeAll.func,
   onFavoriteBtnClick: propsTypeAll.func,
+  cityActive: propsTypeAll.string,
+  citiesAll: propsTypeAll.citiesAll,
+  nearbyOffers: propsTypeAll.nearbyOffers,
 };

@@ -5,13 +5,14 @@ import {Link} from 'react-router-dom';
 import {Preload} from '../preload/preload.jsx';
 
 import {OperationData} from '../../store/data-reducer/data-reducer.js';
+import {OperationApp} from '../../store/app-reducer/app-reducer.js';
 
 import {AppRoute} from '../../constans.js';
 import {getModifiedRatingValue} from "../../utils/utils.js";
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick}) => {
+export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick, citiesAll, onTitlePlaceClick}) => {
 
   if (favoritePlaces === null) {
     return (
@@ -68,7 +69,7 @@ export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick}) => {
 
                               className={`place-card__bookmark-button place-card__bookmark-button${offer.isFavorite ? `--active` : ``} button`}
                               type="button"
-                              onClick={() => onFavoriteBtnClick(offer, favoriteLocations.cityName)}
+                              onClick={() => onFavoriteBtnClick(offer, favoriteLocations.cityName, citiesAll, null)}
                             >
                               <svg className="place-card__bookmark-icon" width="18" height="19">
                                 <use xlinkHref="#icon-bookmark"></use>
@@ -83,7 +84,16 @@ export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick}) => {
                             </div>
                           </div>
                           <h2 className="place-card__name">
-                            <a href="#">{offer.titleCard}</a>
+
+                            <Link
+                              to={{pathname: `/property/${offer.id}`}}
+                              onClick={() => onTitlePlaceClick(offer)}
+                            >
+
+                              {offer.titleCard}
+
+                            </Link>
+
                           </h2>
                           <p className="place-card__type">{offer.typeCard}</p>
                         </div>
@@ -112,22 +122,30 @@ export const FavoritePlaces = ({favoritePlaces, onFavoriteBtnClick}) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    citiesAll: state.DATA.citiesAll,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
 
-  onFavoriteBtnClick(offer, cityActive) {
-    dispatch(OperationData.postFavorite(offer, cityActive));
+  onFavoriteBtnClick(offer, cityActive, citiesAll, nearbyOffers) {
+    dispatch(OperationData.postFavorite(offer, cityActive, citiesAll, nearbyOffers));
+  },
+
+  onTitlePlaceClick(offer) {
+    dispatch(OperationApp.loadComments(offer));
+    dispatch(OperationData.loadNearbyOffers(offer));
   },
 
 });
 
-export const WrapperFavoritePlaces = connect(null, mapDispatchToProps)(FavoritePlaces);
+export const WrapperFavoritePlaces = connect(mapStateToProps, mapDispatchToProps)(FavoritePlaces);
 
 FavoritePlaces.propTypes = {
   favoritePlaces: propsTypeAll.citiesAll,
+  citiesAll: propsTypeAll.citiesAll,
+  onFavoriteBtnClick: propsTypeAll.func,
+  onTitlePlaceClick: propsTypeAll.func,
 };

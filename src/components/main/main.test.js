@@ -39,8 +39,6 @@ test(`Should Main render correctly`, () => {
             placesCount={50}
             offers={testProps.offersProps}
             cityActive={`test`}
-            onTitlePlaceClick={() => {}}
-            onMenuCityClick={() => {}}
             cityCoordinates={[1, 2]}
           />
         </Provider>

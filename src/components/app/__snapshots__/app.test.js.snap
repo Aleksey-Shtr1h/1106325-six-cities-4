@@ -213,7 +213,7 @@ exports[`Should App render correctly 1 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button button place-card__bookmark-button--active"
                     onClick={[Function]}
                     type="button"
                   >
@@ -312,7 +312,7 @@ exports[`Should App render correctly 1 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button button place-card__bookmark-button--active"
                     onClick={[Function]}
                     type="button"
                   >
@@ -411,7 +411,7 @@ exports[`Should App render correctly 1 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button button place-card__bookmark-button--active"
                     onClick={[Function]}
                     type="button"
                   >
@@ -517,7 +517,7 @@ exports[`Should App render correctly 1 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button button place-card__bookmark-button--active"
                     onClick={[Function]}
                     type="button"
                   >

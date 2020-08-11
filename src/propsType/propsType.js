@@ -45,6 +45,24 @@ export const propsTypeCityOffers = {
   cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
 };
 
+export const propsTypeNearbyOffers = {
+  cityName: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.string.isRequired,
+  ]),
+  offers: PropTypes.arrayOf(
+      PropTypes.shape(propsTypeOffer).isRequired
+  ),
+  placesCount: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.number.isRequired,
+  ]),
+  cityCoordinates: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  ]),
+};
+
 export const hostData = {
   id: PropTypes.oneOfType([
     PropTypes.oneOf([undefined]).isRequired,
@@ -70,6 +88,24 @@ export const hostData = {
 
 
 export const propsTypeAll = {
+  onMenuCityClick: PropTypes.func.isRequired,
+  onTitlePlaceClick: PropTypes.func.isRequired,
+  nameCities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  placesCount: PropTypes.number.isRequired,
+  cityName: PropTypes.string.isRequired,
+  reviews: propsTypeOffer.reviews,
+  review: PropTypes.shape(propsTypeReview).isRequired,
+  func: PropTypes.func.isRequired,
+  string: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
+  userAuthData: PropTypes.shape(hostData).isRequired,
+  bool: PropTypes.bool.isRequired,
+
+  nearbyOffers: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.shape(propsTypeNearbyOffers).isRequired,
+  ]),
+
   citiesAll: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
     PropTypes.arrayOf(
@@ -77,15 +113,17 @@ export const propsTypeAll = {
             propsTypeCityOffers)
         .isRequired
     ).isRequired,
-
   ]),
-  cityOffers: PropTypes.oneOfType([
+
+  cityOffersAndNull: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
     PropTypes.shape(propsTypeCityOffers).isRequired,
   ]),
-  onMenuCityClick: PropTypes.func.isRequired,
-  onTitlePlaceClick: PropTypes.func.isRequired,
-  nameCities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+
+  cityOffersAndUndefined: PropTypes.oneOfType([
+    PropTypes.oneOf([undefined]).isRequired,
+    PropTypes.shape(propsTypeCityOffers).isRequired,
+  ]),
 
   placeOffer: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
@@ -97,7 +135,6 @@ export const propsTypeAll = {
     PropTypes.oneOf([undefined]).isRequired,
     PropTypes.string.isRequired,
   ]),
-  placesCount: PropTypes.number.isRequired,
 
   offers: PropTypes.arrayOf(
       PropTypes.shape(propsTypeOffer).isRequired
@@ -108,18 +145,11 @@ export const propsTypeAll = {
     PropTypes.shape(propsTypeOffer).isRequired,
   ]),
 
-  cityName: PropTypes.string.isRequired,
-  reviews: propsTypeOffer.reviews,
-  review: PropTypes.shape(propsTypeReview).isRequired,
 
   cityCoordinates: PropTypes.oneOfType([
     PropTypes.oneOf([undefined]).isRequired,
     PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   ]),
-
-  func: PropTypes.func.isRequired,
-  string: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
 
   stringAndNull: PropTypes.oneOfType([
     PropTypes.oneOf([null]).isRequired,
@@ -167,7 +197,4 @@ export const propsTypeAll = {
     PropTypes.oneOf([null]).isRequired,
   ]),
 
-  userAuthData: PropTypes.shape(hostData).isRequired,
-
-  bool: PropTypes.bool.isRequired,
 };
