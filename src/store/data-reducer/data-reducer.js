@@ -1,6 +1,6 @@
 import {extend} from '../../utils/utils.js';
 import {ActionTypeData, ActionCreatorData} from '../data-action/data-action.js';
-import {ActionCreatorApp} from '../app-action/app-action.js';
+
 import {adapterOffers} from '../../adapter/adapter.js';
 
 const initialState = {
@@ -11,6 +11,7 @@ const initialState = {
   offersActive: null, // данные приложения с сервера
   activeSort: `popular`,
   nearbyOffers: null,
+  nearbyAdapterData: null,
   nearbyCity: null,
 
   favoritePlaces: null,
@@ -22,12 +23,12 @@ export const OperationData = {
       .then((response) => {
         return adapterOffers(response.data);
       })
-      .then((AdapterOffers) => {
-        dispatch(ActionCreatorData.loadCitiesAll(AdapterOffers.cityOffers));
-        dispatch(ActionCreatorData.loadCitiesName(AdapterOffers.cities));
-        dispatch(ActionCreatorData.loadCityActive(AdapterOffers.cityOffers[0].cityName));
-        dispatch(ActionCreatorData.loadOffersActive(AdapterOffers.cityOffers));
-        dispatch(ActionCreatorData.loadCitiesOffers(AdapterOffers.cityOffers[0]));
+      .then((adapter) => {
+        dispatch(ActionCreatorData.loadCitiesAll(adapter.cityOffers));
+        dispatch(ActionCreatorData.loadCitiesName(adapter.cities));
+        dispatch(ActionCreatorData.loadCityActive(adapter.cityOffers[0].cityName));
+        dispatch(ActionCreatorData.loadOffersActive(adapter.cityOffers));
+        dispatch(ActionCreatorData.loadCitiesOffers(adapter.cityOffers[0]));
       });
   },
 
@@ -39,9 +40,9 @@ export const OperationData = {
     .then((response) => {
       return adapterOffers(response.data);
     })
-    .then((AdapterOffers) => {
-      dispatch(ActionCreatorData.loadNearbyOffers(AdapterOffers.cityOffers[0]));
-      dispatch(ActionCreatorData.loadNearbyCities(AdapterOffers.cities));
+    .then((adapter) => {
+      dispatch(ActionCreatorData.loadNearbyOffers(adapter.cityOffers[0]));
+      dispatch(ActionCreatorData.loadNearbyCities(adapter.cities));
     });
   },
 
@@ -50,40 +51,38 @@ export const OperationData = {
     .then((response) => {
       return adapterOffers(response.data);
     })
-    .then((AdapterOffers) => {
-      // console.log(AdapterOffers);
-      dispatch(ActionCreatorData.loadFavoritePlaces(AdapterOffers.cityOffers));
+    .then((adapter) => {
+      dispatch(ActionCreatorData.loadFavoritePlaces(adapter.cityOffers));
     });
   },
 
-  postFavorite: (offer, cityActive, citiesAll) => (dispatch, getState, api) => {
+  postFavorite: (offer, cityActive, citiesAll, nearbyAdapterData) => (dispatch, getState, api) => {
     const id = offer.id;
     const activeFavorite = offer.isFavorite;
-    // console.log(activeFavorite);
     const status = activeFavorite ? 0 : 1;
-    console.log(status);
+    console.log(nearbyAdapterData);
 
     return api.post(`/favorite/${id}/${status}`)
     .then((response) => {
       return adapterOffers([response.data]);
     })
-    .then((AdapterOffers) => {
-      // console.log(getState().DATA.citiesAll);
-      const result = getState().DATA.citiesAll.slice();
+    .then((adapter) => {
 
       citiesAll.forEach((city) => {
         if (cityActive === city.cityName) {
-          city.offers.forEach((offer) => {
-            if (id === offer.id) {
-              offer.isFavorite = !activeFavorite;
+          city.offers.forEach((offerState) => {
+            if (id === offerState.id) {
+              offerState.isFavorite = !activeFavorite;
             }
-          })
+          });
         }
-      })
+      });
 
-      dispatch(ActionCreatorData.loadCitiesAll(citiesAll));
-      dispatch(ActionCreatorData.loadFavoritePlaces(AdapterOffers.cityOffers));
-    })
+      dispatch(ActionCreatorData.loadCitiesAll(citiesAll.slice()));
+      dispatch(ActionCreatorData.loadFavoritePlaces(adapter.cityOffers));
+      dispatch(ActionCreatorData.loadNearbyOffers(nearbyAdapterData));
+
+    });
     // .catch((err) => {
     //   console.log(err);
     //   // dispatch(ActionCreatorUser.getError(err.request));
@@ -136,7 +135,8 @@ export const dataReducer = (state = initialState, action) => {
 
     case ActionTypeData.LOAD_NEARBY_OFFERS:
       return extend(state, {
-        nearbyOffers: action.payload,
+        nearbyOffers: action.payload.offers,
+        nearbyAdapterData: action.payload,
       });
 
     case ActionTypeData.LOAD_NEARBY_CITIES:

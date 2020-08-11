@@ -5,7 +5,7 @@ import {getModifiedRatingValue} from "../../utils/utils.js";
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 
-export const PlaceCard = ({offer, onTitlePlaceClick, onCardPlaceHoverMove, onFavoriteBtnClick, cityActive, citiesAll}) => {
+export const PlaceCard = ({offer, onTitlePlaceClick, onCardPlaceHoverMove, onFavoriteBtnClick, cityActive, citiesAll, nearbyAdapterData}) => {
   const {isCheckedPremium, images, price, ratingStars, titleCard, typeCard, isFavorite} = offer;
 
   const activeFavorite = isFavorite ? `--active` : ``;
@@ -45,7 +45,7 @@ export const PlaceCard = ({offer, onTitlePlaceClick, onCardPlaceHoverMove, onFav
 
             className={`place-card__bookmark-button button place-card__bookmark-button${activeFavorite}`}
             type="button"
-            onClick={() => onFavoriteBtnClick(offer, cityActive, citiesAll)}
+            onClick={() => onFavoriteBtnClick(offer, cityActive, citiesAll, nearbyAdapterData)}
 
           >
             <svg
