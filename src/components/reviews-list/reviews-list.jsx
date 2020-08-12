@@ -19,6 +19,7 @@ export const ReviewsList = ({reviews, authorizationStatus}) => {
 
         {reviews
           .sort((prev, next) => next.date - prev.date)
+          .slice(0, 10)
           .map((review, index) =>
             <ReviewsItem
               key={review.id}

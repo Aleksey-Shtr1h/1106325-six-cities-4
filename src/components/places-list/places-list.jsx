@@ -18,6 +18,26 @@ export class PlacesList extends PureComponent {
   render() {
     const {onTitlePlaceClick, offersActive, onCardPlaceHoverMove, onFavoriteBtnClick, cityActive, citiesAll, nearbyOffers} = this.props;
 
+    if (nearbyOffers) {
+      return (
+        <React.Fragment>
+          {nearbyOffers.offers.map((offer, index) =>
+            <PlaceCard
+              key={offer.id}
+              offer={offer}
+              onTitlePlaceClick={onTitlePlaceClick}
+              index={index}
+              onCardPlaceHoverMove={onCardPlaceHoverMove}
+              onFavoriteBtnClick={onFavoriteBtnClick}
+              cityActive={cityActive}
+              citiesAll={citiesAll}
+              nearbyOffers={nearbyOffers}
+            />
+          )}
+        </React.Fragment>
+      );
+    }
+
     return (
       <React.Fragment>
         {offersActive.map((offer, index) =>

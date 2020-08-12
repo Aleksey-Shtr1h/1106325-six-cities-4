@@ -34,7 +34,7 @@ export const Property = ({offer, cityCoordinates, authorizationStatus, nearbyOff
 
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            {images.map((image, i) => {
+            {images.slice(0, 6).map((image, i) => {
               return (
                 <div className="property__image-wrapper" key={image + i}>
                   <img
@@ -79,7 +79,7 @@ export const Property = ({offer, cityCoordinates, authorizationStatus, nearbyOff
                 <span style={{width: getModifiedRatingValue(ratingStars)}}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
-              <span className="property__rating-value rating__value">{ratingStars}</span>
+              <span className="property__rating-value rating__value">{Math.round(ratingStars)}</span>
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
