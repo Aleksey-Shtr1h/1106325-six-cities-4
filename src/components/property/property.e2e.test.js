@@ -10,18 +10,20 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const nearbyOffers = {offers: null};
+
 test(`Should Property button be pressed`, () => {
   const onTitlePlaceClick = jest.fn();
 
   const property = shallow(
       <Property
         offer={testProps.offerProps}
-        reviews={testProps.offerProps.reviews}
-        offers={testProps.offersProps}
-        onTitlePlaceClick={onTitlePlaceClick}
         cityCoordinates={[1, 2]}
         authorizationStatus={`test`}
-        nearbyOffers={null}
+        nearbyOffers={nearbyOffers}
+        onFavoriteBtnClick={() => {}}
+        cityActive={`test`}
+        citiesAll={testProps.cityOffersArrayProps}
       />
   );
 

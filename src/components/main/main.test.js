@@ -24,6 +24,7 @@ test(`Should Main render correctly`, () => {
       onSortingOffersChange,
       nameCities: [`test`],
       citiesAll: testProps.cityOffersArrayProps,
+      cityActive: `test`,
     },
 
     APP: {

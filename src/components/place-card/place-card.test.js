@@ -15,7 +15,7 @@ test(`Should PlaceCard render correctly`, () => {
           onTitlePlaceClick={() => {}}
           onCardPlaceHoverMove={() => {}}
           onFavoriteBtnClick={() => {}}
-          cityActive={undefined}
+          cityActive={`test`}
           citiesAll={testProps.cityOffersArrayProps}
           nearbyOffers={testProps.cityOffersProps}
         />

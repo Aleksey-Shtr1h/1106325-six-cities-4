@@ -20,6 +20,7 @@ test(`Should MainOffersAvailable render correctly`, () => {
     DATA: {
       offersActive: testProps.offersProps,
       activeSort: `popular`,
+      cityActive: `test`,
     },
 
     APP: {

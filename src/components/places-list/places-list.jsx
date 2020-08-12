@@ -42,6 +42,7 @@ const mapStateToProps = (state) => {
   return {
     cityActive: state.DATA.cityActive,
     citiesAll: state.DATA.citiesAll,
+    offersActive: state.DATA.offersActive,
   };
 };
 

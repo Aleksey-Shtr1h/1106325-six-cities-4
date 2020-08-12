@@ -22,7 +22,6 @@ export const MainOffersAvailable = ({placesCount, cityActive, offers, cityCoordi
 
         <div className="cities__places-list places__list tabs__content">
           <WrapperPlacesList
-            offersActive={offers}
           />
         </div>
       </section>

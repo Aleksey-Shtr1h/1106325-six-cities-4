@@ -37,6 +37,7 @@ describe(`Should PlaceCard logic correctly`, () => {
           onTitlePlaceClick={onTitlePlaceClick}
           onCardPlaceHoverMove={onCardPlaceHoverMove}
           onFavoriteBtnClick={() => {}}
+          cityActive={`test`}
         />);
 
     const articleMoveMouseEnter = placeCard.find(`.place-card`);
@@ -56,6 +57,7 @@ describe(`Should PlaceCard logic correctly`, () => {
           onTitlePlaceClick={onTitlePlaceClick}
           onCardPlaceHoverMove={onCardPlaceHoverMove}
           onFavoriteBtnClick={() => {}}
+          cityActive={`test`}
         />);
 
     const articleMouseLeave = placeCard.find(`.place-card`);
