@@ -97,3 +97,13 @@ it(`Reducer should reset form`, () => {
   });
 });
 
+it(`Reducer should change place offer is null`, () => {
+  expect(appReducer({
+
+  }, {
+    type: ActionTypeApp.CHANGE_PLACE_OFFER_NULL,
+    payload: null,
+  })).toEqual({
+    placeOffer: null,
+  });
+});

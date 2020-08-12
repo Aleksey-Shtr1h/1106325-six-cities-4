@@ -3,7 +3,6 @@ import renderer from 'react-test-renderer';
 import leaflet from 'leaflet';
 
 import {MapCities, getPinStyle, getMapPlace, getCenterMap} from './map-cities.jsx';
-// import {MapCities} from './map-cities.jsx';
 
 import {testProps} from "../../test/offersProps.js";
 

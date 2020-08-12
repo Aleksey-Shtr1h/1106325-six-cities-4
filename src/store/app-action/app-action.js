@@ -18,11 +18,9 @@ export const ActionTypeApp = {
   GET_PAGE: `GET_PAGE`,
   CHANGE_RATING_PLACE: `CHANGE_RATING_PLACE`,
   CHANGE_COMMENT_PLACE: `CHANGE_COMMENT_PLACE`,
-
   DISABLED_FORM: `DISABLED_FORM`,
   RESET_FORM: `RESET_FORM`,
-
-  TEST: `TEST`,
+  CHANGE_PLACE_OFFER_NULL: `CHANGE_PLACE_OFFER_NULL`,
 };
 
 export const ActionCreatorApp = {
@@ -67,8 +65,8 @@ export const ActionCreatorApp = {
     payload: {rating: 0, comment: ``},
   }),
 
-  test: () => ({
-    type: ActionTypeApp.TEST,
+  actionChangePlaceOfferNull: () => ({
+    type: ActionTypeApp.CHANGE_PLACE_OFFER_NULL,
     payload: null,
   }),
 };

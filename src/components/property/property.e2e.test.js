@@ -4,7 +4,6 @@ import Adapter from "enzyme-adapter-react-16";
 import {Property} from "./property.jsx";
 
 import {testProps} from "../../test/offersProps.js";
-// import {reviewsProps} from "../../test/reviewsProps.js";
 
 Enzyme.configure({
   adapter: new Adapter(),

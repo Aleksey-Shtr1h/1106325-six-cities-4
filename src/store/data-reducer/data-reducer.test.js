@@ -72,13 +72,12 @@ it(`Reducer should load cities offers`, () => {
 
 it(`Reducer should load cities name`, () => {
   expect(dataReducer({
-    citiesName: [`test`],
+    nameCities: [`test`],
   }, {
-    type: ActionTypeData.LOAD_CITIES_OFFERS,
+    type: ActionTypeData.LOAD_CITIES_NAME,
     payload: [`test`],
   })).toEqual({
-    citiesName: [`test`],
-    cityOffers: [`test`],
+    nameCities: [`test`],
   });
 });
 
@@ -115,6 +114,38 @@ it(`Reducer should load cities all`, () => {
   });
 });
 
+it(`Reducer should load nearby offers`, () => {
+  expect(dataReducer({
+    nearbyOffers: cityOffers,
+  }, {
+    type: ActionTypeData.LOAD_NEARBY_OFFERS,
+    payload: cityOffers,
+  })).toEqual({
+    nearbyOffers: cityOffers,
+  });
+});
+
+it(`Reducer should load nearby city`, () => {
+  expect(dataReducer({
+    nearbyCity: [`test`],
+  }, {
+    type: ActionTypeData.LOAD_NEARBY_CITIES,
+    payload: [`test`],
+  })).toEqual({
+    nearbyCity: [`test`],
+  });
+});
+
+it(`Reducer should load favorite places`, () => {
+  expect(dataReducer({
+    favoritePlaces: citiesAll,
+  }, {
+    type: ActionTypeData.LOAD_FAVORITE_PLACES,
+    payload: citiesAll,
+  })).toEqual({
+    favoritePlaces: citiesAll,
+  });
+});
 
 it(`Should make a correct API call to /hotels`, function () {
   const apiMock = new MockAdapter(api);

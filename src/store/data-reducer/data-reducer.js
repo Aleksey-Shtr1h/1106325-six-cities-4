@@ -64,8 +64,6 @@ export const OperationData = {
     const activeFavorite = offer.isFavorite;
     const status = activeFavorite ? 0 : 1;
 
-    // console.log(status);
-
     return api.post(`/favorite/${id}/${status}`)
     .then((response) => {
       return adapterOffers([response.data]);

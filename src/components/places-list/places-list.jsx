@@ -2,7 +2,6 @@ import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
 
 import {PlaceCard} from "../place-card/place-card.jsx";
-// import {getOffersActive} from '../../store/data-reducer/data-selectors.js';
 
 import {propsTypeAll} from "../../propsType/propsType.js";
 

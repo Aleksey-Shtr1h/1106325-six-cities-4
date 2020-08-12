@@ -35,9 +35,9 @@ export const OperationApp = {
       });
     });
 
-    // if (`offers` in citySearch !== true) {
-    //   return false;
-    // }
+    if (`offers` in citySearch !== true) {
+      return false;
+    }
 
     citySearch.offers.forEach((offer) => {
       offersAll.push(offer);
@@ -129,7 +129,7 @@ export const appReducer = (state = initialState, action) => {
         comment: action.payload.comment,
       });
 
-    case ActionTypeApp.TEST:
+    case ActionTypeApp.CHANGE_PLACE_OFFER_NULL:
       return extend(state, {
         placeOffer: action.payload,
       });

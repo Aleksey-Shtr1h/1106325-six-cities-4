@@ -1,16 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {ErrorNetwork} from './error-network.jsx';
+import {Preload} from './preload.jsx';
 
 
-it(`Should ErrorNetwork render correctly 1`, () => {
+it(`Should Preload render correctly`, () => {
 
   const tree = renderer.create(
-      <ErrorNetwork
-        err={`test`}
-        onHideErrorBlock={() => {}}
-        activeError={false}
+      <Preload
       />,
       {
         createNodeMock: () => {

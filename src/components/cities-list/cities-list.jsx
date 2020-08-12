@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from 'react-redux';
-// import {bindActionCreators} from 'redux';
 
 import {CitiesItem} from '../cities-item/cities-item.jsx';
 import {getNameCities, getCitiesAll} from '../../store/data-reducer/data-selectors.js';
@@ -37,13 +36,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  // return {
-  //   onMenuCityClick: bindActionCreators(ActionCreatorData.actionCity, dispatch),
-  // };
 
   onMenuCityClick(cityName, citiesAll) {
     dispatch(ActionCreatorData.actionCity(cityName, citiesAll));
-    dispatch(ActionCreatorApp.test());
+    dispatch(ActionCreatorApp.actionChangePlaceOfferNull());
   }
 
 });

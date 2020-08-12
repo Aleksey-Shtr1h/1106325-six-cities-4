@@ -129,10 +129,8 @@ export const cityOffers = cities.map((city, index) => {
 
 export const cityOffersExample = (data) => {
   return {
-    // cityName: city,
     offers: data,
     placesCount: getRandomIntegerNumber(1, 100),
-    // cityCoordinates: CITY_COORDINATE[index],
   };
 };
 
