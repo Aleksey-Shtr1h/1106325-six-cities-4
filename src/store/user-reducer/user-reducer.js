@@ -2,6 +2,7 @@ import {history} from '../../history';
 import {AppRoute} from '../../constans.js';
 
 import {ActionTypeUser, ActionCreatorUser} from '../user-action/user-action.js';
+import {OperationData} from '../data-reducer/data-reducer.js';
 import {ActionCreatorApp} from '../app-action/app-action.js';
 
 import {PageApp} from '../../constans.js';
@@ -24,6 +25,7 @@ export const OperationUser = {
     return api.get(`/login`)
       .then((response) => {
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
+
         dispatch(ActionCreatorUser.getHostData(response.data));
         dispatch(ActionCreatorUser.getError({status: null}));
       })
@@ -40,6 +42,8 @@ export const OperationUser = {
       .then((response) => {
         dispatch(ActionCreatorUser.getHostData(response.data));
         dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(OperationData.loadCitiesOffers());
+        dispatch(OperationData.loadFavorite());
         dispatch(ActionCreatorApp.actionPage(PageApp.MAIN));
         dispatch(ActionCreatorUser.getError({status: null}));
       })

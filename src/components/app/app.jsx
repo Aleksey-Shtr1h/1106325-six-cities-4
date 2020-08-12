@@ -9,6 +9,7 @@ import {WrapperHeaderSite} from '../header-site/header-site.jsx';
 import {WrapperProperty} from '../property/property.jsx';
 import {SignIn} from '../sign-in/sign-in.jsx';
 import {WrapperFavoritePlaces} from '../favorite-places/favorite-places.jsx';
+import {FavoritePlacesEmpty} from '../favorite-places-empty/favorite-places-empty.jsx';
 import {Preload} from '../preload/preload.jsx';
 
 import {getChangeCity, getCityActive} from '../../store/data-reducer/data-selectors.js';
@@ -19,7 +20,7 @@ import {OperationApp} from '../../store/app-reducer/app-reducer.js';
 import {getAuthorizationStatus, getUserAuthData} from '../../store/user-reducer/user-selectors.js';
 import {OperationUser, AuthorizationStatus} from '../../store/user-reducer/user-reducer.js';
 
-import {HeaderType, PageApp, AppRoute} from '../../constans.js';
+import {HeaderType, AppRoute} from '../../constans.js';
 import {getOffer} from '../../utils/utils.js';
 
 import {propsTypeAll} from '../../propsType/propsType.js';
@@ -29,76 +30,14 @@ export class App extends React.PureComponent {
     super(props);
   }
 
-  _renderApp() {
-    const {cityOffers, placeOffer, cityActive, authorizationStatus, login, userAuthData, pageApp} = this.props;
-
-    const {offers, placesCount, cityCoordinates} = cityOffers;
-
-    switch (pageApp) {
-
-      case PageApp.MAIN:
-
-        return (
-          <WrapperHeaderSite
-            type={HeaderType.main}
-            userAuthData={userAuthData}
-            authorizationStatus={authorizationStatus}
-          >
-            <Main
-              placesCount={placesCount}
-              offers={offers}
-              cityActive={cityActive}
-              cityCoordinates={cityCoordinates}
-            />
-          </WrapperHeaderSite>
-        );
-
-      case PageApp.PROPERTY:
-
-        if (placeOffer) {
-          const reviews = placeOffer.reviews;
-
-          return (
-            <WrapperHeaderSite
-              type={HeaderType.property}
-              userAuthData={userAuthData}
-              authorizationStatus={authorizationStatus}
-            >
-              <WrapperProperty
-                offer={placeOffer}
-                reviews={reviews}
-                offers={offers}
-                cityCoordinates={cityCoordinates}
-                authorizationStatus={authorizationStatus}
-              />
-            </WrapperHeaderSite>
-          );
-        }
-
-        break;
-
-      case PageApp.LOGIN:
-        return (
-          <WrapperHeaderSite
-            type={HeaderType.signIn}
-            userAuthData={userAuthData}
-            authorizationStatus={authorizationStatus}
-          >
-            <SignIn
-              onSubmit={login}
-            />
-          </WrapperHeaderSite>
-        );
-
-      default:
-        return null;
-    }
-
-    return null;
-  }
-
   render() {
     const {cityOffers, placeOffer, cityActive, authorizationStatus, login, userAuthData, routerOffer, favoritePlaces} = this.props;
+
+    let favoriteLength = 0;
+
+    if (favoritePlaces) {
+      favoriteLength = favoritePlaces.length;
+    }
 
     if (cityOffers !== null) {
       const {offers, placesCount, cityCoordinates} = cityOffers;
@@ -109,7 +48,7 @@ export class App extends React.PureComponent {
 
             <Route exact path={AppRoute.MAIN}>
               <WrapperHeaderSite
-                type={HeaderType.main}
+                type={HeaderType.MAIN}
                 userAuthData={userAuthData}
                 authorizationStatus={authorizationStatus}
               >
@@ -130,7 +69,7 @@ export class App extends React.PureComponent {
                   {getOffer(placeOffer, props, routerOffer) &&
 
                   <WrapperHeaderSite
-                    type={HeaderType.property}
+                    type={HeaderType.PROPERTY}
                     userAuthData={userAuthData}
                     authorizationStatus={authorizationStatus}
                   >
@@ -154,7 +93,7 @@ export class App extends React.PureComponent {
               {authorizationStatus !== AuthorizationStatus.AUTH &&
 
               <WrapperHeaderSite
-                type={HeaderType.signIn}
+                type={HeaderType.SIGN_IN}
                 userAuthData={userAuthData}
                 authorizationStatus={authorizationStatus}
               >
@@ -171,13 +110,16 @@ export class App extends React.PureComponent {
               {authorizationStatus === AuthorizationStatus.AUTH &&
 
               <WrapperHeaderSite
-                type={``}
+                type={favoriteLength === 0 ? `` : HeaderType.FAVORITE_EMPTY}
                 userAuthData={userAuthData}
                 authorizationStatus={authorizationStatus}
-              >
-                <WrapperFavoritePlaces
-                  favoritePlaces={favoritePlaces}
-                />
+              > {favoriteLength > 0 &&
+                  <WrapperFavoritePlaces
+                    favoritePlaces={favoritePlaces}
+                  /> ||
+
+                  <FavoritePlacesEmpty />
+                }
 
               </WrapperHeaderSite>
 
@@ -211,7 +153,7 @@ export class App extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state.DATA.favoritePlaces);
+
   return {
     placeOffer: getPlaceOffer(state),
     cityActive: getCityActive(state),

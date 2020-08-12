@@ -1,7 +1,8 @@
 export const HeaderType = {
-  main: `page--main`,
-  property: ``,
-  signIn: `page--login`,
+  MAIN: `page--main`,
+  PROPERTY: ``,
+  SIGN_IN: `page--login`,
+  FAVORITE_EMPTY: `page--favorites-empty`,
 };
 
 export const PageApp = {
