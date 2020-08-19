@@ -52166,7 +52166,7 @@ const HeaderSite = ({
     to: _constans_js__WEBPACK_IMPORTED_MODULE_9__["AppRoute"].MAIN
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "header__logo",
-    src: "../img/logo.svg",
+    src: "img/logo.svg",
     alt: "6 cities logo",
     width: "81",
     height: "41"
@@ -52389,8 +52389,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const PIN_SRANDART_URL = `/img/pin.svg`;
-const PIN_ACTIVE_URL = `/img/pin-active.svg`;
+const PIN_SRANDART_URL = `img/pin.svg`;
+const PIN_ACTIVE_URL = `img/pin-active.svg`;
 const PIN_SIZE = [30, 30];
 const getPinStyle = (url, size) => {
   return leaflet__WEBPACK_IMPORTED_MODULE_2___default.a.icon({
