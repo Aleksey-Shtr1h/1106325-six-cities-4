@@ -52166,7 +52166,7 @@ const HeaderSite = ({
     to: _constans_js__WEBPACK_IMPORTED_MODULE_9__["AppRoute"].MAIN
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "header__logo",
-    src: "/img/logo.svg",
+    src: "../img/logo.svg",
     alt: "6 cities logo",
     width: "81",
     height: "41"
