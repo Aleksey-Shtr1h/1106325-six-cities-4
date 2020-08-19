@@ -52140,7 +52140,7 @@ const HeaderSite = ({
   activeError,
   authorizationStatus
 }) => {
-  const userLogo = userAuthData[`avatar_url`] ? `url(https://htmlacademy-react-3.appspot.com/six-cities${userAuthData[`avatar_url`]})` : `url(../img/avatar.svg)`;
+  const userLogo = userAuthData[`avatar_url`] ? `url(https://htmlacademy-react-3.appspot.com/six-cities${userAuthData[`avatar_url`]})` : `url(img/avatar.svg)`;
   let activeRouteLogin = _constans_js__WEBPACK_IMPORTED_MODULE_9__["AppRoute"].LOGIN;
 
   if (authorizationStatus === _store_user_reducer_user_reducer_js__WEBPACK_IMPORTED_MODULE_6__["AuthorizationStatus"].AUTH) {
